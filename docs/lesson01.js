@@ -25,11 +25,26 @@ document.querySelectorAll("form[data-answer]").forEach(form => {
     feedback.dataset.state = "answered";
   });
   form.addEventListener("reset", () => {
-    feedback.textContent = "아직 답을 고르지 않았습니다.";
+    feedback.textContent = "선택한 뒤 답을 확인해 보세요.";
     delete feedback.dataset.state;
   });
   form.addEventListener("change", () => {
     feedback.textContent = "선택했습니다. ‘답 확인’을 눌러 이유를 확인하세요.";
     delete feedback.dataset.state;
   });
+});
+
+const pieces = ["오늘", "날씨가", "정말", "좋네요."];
+const tokenOutput = document.getElementById("token-output");
+const tokenNext = document.getElementById("token-next");
+let pieceCount = 0;
+tokenNext.addEventListener("click", () => {
+  pieceCount += 1;
+  tokenOutput.textContent = pieces.slice(0, pieceCount).join(" ");
+  tokenNext.disabled = pieceCount === pieces.length;
+});
+document.getElementById("token-reset").addEventListener("click", () => {
+  pieceCount = 0;
+  tokenOutput.textContent = "아직 생성된 조각이 없습니다.";
+  tokenNext.disabled = false;
 });
