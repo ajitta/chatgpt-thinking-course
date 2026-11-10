@@ -1,19 +1,37 @@
-<p style="font-size:16px;color:#222222;font-weight:normal;line-height:1.8;">ChatGPT는 다음에 올 말을 예측하는 데서 출발합니다. 그런데 이런 방식으로 어떻게 계산 문제를 풀고 논리적인 결론까지 만들 수 있을까요?</p>
-<p style="font-size:16px;color:#222222;font-weight:normal;line-height:1.8;">1강의 핵심은 <strong>정확하게 예측하려면 단어의 연결뿐 아니라 의미·규칙·관계도 다루는 것이 도움이 된다</strong>는 점입니다.</p>
-<h2 style="font-size:22px;color:#222222;font-weight:bold;">1. 다음 단어보다 정확한 표현은 ‘다음 토큰’</h2>
-<p style="font-size:16px;color:#222222;font-weight:normal;line-height:1.8;">언어모델은 글자·단어 조각인 토큰을 하나씩 생성합니다. 한 조각을 출력하면 그 결과도 문맥에 포함하고, 이어질 다음 조각을 예측합니다.</p>
-<h2 style="font-size:22px;color:#222222;font-weight:bold;">2. 어려운 예측에는 관계를 연결하는 능력이 필요하다</h2>
-<p style="font-size:16px;color:#222222;font-weight:normal;line-height:1.8;">“사과 5개를 샀다. 2개를 먹고 1개를 친구에게 주었다. 남은 사과는?”</p>
-<p style="font-size:16px;color:#222222;font-weight:normal;line-height:1.8;">답은 2개입니다. 이를 맞히려면 사과라는 단어만 알아서는 부족합니다. 처음 수량과 두 행동이 수량을 어떻게 바꾸는지 연결해야 합니다. 다음 표현을 잘 예측하는 학습은 이런 관계를 익히는 능력으로 이어질 수 있습니다.</p>
-<h2 style="font-size:22px;color:#222222;font-weight:bold;">3. 파라미터는 학습한 숫자, 어텐션은 문맥을 연결하는 계산</h2>
-<p style="font-size:16px;color:#222222;font-weight:normal;line-height:1.8;">모델은 많은 자료를 학습하면서 예측 오류를 줄이도록 내부의 숫자인 파라미터를 조정합니다. 답할 때마다 원문을 책장에서 꺼내 읽는 방식과는 다릅니다.</p>
-<p style="font-size:16px;color:#222222;font-weight:normal;line-height:1.8;">트랜스포머의 어텐션은 문맥 속 정보의 관련성을 계산하고 반영합니다. 떨어져 있는 정보도 연결할 수 있지만, 연결된 내용이 사실이라는 보장까지 주지는 않습니다.</p>
-<h2 style="font-size:22px;color:#222222;font-weight:bold;">4. Thinking은 추가로 검토해도 틀릴 수 있다</h2>
-<p style="font-size:16px;color:#222222;font-weight:normal;line-height:1.8;">추론을 강화한 모델은 추가적인 학습과 계산으로 문제를 나누고, 다른 해법을 검토하고, 오류를 수정할 수 있습니다. 그렇다고 사람이 의식적으로 생각하는 것과 같거나 정답이 보장된다는 뜻은 아닙니다.</p>
-<h2 style="font-size:22px;color:#222222;font-weight:bold;">1강을 한 문장으로 요약하면</h2>
-<p style="font-size:17px;color:#222222;font-weight:normal;line-height:1.8;"><strong>다음 말을 잘 예측하는 학습은 관계와 규칙을 다루는 능력으로 이어질 수 있지만, 그럴듯한 답이 곧 검증된 답은 아닙니다.</strong></p>
-<p style="font-size:16px;color:#222222;font-weight:normal;line-height:1.8;">자연스러운 문장인지, 추론이 타당한지, 현실의 사실과 일치하는지는 각각 확인해야 합니다.</p>
-<h2 style="font-size:22px;color:#222222;font-weight:bold;">1강 본문 읽고 직접 실습하기</h2>
-<p style="font-size:16px;color:#222222;font-weight:normal;line-height:1.8;">아래 1강 페이지에서 자세한 설명을 읽고, 빈칸 선택 문제와 문장 조각 생성 시연, 이해도 퀴즈를 직접 해볼 수 있습니다.</p>
-<p style="font-size:17px;color:#216044;font-weight:normal;line-height:1.8;"><a href="https://ajitta.github.io/chatgpt-thinking-course/">1강 · ‘다음 단어 맞히기’가 어떻게 ‘논리적 사고’가 되었을까?</a></p>
-<p style="font-size:14px;color:#444444;font-weight:normal;line-height:1.8;">이 글은 공개 대화에서 진행한 1강의 핵심을 요약한 글입니다. 실습은 연결된 강의 페이지에서 실행됩니다.</p>
+<p style="font-size:15px;color:#42715a;">AI 원리 노트 · ChatGPT Thinking 1강</p>
+<p><br></p><p><img src="assets/lesson-01-cover.png" alt="1강 표지: 다음 말 예측에서 논리적 추론까지"></p>
+<p style="font-size:16px;color:#222222;">다음 말 예측에서 논리적 추론까지</p><p><br></p>
+<p style="font-size:19px;color:#222222;line-height:1.9;">챗GPT가 하는 일이 ‘다음 말 맞히기’라면,<br>사과 개수를 세고 논리 문제를 푸는 능력은 어디서 나올까요?</p>
+<p><br></p>
+<p style="font-size:19px;color:#222222;line-height:1.9;">1강에서는 <strong>예측과 추론이 어떻게 이어질 수 있는지</strong> 살펴봅니다.<br>여기서 다음 말은 정확히는 글자나 단어 조각인 ‘토큰’입니다.</p>
+<p><br></p><p><br></p>
+<h2 style="font-size:24px;color:#203b30;">01<br>어려운 예측에는<br>관계의 이해가 필요합니다</h2>
+<p><br></p>
+<p style="font-size:19px;color:#222222;line-height:1.9;">사과 5개를 샀습니다.<br>2개를 먹고, 1개를 친구에게 주었습니다.<br>남은 사과는 몇 개일까요?</p>
+<p><br></p>
+<p style="font-size:19px;color:#222222;line-height:1.9;">답은 <strong>2개</strong>입니다. ‘사과’라는 단어만 알아서는 부족합니다.<br>처음 수량과 두 행동이 수량을 어떻게 바꾸는지 연결해야 합니다.</p>
+<p><br></p>
+<p style="font-size:19px;color:#222222;line-height:1.9;">다음 표현을 정확히 예측하는 학습은<br><strong>이런 규칙과 관계를 다루는 능력</strong>으로 이어질 수 있습니다.</p>
+<p><br></p><p><br></p>
+<h2 style="font-size:24px;color:#203b30;">02<br>학습은 숫자를 조정하고,<br>어텐션은 문맥을 연결합니다</h2>
+<p><br></p>
+<p style="font-size:19px;color:#222222;line-height:1.9;">모델은 학습하면서 예측 오류를 줄이도록<br>내부의 숫자인 <strong>파라미터</strong>를 조정합니다.</p>
+<p><br></p>
+<p style="font-size:19px;color:#222222;line-height:1.9;">답을 만들 때 <strong>어텐션</strong>은 문맥 속 정보의 관련성을 계산합니다.<br>문장 안에서 떨어져 있는 정보도 연결해 반영할 수 있습니다.</p>
+<p><br></p><p><img src="assets/lesson-01-attention.png" alt="원본 도식: 문맥에 따라 관련성의 강도를 계산"></p><p><br></p>
+<p style="font-size:15px;color:#666666;">위 그림은 1강 공개 대화의 원본 도식입니다.<br>연결선은 관련성을 설명하며, 지시 대상의 정답이나 사실 검증을 뜻하지 않습니다.</p>
+<p><br></p><p><br></p>
+<h2 style="font-size:24px;color:#203b30;">03<br>Thinking도<br>정답을 보장하지는 않습니다</h2>
+<p><br></p>
+<p style="font-size:19px;color:#222222;line-height:1.9;">추론을 강화한 모델은 추가 학습과 계산을 통해<br>문제를 나누고, 해법을 검토하고, 오류를 수정할 수 있습니다.</p>
+<p><br></p>
+<p style="font-size:19px;color:#222222;line-height:1.9;">그래도 <strong>유창한 문장, 타당한 추론, 정확한 사실</strong>은 각각 확인해야 합니다.<br>그럴듯하게 설명했다고 검증된 답이 되는 것은 아닙니다.</p>
+<p><br></p><p><br></p>
+<blockquote><p>다음 말을 잘 예측하는 학습은<br>규칙과 관계를 다루는 능력으로<br>이어질 수 있습니다.</p></blockquote>
+<p style="font-size:22px;color:#203b30;font-weight:bold;">추론의 결과는 따로 검증해야 합니다.</p>
+<p><br></p>
+<p style="font-size:19px;color:#222222;line-height:1.9;">이것이 1강의 핵심입니다.<br>자세한 설명과 선택형 실습은 아래 1강에서 이어집니다.</p>
+<p><br></p>
+<p style="font-size:19px;color:#216044;font-weight:bold;"><a href="https://ajitta.github.io/chatgpt-thinking-course/">1강 본문과 실습으로 이어서 배우기 →</a></p>
+<p><br></p>
+<p style="font-size:15px;color:#666666;">공개 대화의 1강을 블로그용으로 요약·편집했습니다.<br>본문 전체와 출처는 연결된 1강 페이지에서 확인할 수 있습니다.</p>
