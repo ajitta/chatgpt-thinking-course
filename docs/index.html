@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ChatGPT Thinking 원리 이해하기 1강. 다음 말 예측과 논리적 추론의 관계를 두 가지 퀴즈로 확인합니다.">
+  <title>1강 실습 · 다음 말 예측에서 논리적 추론까지</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="lesson01.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#practice">실습으로 바로 가기</a>
+  <header>
+    <p class="series">Know Your Unknowns · ChatGPT Thinking 원리 이해하기</p>
+    <h1>다음 말을 고르는 AI는<br>어떻게 추론까지 할까요?</h1>
+    <p class="intro">1강에서 읽은 내용을 두 문제로 확인해 보세요. 답을 고르고 ‘답 확인’을 누르면 이유를 볼 수 있습니다.</p>
+    <nav aria-label="강의 자료">
+      <a href="https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/01-ai-fundamentals/lesson-01.md">1강 본문 읽기</a>
+      <a href="https://github.com/ajitta/chatgpt-thinking-course">전체 30강 목차</a>
+    </nav>
+  </header>
+  <main id="practice">
+    <section aria-labelledby="first-title">
+      <p class="step">실습 1 / 문맥에서 다음 말 고르기</p>
+      <h2 id="first-title">“아침에 일어나서 칫솔로 이를 ____.”</h2>
+      <form id="prediction" data-answer="brush">
+        <fieldset>
+          <legend>빈칸에 가장 자연스러운 표현은 무엇일까요?</legend>
+          <label><input type="radio" name="prediction" value="brush"> 닦았다</label>
+          <label><input type="radio" name="prediction" value="drive"> 운전했다</label>
+          <label><input type="radio" name="prediction" value="plant"> 심었다</label>
+        </fieldset>
+        <div class="actions"><button type="submit">답 확인</button><button type="reset" class="secondary">다시 풀기</button></div>
+        <p id="prediction-feedback" class="feedback" role="status" aria-live="polite">아직 답을 고르지 않았습니다.</p>
+      </form>
+      <p>앞의 문맥은 다음 표현을 고르는 단서가 됩니다. 실제 언어모델은 단어 전체가 아니라 글자·단어 조각인 <strong>토큰</strong> 단위로 출력을 만듭니다.</p>
+    </section>
+    <aside aria-labelledby="connection-title">
+      <h2 id="connection-title">문맥을 맞히려면 관계가 필요합니다</h2>
+      <p>“사과 5개에서 2개를 먹고 1개를 주었다”의 다음 답을 맞히려면 수량과 행동의 관계를 연결해야 합니다. 다음 표현을 예측하는 학습은 이런 관계를 익히는 데 도움이 될 수 있습니다.</p>
+      <p><strong>말이 자연스럽다는 것, 추론이 타당하다는 것, 사실이 정확하다는 것은 각각 확인해야 합니다.</strong></p>
+    </aside>
+    <section aria-labelledby="second-title">
+      <p class="step">실습 2 / 핵심 원리 확인하기</p>
+      <h2 id="second-title">다음 단어 예측이 추론 능력으로 이어질 수 있는 이유는?</h2>
+      <form id="reasoning" data-answer="relations">
+        <fieldset>
+          <legend>가장 적절한 설명 하나를 고르세요.</legend>
+          <label><input type="radio" name="reasoning" value="memorize"> <span>① 모든 질문과 정답을 미리 암기했기 때문이다.</span></label>
+          <label><input type="radio" name="reasoning" value="relations"> <span>② 정확하게 예측하려면 의미, 규칙, 관계를 학습하는 것이 도움이 되기 때문이다.</span></label>
+          <label><input type="radio" name="reasoning" value="search"> <span>③ 인터넷 검색만으로 모든 논리 문제를 해결하기 때문이다.</span></label>
+          <label><input type="radio" name="reasoning" value="length"> <span>④ 단어를 많이 출력하면 자동으로 논리적 사고가 완성되기 때문이다.</span></label>
+        </fieldset>
+        <div class="actions"><button type="submit">답 확인</button><button type="reset" class="secondary">다시 풀기</button></div>
+        <p id="reasoning-feedback" class="feedback" role="status" aria-live="polite">아직 답을 고르지 않았습니다.</p>
+      </form>
+      <p>추론 모델은 추가 학습과 계산으로 복잡한 문제 해결을 더 잘 수행할 수 있습니다. 그래도 오래 추론했다는 이유만으로 답이 항상 정확해지는 것은 아닙니다.</p>
+    </section>
+  </main>
+  <footer>
+    <h2>이 실습의 범위</h2>
+    <p>원문 1강의 질문과 선택지를 바탕으로, 선택 처리와 피드백을 새로 구현했습니다. 언어모델을 실행하거나 내부 사고 과정·실제 토큰 확률을 보여주는 실험은 아닙니다. 선택한 답은 이 화면에서만 처리하며 서버에 저장하거나 외부 AI로 보내지 않습니다.</p>
+    <p><a href="https://chatgpt.com/share/6af33303-9c00-83e8-a5b8-bb134c40db5c">공개 대화 원문</a> · <a href="https://github.com/ajitta/chatgpt-thinking-course/blob/main/PROVENANCE.md">원문과 편집본의 차이</a></p>
+  </footer>
+</body>
+</html>
