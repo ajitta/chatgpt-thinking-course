@@ -98,6 +98,10 @@
         <h2 id="attention-title">떨어져 있는 정보도 서로 연결합니다</h2>
         <p>현대 언어모델의 핵심 기반 중 하나는 2017년에 발표된 <strong>트랜스포머(Transformer)</strong>입니다. 여기서 중요한 계산 방식이 <strong>어텐션(Attention)</strong>입니다.</p>
         <blockquote>“영희가 수진에게 책을 건넸다.<br>그녀는 책을 받았다.”</blockquote>
+        <figure>
+          <div class="original-diagram"><img src="assets/lesson-01-attention.svg" width="640" height="288" alt="영희가, 수진에게, 그녀는 사이의 연결을 보여주는 원문 어텐션 개념도" loading="lazy"></div>
+          <figcaption class="caption">공개 대화의 1강에 포함된 원본 도식입니다. 관련성을 설명하기 위한 그림이며, 실제 모델에서 측정한 어텐션 가중치가 아닙니다.</figcaption>
+        </figure>
         <p>사람은 문맥을 이용해 ‘그녀’가 누구를 뜻하는지 해석합니다. 모델도 문맥 속 여러 정보의 관련성을 계산하고 반영합니다. 가까운 단어만 보는 것이 아니라 멀리 떨어진 정보도 연결할 수 있습니다.</p>
         <p>어텐션은 문법적인 주어만 찾는 장치가 아닙니다. 여러 토큰의 정보를 여러 층에서 처리하는 계산 방식입니다. 관련 정보를 반영한다고 해서 그 내용의 사실 여부까지 자동으로 보장하는 것도 아닙니다.</p>
         <p class="reference">참고: <a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need · 트랜스포머 원 논문</a></p>
