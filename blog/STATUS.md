@@ -22,7 +22,9 @@
 
 1. **GitHub 페이지 브랜치 병합 후 20편 일괄 재발행**(2026-11-12 사용자 결정). 브랜치 `ajitta/github-pages-lessons-1`에 강의별 웹 강의(`docs/lessons/01/`~`20/`)가 있습니다. 병합 뒤 한 번에 처리할 것:
    - 각 글 끝에 해당 웹 강의 링크 `https://ajitta.github.io/chatgpt-thinking-course/lessons/NN/` 한 줄. 1강의 실습 링크는 `lessons/01/`로 바꿉니다(`decisions.closing_link`).
-   - 글 끝에 네이버 "이전 글" 링크 한 줄(2강부터).
+   - 네이버 "다음 글" 링크: 마지막 "다음 강의는 …" 문단 바로 아래에 한 줄(예: "다음 글 · 4강 ChatGPT는 왜 자신 있게 틀린 답을 할까?"). 20강은 21강 발행 전까지 없음.
+   - 네이버 "이전 글" 링크: 글 끝 출처 줄 근처, 웹 강의 링크와 같은 묶음에 한 줄(2강부터).
+   - 링크는 강의 순서를 따르므로 카테고리가 바뀌는 4→5강, 12→13강도 이어집니다(네이버 기본 목록은 카테고리 안 발행 순서). 21강 이후를 발행할 때는 바로 앞 글에 다음 글 링크를 넣어 재발행합니다.
    - 소제목 다음 빈 줄을 없애 소제목을 자기 절에 붙이기(h2 다음 첫 본문 문단에 `data-tight`). 먼저 한 강의를 편집기에 채워 캡처로 간격을 확인한 뒤 나머지에 적용합니다.
    - 1·2강 원고는 휴대폰 길이 규칙에 맞춰 이미 고쳤습니다(1강 마무리 문장 '는' 덜어 냄, 2강 리드·본문 두 문단 나눔과 마무리 문장 교체). 발행본에는 이 재발행 때 반영됩니다.
    - 병합 때 충돌 예상 파일: `AGENTS.md`, `PROVENANCE.md`, `README.md`, `VALIDATION.md`, `blog/PLAYBOOK.md`, `blog/README.md`, `blog/STATUS.md`, `blog/lessons-plan.json`, `blog/tools/lint_manuscript.py`, `.claude/skills/naver-lesson/SKILL.md`(양쪽에서 고침).
