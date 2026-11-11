@@ -164,3 +164,10 @@
 - PASS: `lint_manuscript.py 1`, `lint_manuscript.py 2` 오류 0, 경고 0.
 - PASS: 이전 커밋의 텍스트판과 비교해 마무리 문장을 뺀 나머지 글자가 공백만 빼고 같습니다(1강 47블록 그대로, 2강 40블록에서 43블록으로 나뉨).
 - 범위: 발행본에는 아직 반영하지 않았습니다(웹 강의 공개 뒤 네이버 20편 일괄 재발행 때 반영 예정, `blog/STATUS.md` '다음에 할 일' 1의 5·6단계). 새 마무리 문장의 휴대폰 줄 수는 lint 폭 계산(1강 595px, 2강 487px)으로만 확인했습니다.
+
+## 웹 강의 공개 전 정리: main 병합과 Getty Images 이미지 제외 (2026-11-12)
+
+- PASS: 브랜치에 `main`을 합친 뒤 `node site/build.mjs`가 20강을 모두 만들었고(20줄), `node --check docs/assets/runtime.js` 통과, 병합만으로는 생성 파일 차이가 없었습니다. 원고 `lint_manuscript.py` 1~20강 결과와 `sources/manifest.json` 대조(mismatches [])가 `main`과 같았습니다.
+- PASS: Getty Images 출처 원문 이미지 2장(2강 믹싱 콘솔, 3강 사과)을 빌드에서 뺐습니다. 다시 빌드한 뒤 `docs/lessons/*/lesson-data.js`와 `index.html` 어디에도 `gettyimages` 주소가 없고, 2강과 3강 출처 안내에 "출처가 Getty Images인 원문 이미지는 이용 조건 때문에 싣지 않고, 그 자리에 점선 안내를 남겼습니다."가 들어갔습니다. 3강의 나머지 원문 이미지 2장은 그대로입니다.
+- 범위: 화면 확인은 공개 전 로컬 확인(`blog/STATUS.md` 다음에 할 일 1의 3단계)에서 합니다.
+

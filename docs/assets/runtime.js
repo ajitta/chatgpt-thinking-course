@@ -310,6 +310,8 @@ export class Lesson {
 
   image(props) {
     const res = (this.data.resolutions || {})[props.__resolutionId];
+    // Left out at build time for licence terms (site/build.mjs OMITTED_IMAGE_SOURCES).
+    if (res && res.state && res.state.omittedImage) return `<p class="u-sitenote">원문에는 이 자리에 이미지가 있었습니다(출처: ${esc(res.state.omittedImage)}). 이용 조건 때문에 이 사이트에는 싣지 않았습니다.</p>`;
     const img = res && res.state && res.state.images && res.state.images[0];
     if (!img) return "";
     const src = cleanUrl(img.thumbnail_url) || cleanUrl(img.content_url) || cleanUrl(img.url);

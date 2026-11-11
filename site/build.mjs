@@ -53,6 +53,25 @@ const CORRECTIONS = {
   }
 };
 
+// Original images whose source page is on Getty Images are left out for their licence terms
+// (user decision 2026-11-12). Their addresses never reach the generated data; the page shows a site note instead.
+const OMITTED_IMAGE_SOURCES = [{ host: /(^|\.)gettyimages\.[a-z.]+$/, name: "Getty Images" }];
+
+function omitImages(resolutions) {
+  const out = JSON.parse(JSON.stringify(resolutions || {}));
+  let count = 0;
+  for (const [id, res] of Object.entries(out)) {
+    const img = res && res.state && res.state.images && res.state.images[0];
+    if (!img) continue;
+    let host = "";
+    try { host = new URL(img.url || img.original_content_url || "").hostname; } catch {}
+    const hit = OMITTED_IMAGE_SOURCES.find(s => s.host.test(host));
+    // Replace the whole resolution (it also carries safe_urls) so no address of the image is published.
+    if (hit) { out[id] = { state: { omittedImage: hit.name } }; count++; }
+  }
+  return { resolutions: out, count };
+}
+
 // Link-card descriptions are original sentences: the lesson's opening key question,
 // or for lesson 10 (which opens without one) two sentences from its first section.
 const DESCRIPTIONS = {
@@ -78,11 +97,12 @@ async function loadLesson(n) {
     if (!code.includes(from)) throw new Error(`lesson ${n}: correction target not found: ${from}`);
     code = code.split(from).join(to);
   }
+  const { resolutions, count: omittedImages } = omitImages(rec.resolutions);
   const data = {
     lesson: rec.lesson,
     start_at_title: rec.start_at_title,
     constants: rec.constants,
-    resolutions: rec.resolutions,
+    resolutions,
     bindings: rec.bindings,
     widgets: rec.widgets
   };
@@ -101,7 +121,7 @@ async function loadLesson(n) {
   const title = h1.replace(/^\d+강\.\s*/, "");
   const description = DESCRIPTIONS[n] || keyQuestion(html);
   if (!description) throw new Error(`lesson ${n}: no key question for the description`);
-  return { n, title, fullTitle: h1, html, toc, description, rec };
+  return { n, title, fullTitle: h1, html, toc, description, rec, omittedImages };
 }
 
 function head({ title, description, url, depth, image }) {
@@ -164,6 +184,7 @@ function lessonPage(L) {
   if (marked) notes.push(`원문의 한 문장(‘${marked.replace(/\*\*/g, "")}’)에는 굵게 쓰라는 기호(**)가 글자 그대로 들어 있어, 기호 대신 굵은 글씨로 보여 줍니다.`);
   if (/<span class="u-cite"/.test(L.html)) notes.push("GitHub에 있는 출처는 링크 없이 이름만 적었습니다.");
   if (/class="u-image/.test(L.html)) notes.push("원문 이미지는 내려받지 않고 원래 주소(OpenAI 이미지 서버)에서 바로 불러오므로, 나중에 보이지 않을 수 있습니다.");
+  if (L.omittedImages) notes.push("출처가 Getty Images인 원문 이미지는 이용 조건 때문에 싣지 않고, 그 자리에 점선 안내를 남겼습니다.");
   notes.push("원문에서 ChatGPT에 새 요청을 보내던 버튼(다음 강의, 복습, 실습 시작 등)은 이 사이트에서 빼고, 그 자리에 점선 안내를 남겼습니다.");
   return `${head({ title: `${L.n}강 · ${L.title} | ${COURSE}`, description: L.description, url, depth: 2 })}
 ${prev ? `<link rel="prev" href="../${pad(prev.n)}/">` : ""}${next ? `<link rel="next" href="../${pad(next.n)}/">` : ""}
