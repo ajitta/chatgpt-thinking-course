@@ -18,7 +18,7 @@ Each lesson exists in several independent copies. Changing one does not update t
 | `sources/history/`, `sources/connector/` | Superseded/partial captures (lessons 10–11) and tool-returned text (27–30) | Archive only. |
 | `lessons/<part>/lesson-XX.md` | Canonical reading copy (static Markdown edit) | Formatting changes only; do not rewrite or summarize content. |
 | `blog/lesson-XX.txt` | Plain-text copies for pasting into Naver Blog | Tables use `\|`-separated rows. |
-| `blog/lesson-01-summary.html`, `blog/naver-summary-01.txt`, `blog/assets/` | Editorial summary of lesson 1 as published on Naver | Rich-text paste manuscript, not an embed; no JS. |
+| `blog/lesson-XX-summary.html`, `blog/naver-summary-XX.txt`, `blog/assets/` | Magazine-style editorial summaries of lessons 1-20 as published on Naver, with thumbnails and diagram PNGs | Rich-text paste manuscript, not an embed; no JS. Regenerate the `.txt` with `blog/tools/summary_text.py`. |
 | `docs/` | GitHub Pages site (lesson 1 only): `index.html`, `lesson01.js`, `style.css` | Design rules in `docs/DESIGN.md`. |
 | `README.md` | Table of contents for all 30 lessons | Update links/status when files move or publish state changes. |
 | `PROVENANCE.md`, `VALIDATION.md` | Editorial policy and the record of what was checked | Append when you change content or verify something. |
@@ -56,10 +56,10 @@ python -m http.server -d docs 8000
 
 After a change, record what you verified (and what you didn't) in `VALIDATION.md` in the same PASS / scope style.
 
-## Naver lesson posts (lessons 2-20)
+## Naver lesson posts (lessons 1-20 published)
 
-Start a new session from `blog/STATUS.md` (current state, next steps, agreed working style). The process proven on lesson 1 is written down in `blog/PLAYBOOK.md`; per-lesson decisions and status live in `blog/lessons-plan.json`; the project skill `naver-lesson` runs it. Tools: `blog/tools/lint_manuscript.py` (manuscript check), `blog/tools/thumbnail.py` (series thumbnail), `blog/tools/naver/build-draft.mjs` and `publish.mjs` (SmartEditor automation via ego-browser). MaruBuri fonts go in `blog/tools/fonts/` (git-ignored). `sources/conversation/chatgpt-thinking-공유대화-원본.md` is the full shared conversation (lessons 1-30, visible messages only), with its SVG diagrams in `sources/conversation/assets/`.
+Start a new session from `blog/STATUS.md` (current state, next steps, agreed working style). The process proven on lesson 1 is written down in `blog/PLAYBOOK.md`; per-lesson decisions and status live in `blog/lessons-plan.json`; the project skill `naver-lesson` runs it. Tools: `blog/tools/lint_manuscript.py` (manuscript check, including phone-length rules), `blog/tools/summary_text.py` (plain-text copy), `blog/tools/thumbnail.py` (series thumbnail), `blog/tools/naver/build-draft.mjs`, `publish.mjs` and `check-live.mjs` (SmartEditor automation and live-post check via ego-browser). MaruBuri fonts go in `blog/tools/fonts/` (git-ignored). `sources/conversation/chatgpt-thinking-공유대화-원본.md` is the full shared conversation (lessons 1-30, visible messages only), with its SVG diagrams in `sources/conversation/assets/`. Since 2026-11-11 it is the base text for the Naver posts; cite its line numbers for key and closing sentences.
 
 ## Publication state
 
-Only lesson 1 is published beyond GitHub: the web page above and the Naver post https://blog.naver.com/ajitta/224472328521 (category `ChatGPT Thinking → AI 기본원리`). Lessons 2–30 are not on the blog or the site. Publishing to Naver or changing the live post is outward-facing; confirm with the user first.
+Lessons 1-20 are on Naver as magazine-style posts (links in `README.md` and `blog/README.md`, log numbers in `blog/lessons-plan.json`), under `ChatGPT Thinking` in three categories: AI 기본원리 (1-4), AI 활용과 업무 시스템 (5-12), 사람의 사고와 불확실한 판단 (13-20). Only lesson 1 has a web page (above). Lessons 21-30 are not on the blog or the site. Publishing to Naver or changing a live post is outward-facing; confirm with the user first.

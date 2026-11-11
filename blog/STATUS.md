@@ -4,34 +4,51 @@
 
 ## 지금 상태
 
-| 강의 | 상태 | 글 |
+| 강의 | 상태 | 카테고리 |
 |---|---|---|
-| 1강 | 발행(매거진판, 굵게 오류 수정 후 재발행) | https://blog.naver.com/ajitta/224472328521 |
-| 2강 | 발행 | https://blog.naver.com/ajitta/224473420017 |
-| 3~20강 | 미작성 | `lessons-plan.json`에 강의별 원문 경로, 카테고리, 원문 도식 목록 |
+| 1~4강 | 발행 | `ChatGPT Thinking` 아래 AI 기본원리(카테고리 번호 7) |
+| 5~12강 | 발행 | `ChatGPT Thinking` 아래 AI 활용과 업무 시스템(카테고리 번호 8) |
+| 13~20강 | 발행 | `ChatGPT Thinking` 아래 사람의 사고와 불확실한 판단(카테고리 번호 9) |
+| 21~30강 | 미작성 | `lessons-plan.json`에 아직 항목 없음 |
+
+글 주소는 [`blog/README.md`](README.md)의 표, 루트 [`README.md`](../README.md)의 '네이버 글' 칸, `lessons-plan.json`의 `logNo`에 있습니다. 2026-11-11에 한 일:
+
+- 2강 글 끝의 GitHub 링크를 지우고 재발행했습니다.
+- 3~20강을 발행했습니다. 기본 원고는 공유 대화 원본이고, 원고마다 맨 위 주석에 핵심·마무리 문장의 행 번호가 있습니다.
+- impeccable 평가(critique, 2강 발행본 기준 21/32점)를 받아 휴대폰 길이 규칙을 정했습니다. 1·2·3강 도식 PNG는 휴대폰에서 읽히는 크기로 다시 만들고, 1·2강은 그 PNG로 재발행했습니다. 3강은 새 PNG로 처음 발행했습니다.
+- 5강은 마무리 문장이, 12강은 마무리 문장과 소제목 하나가 발행 후 360px에서 줄이 늘어(마무리 세 줄, 소제목 두 줄) 고친 뒤 재발행했습니다.
 
 ## 다음에 할 일
 
-1. **2강 발행본의 GitHub 링크**: 발행본 끝에 "2강 원문 전체 읽기"(GitHub) 링크가 남아 있습니다. 원고에서는 지웠습니다. 발행본에서 지울지(재발행) 사용자 결정 대기.
-2. **3강**: `naver-lesson` 스킬(또는 "3강 네이버 글 만들어")로 시작. 3강 원문 도식 `sources/conversation/assets/svg-04-lesson-03.svg`(고양이 삼단논법)는 완성본이라 그대로 쓸 수 있습니다.
-3. **5강, 13강 전에**: 네이버 블로그 관리에서 `ChatGPT Thinking` 아래 카테고리 "AI 활용과 업무 시스템"(5~12강), "사람의 사고와 불확실한 판단"(13~20강)을 만들고 카테고리 번호를 `lessons-plan.json`의 `categoryNo`에 적습니다.
-4. **나중에**: github.io 강의별 학습 페이지를 다 만든 뒤, 각 네이버 글 끝에 학습 페이지 링크를 한꺼번에 넣습니다. 그전에는 GitHub(github.com) 링크를 달지 않습니다(`lint_manuscript.py`가 막음).
+1. **github.io 학습 페이지**: 강의별 학습 페이지를 만든 뒤 각 네이버 글 끝에 링크를 한꺼번에 넣습니다. 그전에는 GitHub(github.com) 링크를 달지 않습니다(`lint_manuscript.py`가 막음).
+2. **21~30강**: 사용자가 원하면 먼저 `lessons-plan.json`에 21~30강 항목과 카테고리(4부, 5부)를 정합니다. 카테고리 이름은 사용자에게 묻습니다.
+3. **impeccable 평가에서 보류한 질문**(사용자 결정 필요):
+   - 글 끝에 네이버 "이전 글" 링크 한 줄
+   - 소제목 다음 빈 줄을 없애 소제목을 절에 붙이기
+   - 휴대폰에서 '작게'가 적용되지 않아 끝 썸네일이 전체 폭으로 보이는 문제
+   - 긴 강의(12~20강)를 두 편으로 나누기
+   - 핵심 인용구의 기울임
+   - 1·2강 본문 문단 길이(새 길이 규칙 전 원고라 그대로 둠)
+4. **확인 못 한 것**: 네이버 모바일 앱 화면은 확인하지 않았습니다. 발행본 도식을 휴대폰 화면 캡처로 확인하지 못했습니다(아래 환경 메모 참고).
 
 ## 강의 하나를 만드는 흐름 (요약)
 
-원고 작성과 승인 → `python blog/tools/lint_manuscript.py N` → `python blog/tools/thumbnail.py N "줄1" "줄2" "줄3" --pretendard "C:/Users/ajitta/AppData/Local/Microsoft/Windows/Fonts" --out blog/assets/thumb-lesson-0N.png` → ego-browser로 `PostWriteForm.naver?blogId=ajitta` 열고 `buildDraft` (`ok: true` 필수) → 캡처 보여 주고 승인 → `publish(page, { category, categoryNo, topic })` → 360px/412px 발행본 확인 → 기록. 자세한 규칙은 `PLAYBOOK.md`.
+원고 작성과 승인 → `python blog/tools/lint_manuscript.py N`(ERROR 0, 휴대폰 길이 WARN은 고침. 마무리 문장 폭 경고만 발행 후 줄 수로 판단) → `python blog/tools/summary_text.py N` → `python blog/tools/thumbnail.py N "줄1" "줄2" "줄3" --pretendard "C:/Users/ajitta/AppData/Local/Microsoft/Windows/Fonts" --out blog/assets/thumb-lesson-NN.png` → ego-browser로 `PostWriteForm.naver?blogId=ajitta` 열고 `buildDraft`(`ok: true` 필수) → `publish(page, { category, categoryNo, topic })` → 다른 페이지에서 `checkLive`(360/412px, `ok: true`) → 기록. 자세한 규칙은 `PLAYBOOK.md`.
 
 ## 사용자와 합의한 작업 방식
 
-- 글: 매거진형. 보고서·숙제 말투 금지(표지 없이 문장으로), 원문에 있는 사실만, 핵심 문장은 원문 문장 그대로 맨 앞 따옴표 인용, 글 제목에 ChatGPT.
-- 디자인: 마루부리(리드·소제목·마무리), 나눔고딕 본문 양끝 정렬, 소제목 19px 한 줄, 예문은 버티컬 라인 인용구(굵게), 구분선, 썸네일은 글 끝 작게 + 대표 이미지.
+- 글: 매거진형. 보고서·숙제 말투 금지(표지 없이 문장으로), 원문에 있는 사실만, 핵심 문장은 원문 문장 그대로 맨 앞 따옴표 인용, 글 제목에 ChatGPT. 기본 원고는 공유 대화 원본.
+- 디자인: 마루부리(리드·소제목·마무리), 나눔고딕 본문 19px 양끝 정렬, 소제목 한 줄, 예문은 버티컬 라인 인용구(굵게), 구분선, 썸네일은 글 끝 + 대표 이미지. 휴대폰 길이: 본문 문단 160자, 리드 130자, 예문 60자, 마무리 문장 두 줄 이하.
+- 이미지: 원문 도식만 씁니다. 대화 원본의 사진은 원 출처와 이용 조건을 확인할 수 있을 때만 씁니다.
 - 결정은 사용자에게 묻고, 추천안을 함께 제시합니다. "너의 추천대로"는 제시한 추천안 승인입니다.
-- 발행은 강의마다 따로 승인을 받은 뒤에만 합니다. 발행 전 편집기 캡처, 발행 후 휴대폰 너비 캡처로 확인합니다.
+- 발행은 강의마다 승인을 받은 뒤에만 합니다. 발행 전 편집기 캡처, 발행 후 휴대폰 너비 확인을 합니다. 3~20강은 한 번의 예외로, 사용자가 "20강 전체를 발행해"로 한꺼번에 승인했고 `buildDraft` `ok: true`와 발행 후 `checkLive` `ok: true`를 조건으로 진행했습니다.
 - 커밋·푸시는 사용자가 말할 때 합니다.
 
 ## 환경 메모
 
-- ego-browser 창이 최소화되면 스크린샷이 실패합니다(편집은 됨). 사용자에게 창 복원을 부탁합니다.
-- 자동 모드 안전 장치가 네이버 발행을 한 번 막은 적이 있습니다. 사용자가 "너가 발행해"처럼 직접 지시하면 진행됐습니다.
+- ego-browser 창이 최소화되거나 다른 탭이 앞에 있으면 스크린샷이 시간 초과로 실패합니다(편집과 검사는 됨). 캡처가 필요하면 사용자에게 창 복원을 부탁합니다.
+- 사용자가 ego-browser 창을 직접 조작하면 작업 공간 제어권이 사용자에게 넘어가 명령이 멈춥니다. 사용자에게 물은 뒤 `takeOverTaskSpace`로 이어 갑니다.
+- 뷰포트 설정(`Emulation.setDeviceMetricsOverride`)은 실행마다 사라지므로 매번 다시 겁니다.
+- 휴대폰(m.blog)에서는 편집기 19px이 20px로 그려집니다. 소제목 폭은 20px 기준 316px 이하여야 한 줄입니다(lint가 이 기준).
 - ChatGPT 공유 링크는 로그인해야 열립니다(로그인은 사용자가 직접).
 - 마루부리 글꼴은 `blog/tools/fonts/`(저장소에 올리지 않음).

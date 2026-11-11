@@ -1,0 +1,15 @@
+<svg viewBox="0 0 340 154" width="100%" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="18" width="82" height="46" rx="10" fill="#8d9baa" fill-opacity=".17" stroke="#8796a5" stroke-opacity=".5"/>
+<text x="61" y="46" text-anchor="middle" font-size="15" fill="currentColor">나비</text>
+<rect x="130" y="18" width="82" height="46" rx="10" fill="#8d9baa" fill-opacity=".17" stroke="#8796a5" stroke-opacity=".5"/>
+<text x="171" y="46" text-anchor="middle" font-size="15" fill="currentColor">고양이</text>
+<rect x="240" y="18" width="82" height="46" rx="10" fill="#8d9baa" fill-opacity=".17" stroke="#8796a5" stroke-opacity=".5"/>
+<text x="281" y="46" text-anchor="middle" font-size="15" fill="currentColor">동물</text>
+<path d="M104 41 H126" stroke="#2985d2" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M120 36 L127 41 L120 46" fill="none" stroke="#2985d2" stroke-width="2.5"/>
+<path d="M214 41 H236" stroke="#2985d2" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M230 36 L237 41 L230 46" fill="none" stroke="#2985d2" stroke-width="2.5"/>
+<path d="M61 68 V105 Q61 117 73 117 H269 Q281 117 281 105 V68" stroke="#2386d8" stroke-width="2" stroke-dasharray="5 5" fill="none"/>
+<rect x="106" y="104" width="128" height="29" rx="14" fill="#2386d8"/>
+<text x="170" y="123" fill="white" font-size="12" text-anchor="middle">논리적으로 연결</text>
+</svg>

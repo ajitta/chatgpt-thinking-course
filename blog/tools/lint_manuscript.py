@@ -12,9 +12,11 @@ from PIL import ImageFont
 
 ROOT = Path(__file__).resolve().parents[2]
 FONT = ROOT / "blog/tools/fonts/MaruBuri-Bold.ttf"
-COLUMN_PX = 320          # text column of m.blog.naver.com on a 360px phone (measured)
-HEADING_PX = 19          # editor menu has no 21px; 24px headings wrap on phones
-REPORT_LABELS = ["핵심 정리", "정리하면", "요약하면", "결론적으로", "기억해야 할", "세 가지 확인", "참고 자료:"]
+COLUMN_PX = 316          # usable heading width on a 360px phone: 315px fit and 328px wrapped (lessons 3, 12)
+HEADING_PX = 20          # headings are set to 19px in the editor (no 21px; 24px wraps) but m.blog renders 19px as 20px
+PARA_MAX, LEAD_MAX, LINE_QUOTE_MAX = 160, 130, 60   # characters; split at sentence boundaries only
+CLOSING_MAX_PX = 2 * COLUMN_PX - 32                  # closing line: at most two lines at 360px
+REPORT_LABELS =["핵심 정리", "정리하면", "요약하면", "결론적으로", "기억해야 할", "세 가지 확인", "참고 자료:"]
 
 
 def text_of(fragment):
@@ -73,6 +75,25 @@ def main(n):
 
     if "github.com" in body:
         errors.append("GitHub links are on hold until the github.io lesson pages exist (lessons-plan.json decisions)")
+
+    # Phone reading length (impeccable critique 2026-11-11): about 20 characters per line at 360px.
+    lead_done = False
+    for tag, attrs, inner in re.findall(r"<(p|blockquote)([^>]*)>(.*?)</\1>", body, flags=re.S):
+        t = text_of(inner)
+        if not t or "<img" in inner or "42715a" in attrs or "font-size:15px" in attrs or "<a " in inner:
+            continue
+        if tag == "blockquote":
+            if 'data-quote="line"' in attrs and len(t) > LINE_QUOTE_MAX:
+                warns.append(f"example quote over {LINE_QUOTE_MAX} chars ({len(t)}): {t[:30]}")
+        elif 'data-align="center"' in attrs:
+            if FONT.exists() and ImageFont.truetype(str(FONT), HEADING_PX).getlength(t) > CLOSING_MAX_PX:
+                warns.append(f"closing line longer than two lines on a 360px phone: {t[:30]}")
+        elif 'data-font="maru"' in attrs and not lead_done:
+            lead_done = True
+            if len(t) > LEAD_MAX:
+                warns.append(f"lead over {LEAD_MAX} chars ({len(t)}): {t[:30]}")
+        elif len(t) > PARA_MAX:
+            warns.append(f"paragraph over {PARA_MAX} chars ({len(t)}): {t[:30]}")
 
     for label in REPORT_LABELS:
         if label in plain:
