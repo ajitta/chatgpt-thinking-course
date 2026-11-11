@@ -51,10 +51,10 @@ python blog/tools/thumbnail.py 2 "ChatGPT는 어떻게" "숫자로 의미를" "�
 ```js
 const { buildDraft } = await import("file:///C:/Users/ajitta/Repos/ajitta/chatgpt-thinking-course/blog/tools/naver/build-draft.mjs");
 const report = await buildDraft(page, { repo: "C:/Users/ajitta/Repos/ajitta/chatgpt-thinking-course", manuscript: "blog/lesson-02-summary.html" });
-console.log(report); // titleOk true, diff [] , representative = 썸네일
+console.log(report); // ok: true 여야 함 (제목, 본문 diff [], 서식 style [], 대표 이미지 = 썸네일)
 ```
 
-뷰포트를 1280×900으로 고정한 상태에서 실행합니다(약 2분 30초). `diff`가 비어 있지 않으면 발행하지 않습니다. 버리고 다시 하려면 페이지를 다시 열고 나가기 확인 창을 수락하면 됩니다(저장되지 않음).
+뷰포트를 1280×900으로 고정한 상태에서 실행합니다(약 2분 30초). `ok`가 false면 발행하지 않습니다. `style`은 문단별 굵게·마루부리·가운데 정렬·소제목 19px을 원고와 비교한 결과입니다. 버리고 다시 하려면 페이지를 다시 열고 나가기 확인 창을 수락하면 됩니다(저장되지 않음).
 
 ## 5. 사용자 확인과 발행
 
@@ -76,6 +76,7 @@ await publish(page, { category: "AI 기본원리" });   // 카테고리·공개 
 
 - 본문은 `word-break: break-word`로 음절 단위 줄바꿈이 됩니다. 글에서 바꿀 수 없어 본문을 양끝 정렬합니다.
 - 글자 크기 메뉴는 11/13/15/16/19/24/28px뿐입니다. 붙여 넣은 21px은 19px로 바뀝니다.
+- 붙여 넣은 `<b>`는 뒤따르는 모든 문단으로 번집니다(1강 첫 발행본이 전부 굵게 나갔음). 굵게는 붙여 넣지 않고 붙여 넣은 뒤 전체 해제 후 지정한 문단만 적용합니다.
 - 붙여 넣은 서체는 사라집니다. 마루부리는 문단을 마우스로 선택한 뒤 서체 메뉴로 지정합니다.
 - 인용구 안에서는 서체를 바꿀 수 없습니다(버티컬 라인은 나눔바른고딕이라 가늘어 보여 굵게 처리).
 - 대표 사진은 본문 안 이미지 중에서만 고를 수 있습니다. 그래서 썸네일을 글 맨 끝에 작게 둡니다.

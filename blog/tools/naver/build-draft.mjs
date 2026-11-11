@@ -60,7 +60,8 @@ export async function buildDraft(page, { repo, manuscript }) {
     if (prevText && !b.tight) out.push("<p><br></p>");
     const style = b.heading ? "font-size:19px;color:#203b30;" : b.style.replace(/font-weight:bold;?/, "").replace(/line-height:[^;]*;?/, "");
     const inner = b.inner.replace(/<a [^>]*>|<\/a>/g, "");
-    out.push(`<p><span style="${style}">${b.bold ? `<b>${inner}</b>` : inner}</span></p>`);
+    // No <b> in the paste: pasted bold spread to every following paragraph on lesson 1. Bold is applied in step 3.
+    out.push(`<p><span style="${style}">${inner}</span></p>`);
     prevText = true;
   });
   const html = out.join(""); const text = html.replace(/<\/p>/g, "\n").replace(/<[^>]+>/g, "");
@@ -69,15 +70,20 @@ export async function buildDraft(page, { repo, manuscript }) {
   await page.keyboard.paste({ text, html });
   await page.waitForTimeout(2500);
 
-  // 3. justify everything, then fonts / centring per block
-  await ed.caret(await ed.idOf(blocks.find(b => b.type === "text" && !b.heading).text), "end");
+  // 3. justify everything and clear any bold, then fonts / size / bold / centring per block
+  const anyBody = blocks.find(b => b.type === "text" && !b.heading && !b.bold).text;
+  await ed.caret(await ed.idOf(anyBody), "end");
   await page.keyboard.press("Control+a"); await page.waitForTimeout(400);
-  await ed.align("양끝 정렬"); await ed.esc();
-  for (const b of blocks.filter(b => b.type === "text" && (b.maru || b.center || b.heading))) {
+  await ed.align("양끝 정렬");
+  for (let k = 0; k < 2 && await isBold(page, await ed.idOf(anyBody)); k++) await ed.bold(); // toggle until plain
+  await ed.esc();
+  if (await isBold(page, await ed.idOf(anyBody))) throw new Error("could not clear bold after paste");
+  for (const b of blocks.filter(b => b.type === "text" && (b.maru || b.center || b.heading || b.bold))) {
     const id = await ed.idOf(b.text); if (!id) throw new Error("text not found: " + b.text);
     await ed.selectParagraph(id);
     if (b.maru) await ed.setFont("마루부리");
     if (b.heading) await ed.setSize("fs19");
+    if (b.bold && !(await isBold(page, id))) await ed.bold();
     if (b.center) await ed.align("가운데 정렬");
   }
 
@@ -90,7 +96,7 @@ export async function buildDraft(page, { repo, manuscript }) {
       await page.keyboard.insertText(b.text);
       await ed.esc();
       const qid = await page.evaluate((t) => [...document.querySelectorAll(".se-component.se-quotation p.se-text-paragraph")].find(p => p.innerText.trim() === t)?.id, b.text);
-      if (qid) { await ed.selectParagraph(qid); await ed.bold(); }
+      if (qid && !(await isBold(page, qid))) { await ed.selectParagraph(qid); await ed.bold(); }
     } else if (b.type === "hr") {
       await ed.caret(id, "end");
       await ed.pickStyle(SEL.hrBtn, "default");
@@ -135,6 +141,43 @@ export async function buildDraft(page, { repo, manuscript }) {
   return verify(page, blocks, title);
 }
 
+// true when every visible character of the paragraph sits inside <b>/<strong> or renders at weight >= 600
+export function isBold(page, id) {
+  return page.evaluate((i) => {
+    const p = document.getElementById(i); if (!p) return false;
+    const w = document.createTreeWalker(p, NodeFilter.SHOW_TEXT);
+    let n, any = false;
+    while ((n = w.nextNode())) {
+      if (!n.textContent.replace(/​/g, "").trim()) continue;
+      any = true;
+      const el = n.parentElement;
+      if (!el.closest("b,strong") && Number(getComputedStyle(el).fontWeight) < 600) return false;
+    }
+    return any;
+  }, id);
+}
+
+// Formatting the editor must show for each block (the text check alone missed an all-bold post on lesson 1).
+export async function styleReport(page, blocks) {
+  const want = blocks.filter(b => b.type === "text" || b.type === "quote").map(b => ({ text: b.text, quote: b.type === "quote", bold: b.type === "quote" ? true : !!b.bold, maru: !!b.maru, center: !!b.center, heading: !!b.heading }));
+  return page.evaluate((want) => {
+    const all = [...document.querySelectorAll(".se-component:not(.se-documentTitle) p.se-text-paragraph")];
+    const bold = (p) => { const w = document.createTreeWalker(p, NodeFilter.SHOW_TEXT); let n, any = false; while ((n = w.nextNode())) { if (!n.textContent.replace(/​/g, "").trim()) continue; any = true; if (!n.parentElement.closest("b,strong") && Number(getComputedStyle(n.parentElement).fontWeight) < 600) return false; } return any; };
+    const problems = [];
+    for (const x of want) {
+      const p = all.find(p => p.innerText.replace(/​/g, "").trim() === x.text && !!p.closest(".se-quotation") === x.quote);
+      if (!p) { problems.push({ text: x.text.slice(0, 30), issue: "not found" }); continue; }
+      const html = p.innerHTML;
+      const got = { bold: bold(p), maru: /se-ff-nanummaruburi/.test(html), center: /align-center/.test(p.className), size19: /se-fs-?fs19|se-fs19/.test(html) };
+      if (got.bold !== x.bold) problems.push({ text: x.text.slice(0, 30), issue: x.bold ? "should be bold" : "should not be bold" });
+      if (!x.quote && got.maru !== x.maru) problems.push({ text: x.text.slice(0, 30), issue: x.maru ? "should be MaruBuri" : "should not be MaruBuri" });
+      if (!x.quote && got.center !== x.center) problems.push({ text: x.text.slice(0, 30), issue: x.center ? "should be centred" : "should not be centred" });
+      if (x.heading && !got.size19) problems.push({ text: x.text.slice(0, 30), issue: "heading should be 19px" });
+    }
+    return problems;
+  }, want);
+}
+
 export async function verify(page, blocks, title) {
   const got = await page.evaluate(() => [...document.querySelectorAll(".se-component:not(.se-documentTitle)")].filter(c => !c.parentElement.closest(".se-component")).flatMap(c =>
     c.classList.contains("se-horizontalLine") ? ["───"] : c.classList.contains("se-image") ? ["[IMG]"] :
@@ -145,5 +188,6 @@ export async function verify(page, blocks, title) {
   for (let i = 0; i < Math.max(want.length, got.length); i++) if (want[i] !== got[i]) diff.push({ i, want: want[i], got: got[i] });
   const gotTitle = await page.evaluate(() => document.querySelector(".se-documentTitle").innerText.trim());
   const rep = await page.evaluate(() => [...document.querySelectorAll(".se-component.se-image")].filter(c => c.querySelector("button.se-set-rep-image-button")?.className.includes("se-is-")).map(c => c.querySelector("img").src.split("/").pop().split("?")[0]));
-  return { titleOk: gotTitle === title, lines: got.length, diff, representative: rep };
+  const style = await styleReport(page, blocks);
+  return { titleOk: gotTitle === title, lines: got.length, diff, style, representative: rep, ok: gotTitle === title && !diff.length && !style.length && rep.length === 1 && rep[0].includes("thumb-lesson") };
 }
