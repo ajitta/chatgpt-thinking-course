@@ -24,10 +24,14 @@ def text_of(fragment):
 
 
 def main(n):
-    src_path = ROOT / f"blog/lesson-{n:02d}-summary.html"
-    lesson_md = next(ROOT.glob(f"lessons/*/lesson-{n:02d}.md"))
+    if n == "index":   # series index post (blog/index-summary.html): numbers are checked against the whole conversation
+        src_path = ROOT / "blog/index-summary.html"
+        source_text = (ROOT / "sources/conversation/chatgpt-thinking-공유대화-원본.md").read_text(encoding="utf-8")
+        n = 0
+    else:
+        src_path = ROOT / f"blog/lesson-{n:02d}-summary.html"
+        source_text = next(ROOT.glob(f"lessons/*/lesson-{n:02d}.md")).read_text(encoding="utf-8")
     src = src_path.read_text(encoding="utf-8")
-    source_text = lesson_md.read_text(encoding="utf-8")
     body = re.sub(r"<!--.*?-->", "", src, flags=re.S)
     plain = text_of(body)
     errors, warns = [], []
@@ -113,4 +117,4 @@ def main(n):
 
 
 if __name__ == "__main__":
-    sys.exit(main(int(sys.argv[1])))
+    sys.exit(main(sys.argv[1] if sys.argv[1] == "index" else int(sys.argv[1])))

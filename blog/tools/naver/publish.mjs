@@ -6,7 +6,7 @@
 // Throws instead of publishing when the panel's category, topic or visibility differ from what was asked.
 const norm = (s) => (s || "").replace(/ /g, " ").replace(/\s/g, "");
 
-export async function publish(page, { category, categoryNo, topic = "IT·컴퓨터_30", visibility = "전체공개", clearTags = true }) {
+export async function publish(page, { category, categoryNo, topic = "IT·컴퓨터_30", visibility = "전체공개", clearTags = true, notice = false }) {
   await page.keyboard.press("Escape");
   const panelOpen = () => page.evaluate(() => !!document.querySelector("[class*=layer_publish], [class*=publish_layer]"));
   if (!(await panelOpen())) { await page.click("css=button[class*=publish_btn]", { label: "open publish panel" }); await page.waitForTimeout(1500); }
@@ -39,6 +39,22 @@ export async function publish(page, { category, categoryNo, topic = "IT·컴퓨�
         await page.keyboard.press("Backspace"); await page.waitForTimeout(250);
       }
     }
+  }
+  // notice: tick '공지사항으로 등록' (the series index post is pinned this way)
+  const noticeState = () => page.evaluate(() => {
+    const panel = document.querySelector("[class*=layer_publish], [class*=publish_layer]");
+    const label = [...panel.querySelectorAll("label")].find(l => l.textContent.replace(/\s/g, "") === "공지사항으로등록");
+    const input = label && (label.control || document.getElementById(label.htmlFor) || label.querySelector("input"));
+    return { found: !!label, checked: !!(input && input.checked) };
+  });
+  if (notice) {
+    const n0 = await noticeState();
+    if (!n0.found) throw new Error("notice checkbox not found");
+    if (!n0.checked) {
+      await page.evaluate(() => [...document.querySelector("[class*=layer_publish], [class*=publish_layer]").querySelectorAll("label")].find(l => l.textContent.replace(/\s/g, "") === "공지사항으로등록").click());
+      await page.waitForTimeout(500);
+    }
+    if (!(await noticeState()).checked) throw new Error("could not tick 공지사항으로 등록");
   }
   const st = await page.evaluate(() => ({
     text: document.querySelector("[class*=layer_publish], [class*=publish_layer]").textContent,

@@ -45,7 +45,8 @@ export async function checkLive(page, { repo, manuscript, logNo, blogId = "ajitt
       const centred = paras.filter(p => /align-center/.test(p.className) && !p.closest(".se-quotation"));
       const closing = centred[centred.length - 1];
       return {
-        title: titleEl ? clean(titleEl.innerText) : null,
+        // a post registered as a notice (the series index) gets a "[공지] " prefix on m.blog
+        title: titleEl ? clean(titleEl.innerText).replace(/^\[공지\]\s*/, "") : null,
         closingRows: closing ? rows(closing) : null,
         lines, style, wrapped,
         overflow: document.documentElement.scrollWidth - innerWidth,

@@ -17,7 +17,8 @@ def text_of(fragment):
 
 
 def build(n):
-    src = (ROOT / f"blog/lesson-{n:02d}-summary.html").read_text(encoding="utf-8")
+    name = "index-summary.html" if n == "index" else f"lesson-{n:02d}-summary.html"
+    src = (ROOT / "blog" / name).read_text(encoding="utf-8")
     title = re.search(r"title:\s*(.+)", src).group(1).strip()
     body = re.sub(r"<!--.*?-->", "", src, flags=re.S)
     out = [title]
@@ -37,5 +38,6 @@ def build(n):
 
 
 if __name__ == "__main__":
-    n = int(sys.argv[1])
-    (ROOT / f"blog/naver-summary-{n:02d}.txt").write_text(build(n), encoding="utf-8", newline="\n")
+    n = sys.argv[1] if sys.argv[1] == "index" else int(sys.argv[1])
+    out = "naver-summary-index.txt" if n == "index" else f"naver-summary-{n:02d}.txt"
+    (ROOT / "blog" / out).write_text(build(n), encoding="utf-8", newline="\n")

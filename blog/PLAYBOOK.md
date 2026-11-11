@@ -68,12 +68,21 @@ const { publish } = await import("file:///.../blog/tools/naver/publish.mjs");
 await publish(page, { category: "AI 기본원리", categoryNo: 7, topic: "IT·컴퓨터_30" });   // 새 글은 기본이 낙서장·주제 없음. 다르면 멈춤
 ```
 
-새 글 쓰기 주소는 `https://blog.naver.com/PostWriteForm.naver?blogId=ajitta`입니다. 카테고리 번호(`categoryNo`)와 주제는 `lessons-plan.json`에 있습니다. 새 카테고리는 블로그 관리 `AdminCategoryView.naver?blogId=ajitta`에서 만듭니다. 상위 `ChatGPT Thinking`을 선택한 상태에서 "카테고리 추가"를 눌러야 그 아래에 생깁니다. 하위 카테고리를 선택하면 추가되지 않습니다. 저장은 `#submit_button`이며, `admin.blog.naver.com/ajitta/config/blog` 안의 프레임에서 눌러야 반영됩니다. 번호는 `WidgetListAsync.naver?blogId=ajitta&enableWidgetKeys=category`의 `categoryNo=`로 확인합니다(7 AI 기본원리, 8 AI 활용과 업무 시스템, 9 사람의 사고와 불확실한 판단). `publish`는 편집 화면을 벗어날 때까지 기다린 뒤 발행본 주소를 돌려줍니다. 수정 글은 편집 주소에도 `logNo=`가 있어, 고치기 전에는 발행이 끝나기 전에 주소를 돌려줬습니다.
+새 글 쓰기 주소는 `https://blog.naver.com/PostWriteForm.naver?blogId=ajitta`입니다. 카테고리 번호(`categoryNo`)와 주제는 `lessons-plan.json`에 있습니다. 새 카테고리는 블로그 관리 `AdminCategoryView.naver?blogId=ajitta`에서 만듭니다. 상위 `ChatGPT Thinking`을 선택한 상태에서 "카테고리 추가"를 눌러야 그 아래에 생깁니다. 하위 카테고리를 선택하면 추가되지 않습니다. 저장은 `#submit_button`이며, `admin.blog.naver.com/ajitta/config/blog` 안의 프레임에서 눌러야 반영됩니다. 번호는 `WidgetListAsync.naver?blogId=ajitta&enableWidgetKeys=category`의 `categoryNo=`로 확인합니다(6 ChatGPT Thinking, 7 AI 기본원리, 8 AI 활용과 업무 시스템, 9 사람의 사고와 불확실한 판단). `publish`는 편집 화면을 벗어날 때까지 기다린 뒤 발행본 주소를 돌려줍니다. 수정 글은 편집 주소에도 `logNo=`가 있어, 고치기 전에는 발행이 끝나기 전에 주소를 돌려줬습니다.
 
 ## 6. 발행 후 확인과 기록
 
 - `m.blog.naver.com/ajitta/<번호>`를 360px, 412px로 열어 소제목 한 줄, 가로 넘침 없음, 이미지·링크·인용구 수를 확인하고 캡처합니다. 도구: `blog/tools/naver/check-live.mjs`의 `checkLive(page, { repo, manuscript, logNo, shotDir })`가 너비마다 제목, 원고와 줄 단위 차이, 문단별 굵게, 소제목 줄바꿈, 가로 넘침, 이미지 수, 링크, og:image를 비교하고 `ok`를 돌려줍니다. 편집 중인 페이지 말고 다른 페이지에서 실행합니다(뷰포트와 UA를 바꿈). 마무리 문장 줄 수는 `maxClosingRows`(기본 2)로 검사합니다. 1·2강도 2026-11-12에 원고를 이 규칙에 맞췄으므로 재발행 뒤에는 기본값으로 검사합니다(그 전 발행본을 점검할 때만 `maxClosingRows: 0`). 이미지가 지연 로딩되므로 그림을 눈으로 확인할 때는 스크롤해 로드된 뒤 캡처합니다.
 - `VALIDATION.md`(확인한 것과 못 한 것), `PROVENANCE.md`(핵심 문장 위치, 새로 만든 이미지), `blog/README.md`, 루트 `README.md`의 '네이버 글' 칸, `lessons-plan.json`의 `status`와 `logNo`를 갱신합니다.
+
+## 목차 글 (`blog/index-summary.html`)
+
+네이버 블로그 목록은 최신 글이 위에 오고, 오래된 순 정렬이나 발행일 변경을 지원하지 않습니다. 그래서 강의 순서대로 모은 목차 글(logNo 224473708846)을 `ChatGPT Thinking`(6)에 공지사항으로 등록해 두었습니다(`lessons-plan.json`의 `index`, `decisions.index_post`).
+
+- 새 강의를 발행하면 해당 부의 목록 끝에 `<p data-tight style="font-size:16px;color:#216044;"><a href="https://blog.naver.com/ajitta/<logNo>">N강 · 글 제목</a></p>` 한 줄을 더합니다. 새 부가 시작되면 구분선과 소제목(카테고리 이름)도 더합니다. 제목, 안내 문장('20편'), 웹 강의 링크 문장, 썸네일 배지(`--badge "1~20"`)의 강의 범위도 함께 고칩니다.
+- 검사와 텍스트판: `python blog/tools/lint_manuscript.py index`(숫자는 공유 대화 원본 전체와 대조), `python blog/tools/summary_text.py index`. 썸네일: `python blog/tools/thumbnail.py 0 "1강부터 N강까지" "순서대로 읽기" --badge "1~N" --label "목차" --pretendard "C:/Users/ajitta/AppData/Local/Microsoft/Windows/Fonts" --out blog/assets/thumb-lesson-index.png`.
+- 수정 글 편집기(`PostUpdateForm`)에서 `buildDraft` 뒤 `publish(page, { category: "ChatGPT Thinking", categoryNo: 6, topic: "IT·컴퓨터_30", notice: true })`. `notice: true`는 '공지사항으로 등록'을 켜고, 켜지지 않으면 발행하지 않습니다.
+- 발행 뒤 `checkLive(page, { repo, manuscript: "blog/index-summary.html", logNo: "224473708846" })`. 공지 글은 m.blog 제목 앞에 '[공지] '가 붙고, `checkLive`는 이를 빼고 비교합니다. 블로그 첫 화면(`m.blog.naver.com/ajitta`) 위 NOTICE에 보이는지도 확인합니다.
 
 ## 편집기에서 알게 된 제약 (2026-11 기준)
 
