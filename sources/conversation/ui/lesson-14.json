@@ -1,0 +1,537 @@
+{
+ "lesson": 14,
+ "source": {
+  "share_url": "https://chatgpt.com/share/6af33303-9c00-83e8-a5b8-bb134c40db5c",
+  "conversation_md_message": 49,
+  "message_id": "44741a67-f41d-4702-b18b-c87a44ef76c5",
+  "text_sha256": "daa9ffc504365148593c8ce2c41c54fa442569467989a4558ea69763008cb0e6"
+ },
+ "start_at_title": null,
+ "code": "function __dilSafe(evaluate,failureValue){try{return evaluate()}catch{return failureValue}}\n\nDIL.render(__dil.jsx(()=>{const __dilConstants=DIL.useConstants();const __dilModelDataBindings=DIL.useAppData((appData)=>appData.opGenui?.modelDataBindings??{});const turn673051search0=__dilModelDataBindings[\"turn673051search0\"];const turn673051search1=__dilModelDataBindings[\"turn673051search1\"];const turn673051search13=__dilModelDataBindings[\"turn673051search13\"];const turn673051search4=__dilModelDataBindings[\"turn673051search4\"];const [myThought,setMyThought] = DIL.useState(\"\",{key:\"myThought\"})\nconst [showCritique,setShowCritique] = DIL.useState(false,{key:\"showCritique\"})\nconst [creativeDirection,setCreativeDirection] = DIL.useState(\"community\",{key:\"creativeDirection\"})\nconst [creativeReveal,setCreativeReveal] = DIL.useState(false,{key:\"creativeReveal\"})\nconst creativeIdeas = __dilSafe(()=>({\ncommunity:{name:\"지역 커뮤니티\",idea:\"동네 주민이 직접 한 권을 추천하고 그 이유를 짧게 공유하는 '우리 동네 책 지도' 만들기\",twist:\"주민 추천을 책 진열뿐 아니라 동네 산책 경로와 연결\"},\nexperience:{name:\"방문 경험\",idea:\"표지를 가린 책에 독자가 남긴 한 줄 감상만 붙여 선택하는 '블라인드 책 발견' 행사\",twist:\"선택한 책을 읽기 전후로 감상이 어떻게 달라졌는지 기록\"},\nlearning:{name:\"배움과 성장\",idea:\"한 달에 한 권을 읽고 일상에서 실천할 작은 과제를 정하는 '책에서 행동으로' 모임\",twist:\"책을 읽은 다음 실제 변화 사례를 다시 서점에서 나누기\"}\n}),undefined)\nconst [recall,setRecall] = DIL.useState(\"\",{key:\"recall\"})\nconst [showRecall,setShowRecall] = DIL.useState(false,{key:\"showRecall\"})\nconst [training,setTraining] = DIL.useState(\"thinking\",{key:\"training\"})\nconst trainingPrompts = __dilSafe(()=>({\nthinking:{title:\"독립적 사고 훈련\",body:\"내가 해결하려는 문제는 [문제]야.\\n\\n정답이나 추천안을 먼저 말하지 마.\\n1. 먼저 내가 어떤 판단을 했는지 질문해 줘.\\n2. 내가 답하면 논리적으로 약한 부분과 빠진 가정을 짚어 줘.\\n3. 반례와 다른 관점을 제시해 줘.\\n4. 필요한 사실을 확인한 후 다시 판단할 기회를 줘.\\n5. 마지막에 내 판단이 어떻게 개선됐는지 정리하도록 도와줘.\"},\nexpertise:{title:\"전문성 학습\",body:\"내가 배우려는 분야는 [분야]야. 현재 수준은 [수준]이야.\\n\\n이 분야의 전문가가 사용하는 핵심 개념과 판단 기준을 쉬운 예시로 가르쳐 줘. 이후 실제 사례를 하나씩 제시하고 내가 먼저 판단하게 해 줘. 정답을 바로 보여주지 말고 답변의 강점, 오류, 빠진 근거를 피드백해 줘. 자료 확인이 필요한 내용은 명확히 구분해 줘.\"},\ncreative:{title:\"창의성 협업\",body:\"내가 해결하려는 창의적 과제는 [과제]야.\\n목표와 제약조건은 [조건]이야.\\n\\n먼저 내가 생각한 아이디어를 묻고, 그 아이디어를 발전시키는 방향을 제안해 줘. 이후 서로 다른 접근법 3개를 제시하고 예상되는 장점과 단점을 비교해 줘. 마지막에는 내가 선택한 방향을 결합·수정하도록 질문해 줘. 실현 가능성이나 독창성은 확인해야 할 사항으로 구분해 줘.\"}\n}),undefined)\nconst reflectionItems = __dilSafe(()=>([\"AI 답을 보기 전에 내 생각을 먼저 정리한 적이 있는가?\",\"AI 답변의 근거 또는 잘못된 전제를 스스로 찾아본 적이 있는가?\",\"AI 없이도 이번 주에 배운 핵심 내용을 설명하거나 적용할 수 있는가?\"]),undefined)\nconst [reflections,setReflections] = DIL.useState([],{key:\"reflections\"})\nconst [finalQuiz,setFinalQuiz] = DIL.useState(\"none\",{key:\"finalQuiz\"})\nreturn __dil.jsx(__dil.Fragment,null,__dil.jsx(\"title\",{\"size\":\"xl\"},__dilConstants[\"0\"]),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"1\"]),__dil.jsx(\"text\",null,__dilConstants[\"2\"]),__dil.jsx(\"text\",null,__dilConstants[\"3\"]),__dil.jsx(\"blockquote\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"4\"]))),__dil.jsx(\"text\",null,__dilConstants[\"5\"],__dil.jsx(\"bold\",null,__dilConstants[\"6\"]),__dilConstants[\"7\"]),__dil.jsx(\"text\",null,__dilConstants[\"8\"]),__dil.jsx(\"text\",null,__dilConstants[\"9\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"10\"]),__dilConstants[\"11\"]),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"12\"]),__dil.jsx(\"text\",null,__dilConstants[\"13\"]),__dil.jsx(\"text\",null,__dilConstants[\"14\"]),__dil.jsx(\"text\",null,__dilConstants[\"15\"]),__dil.jsx(\"text\",null,__dilConstants[\"16\"]),__dil.jsx(\"text\",null,__dilConstants[\"17\"]),__dil.jsx(\"text\",null,__dilConstants[\"18\"]),__dil.jsx(\"grid\",{\"columns\":2,\"gap\":3},__dil.jsx(\"grid-item\",null,__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":2,\"height\":\"100%\"},__dil.jsx(\"icon\",{\"name\":\"file-check\",\"size\":\"xl\",\"color\":\"secondary\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"19\"])),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"20\"]),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"21\"]))),__dil.jsx(\"grid-item\",null,__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":2,\"height\":\"100%\"},__dil.jsx(\"icon\",{\"name\":\"brain-circuit\",\"size\":\"xl\",\"color\":\"secondary\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"22\"])),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"23\"]),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"24\"])))),__dil.jsx(\"text\",null,__dilConstants[\"25\"]),__dil.jsx(\"title\",{\"size\":\"md\"},__dilConstants[\"26\"]),__dil.jsx(\"text\",null,__dilConstants[\"27\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"28\"]),__dilConstants[\"29\"],__dilSafe(()=>(__dil.jsx(Cite,{\"ref\":\"turn673051search0\",\"__resolutionId\":__dilConstants[\"30\"]})),null)),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"31\"]),__dilConstants[\"32\"],__dilSafe(()=>(__dil.jsx(Cite,{\"ref\":\"turn673051search4\",\"__resolutionId\":__dilConstants[\"33\"]})),null)),__dil.jsx(\"text\",null,__dilConstants[\"34\"],__dilSafe(()=>(__dil.jsx(Cite,{\"ref\":\"turn673051search13\",\"__resolutionId\":__dilConstants[\"35\"]})),null)),__dil.jsx(\"text\",null,__dilConstants[\"36\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"37\"])),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"38\"]),__dil.jsx(\"text\",null,__dilConstants[\"39\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"size\":\"44px\",\"radius\":\"lg\",\"align\":\"center\",\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"bot\",\"size\":\"lg\"})),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"40\"])),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"41\"]),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"42\"]))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"size\":\"44px\",\"radius\":\"lg\",\"align\":\"center\",\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"handshake\",\"size\":\"lg\"})),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"43\"])),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"44\"]),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"45\"]))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"size\":\"44px\",\"radius\":\"lg\",\"align\":\"center\",\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"graduation-cap\",\"size\":\"lg\"})),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"46\"])),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"47\"]),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"48\"])))),__dil.jsx(\"text\",null,__dilConstants[\"49\"]),__dil.jsx(\"text\",null,__dilConstants[\"50\"],__dil.jsx(\"bold\",null,__dilConstants[\"51\"])),__dil.jsx(\"text\",null,__dilConstants[\"52\"]),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"53\"]),__dil.jsx(\"text\",null,__dilConstants[\"54\"]),__dil.jsx(\"text\",null,__dilConstants[\"55\"]),__dil.jsx(\"text\",null,__dilConstants[\"56\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"lg\",\"padding\":3,\"gap\":2},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dil.jsx(\"icon\",{\"name\":\"bot\",\"color\":\"secondary\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"57\"]))),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3},__dilConstants[\"58\"])),__dil.jsx(\"text\",null,__dilConstants[\"59\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"60\"])),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"61\"])),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"62\"]),__dilSafe(()=>(__dil.jsx(\"textarea\",{\"rows\":4,\"value\":myThought,\"onChange\":v=>{setMyThought(v);setShowCritique(false)},\"placeholder\":__dilConstants[\"63\"]})),null),__dilSafe(()=>(__dil.jsx(\"button\",{\"block\":true,\"disabled\":!myThought.trim(),\"onClick\":()=>setShowCritique(true)},__dilConstants[\"64\"],__dil.jsx(\"icon\",{\"name\":\"arrow-right\",\"inline\":true}))),null),(__dilSafe(()=>(showCritique),false))?__dil.jsx(__dil.Fragment,null,__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":3,\"gap\":2},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dil.jsx(\"icon\",{\"name\":\"search-check\",\"color\":\"secondary\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"65\"]))),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"66\"]),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"67\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"68\"])),__dil.jsx(\"list\",{\"marker\":\"bullet\"},__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dilConstants[\"69\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dilConstants[\"70\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dilConstants[\"71\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dilConstants[\"72\"])))),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"md\",\"padding\":3,\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"73\"])),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"74\"]))):null),__dil.jsx(\"text\",null,__dilConstants[\"75\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"76\"]),__dilConstants[\"77\"]),__dil.jsx(\"text\",null,__dilConstants[\"78\"]),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"79\"]),__dil.jsx(\"text\",null,__dilConstants[\"80\"]),__dil.jsx(\"text\",null,__dilConstants[\"81\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":2},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":3,\"gap\":1,\"align\":\"center\"},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"82\"])),__dil.jsx(\"text\",{\"textAlign\":\"center\",\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"83\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":3,\"gap\":1,\"align\":\"center\"},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"84\"])),__dil.jsx(\"text\",{\"textAlign\":\"center\",\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"85\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":3,\"gap\":1,\"align\":\"center\"},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"86\"])),__dil.jsx(\"text\",{\"textAlign\":\"center\",\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"87\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":3,\"gap\":1,\"align\":\"center\"},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"88\"])),__dil.jsx(\"text\",{\"textAlign\":\"center\",\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"89\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"rgba(24,119,242,0.07)\",\"radius\":\"lg\",\"padding\":3,\"gap\":1,\"align\":\"center\"},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"90\"])),__dil.jsx(\"text\",{\"textAlign\":\"center\",\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"91\"]))),__dil.jsx(\"text\",null,__dilConstants[\"92\"]),__dil.jsx(\"text\",null,__dilConstants[\"93\"]),__dil.jsx(\"text\",null,__dilConstants[\"94\"],__dil.jsx(\"bold\",null,__dilConstants[\"95\"]),__dilConstants[\"96\"]),__dil.jsx(\"text\",null,__dilConstants[\"97\"]),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"98\"]),__dil.jsx(\"text\",null,__dilConstants[\"99\"]),__dil.jsx(\"text\",null,__dilConstants[\"100\"]),__dil.jsx(\"text\",null,__dilConstants[\"101\"]),__dil.jsx(\"text\",null,__dilConstants[\"102\"]),__dil.jsx(\"text\",null,__dilConstants[\"103\"]),__dil.jsx(\"text\",null,__dilConstants[\"104\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"lg\",\"padding\":3,\"gap\":2},__dil.jsx(\"text\",{\"weight\":\"medium\"},__dilConstants[\"105\"]),__dil.jsx(\"list\",{\"marker\":\"number\",\"connector\":\"solid\",\"gap\":3},__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"106\"])),__dil.jsx(\"text\",null,__dilConstants[\"107\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"108\"])),__dil.jsx(\"text\",null,__dilConstants[\"109\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"110\"])),__dil.jsx(\"text\",null,__dilConstants[\"111\"])))),__dil.jsx(\"text\",null,__dilConstants[\"112\"]),__dil.jsx(\"text\",null,__dilConstants[\"113\"]),__dil.jsx(\"title\",{\"size\":\"md\"},__dilConstants[\"114\"]),__dil.jsx(\"text\",null,__dilConstants[\"115\"]),__dil.jsx(\"box\",{\"gap\":2},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":3,\"gap\":1},__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"116\"]),__dil.jsx(\"text\",null,__dilConstants[\"117\"])),__dil.jsx(\"box\",{\"background\":\"rgba(24,119,242,0.07)\",\"radius\":\"lg\",\"padding\":3,\"gap\":1},__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"118\"]),__dil.jsx(\"text\",null,__dilConstants[\"119\"]))),__dil.jsx(\"text\",null,__dilConstants[\"120\"],__dil.jsx(\"bold\",null,__dilConstants[\"121\"])),__dil.jsx(\"text\",null,__dilConstants[\"122\"]),__dil.jsx(\"text\",null,__dilConstants[\"123\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"124\"]),__dilConstants[\"125\"]),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"126\"]),__dil.jsx(\"text\",null,__dilConstants[\"127\"]),__dil.jsx(\"text\",null,__dilConstants[\"128\"]),__dil.jsx(\"text\",null,__dilConstants[\"129\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"lg\",\"padding\":3,\"gap\":2},__dil.jsx(\"grid\",{\"columns\":3,\"gap\":2},__dil.jsx(\"grid-item\",null,__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"align\":\"center\",\"gap\":1},__dil.jsx(\"icon\",{\"name\":\"lightbulb\",\"color\":\"secondary\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"130\"])),__dil.jsx(\"text\",{\"size\":\"xs\",\"color\":\"secondary\",\"textAlign\":\"center\"},__dilConstants[\"131\"]))),__dil.jsx(\"grid-item\",null,__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"align\":\"center\",\"gap\":1},__dil.jsx(\"icon\",{\"name\":\"git-merge\",\"color\":\"secondary\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"132\"])),__dil.jsx(\"text\",{\"size\":\"xs\",\"color\":\"secondary\",\"textAlign\":\"center\"},__dilConstants[\"133\"]))),__dil.jsx(\"grid-item\",null,__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"align\":\"center\",\"gap\":1},__dil.jsx(\"icon\",{\"name\":\"filter\",\"color\":\"secondary\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"134\"])),__dil.jsx(\"text\",{\"size\":\"xs\",\"color\":\"secondary\",\"textAlign\":\"center\"},__dilConstants[\"135\"]))))),__dil.jsx(\"text\",null,__dilConstants[\"136\"]),__dil.jsx(\"text\",null,__dilConstants[\"137\"]),__dil.jsx(\"title\",{\"size\":\"md\"},__dilConstants[\"138\"]),__dil.jsx(\"text\",null,__dilConstants[\"139\"]),__dil.jsx(\"text\",null,__dilConstants[\"140\"]),__dil.jsx(\"text\",null,__dilConstants[\"141\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"142\"])),__dilSafe(()=>(__dil.jsx(\"radio-group\",{\"direction\":\"col\",\"value\":creativeDirection,\"onChange\":v=>{setCreativeDirection(v);setCreativeReveal(false)}},__dil.jsx(\"radio\",{\"value\":\"community\"},__dilConstants[\"143\"]),__dil.jsx(\"radio\",{\"value\":\"experience\"},__dilConstants[\"144\"]),__dil.jsx(\"radio\",{\"value\":\"learning\"},__dilConstants[\"145\"]))),null),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":3,\"gap\":2},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"146\"])),(__dilSafe(()=>(creativeReveal),false))?__dil.jsx(__dil.Fragment,null,__dilSafe(()=>(__dil.jsx(\"text\",{\"size\":\"sm\"},creativeIdeas[creativeDirection].idea)),null),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"text\",{\"size\":\"sm\"},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"147\"]),__dilConstants[\"148\"],__dilSafe(()=>(creativeIdeas[creativeDirection].twist),null)))):__dil.jsx(\"text\",{\"size\":\"sm\",\"color\":\"secondary\"},__dilConstants[\"149\"])),__dilSafe(()=>(__dil.jsx(\"button\",{\"block\":true,\"onClick\":()=>setCreativeReveal(v=>!v)},__dilSafe(()=>(creativeReveal?\"아이디어 가리기\":\"AI 아이디어와 비교하기\"),null),__dilSafe(()=>(__dil.jsx(\"icon\",{\"name\":creativeReveal?\"eye-off\":\"lightbulb\",\"inline\":true})),null))),null),__dil.jsx(\"text\",null,(__dilSafe(()=>(creativeReveal),false))?__dil.jsx(\"text\",{\"size\":\"sm\",\"color\":\"secondary\"},__dilConstants[\"150\"]):null)),__dil.jsx(\"text\",null,__dilConstants[\"151\"],__dil.jsx(\"bold\",null,__dilConstants[\"152\"]),__dilConstants[\"153\"]),__dil.jsx(\"text\",null,__dilConstants[\"154\"]),__dil.jsx(\"text\",null,__dilConstants[\"155\"]),__dil.jsx(\"text\",null,__dilConstants[\"156\"]),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"157\"]),__dil.jsx(\"text\",null,__dilConstants[\"158\"],__dil.jsx(\"bold\",null,__dilConstants[\"159\"]),__dilConstants[\"160\"]),__dil.jsx(\"text\",null,__dilConstants[\"161\"]),__dil.jsx(\"text\",null,__dilConstants[\"162\"]),__dil.jsx(\"text\",null,__dilConstants[\"163\"]),__dil.jsx(\"text\",null,__dilConstants[\"164\"],__dil.jsx(\"bold\",null,__dilConstants[\"165\"]),__dilConstants[\"166\"]),__dil.jsx(\"text\",null,__dilConstants[\"167\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"text\",{\"weight\":\"medium\"},__dilConstants[\"168\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"169\"]),__dilConstants[\"170\"],__dil.jsx(\"italic\",null,__dilConstants[\"171\"]),__dilConstants[\"172\"]),__dilSafe(()=>(__dil.jsx(\"textarea\",{\"rows\":3,\"value\":recall,\"onChange\":v=>{setRecall(v);setShowRecall(false)},\"placeholder\":__dilConstants[\"173\"]})),null),__dilSafe(()=>(__dil.jsx(\"button\",{\"block\":true,\"disabled\":!recall.trim(),\"onClick\":()=>setShowRecall(true)},__dilConstants[\"174\"])),null),(__dilSafe(()=>(showRecall),false))?__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"gap\":2},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"175\"])),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"176\"]),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"177\"])),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"178\"])):null),__dil.jsx(\"text\",null,__dilConstants[\"179\"]),__dil.jsx(\"text\",null,__dilConstants[\"180\"],__dil.jsx(\"bold\",null,__dilConstants[\"181\"]),__dilConstants[\"182\"],__dilSafe(()=>(__dil.jsx(Cite,{\"ref\":\"turn673051search1\",\"__resolutionId\":__dilConstants[\"183\"]})),null)),__dil.jsx(\"text\",null,__dilConstants[\"184\"]),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"185\"]),__dil.jsx(\"text\",null,__dilConstants[\"186\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dilSafe(()=>(__dil.jsx(\"radio-group\",{\"direction\":\"col\",\"value\":training,\"onChange\":setTraining},__dil.jsx(\"radio\",{\"value\":\"thinking\"},__dilConstants[\"187\"]),__dil.jsx(\"radio\",{\"value\":\"expertise\"},__dilConstants[\"188\"]),__dil.jsx(\"radio\",{\"value\":\"creative\"},__dilConstants[\"189\"]))),null),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilSafe(()=>(trainingPrompts[training].title),null),__dilConstants[\"190\"])),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":3},__dilSafe(()=>(__dil.jsx(\"text\",{\"size\":\"sm\",\"preserveWhitespace\":true},trainingPrompts[training].body)),null)),__dil.jsx(\"row\",{\"gap\":2},__dilSafe(()=>(__dil.jsx(\"button\",{\"block\":true,\"onClick\":()=>GenUI.copy(trainingPrompts[training].body)},__dil.jsx(\"icon\",{\"name\":\"copy\",\"inline\":true}),__dilConstants[\"191\"])),null),__dilSafe(()=>(__dil.jsx(\"button\",{\"block\":true,\"color\":\"secondary\",\"variant\":\"outline\",\"onClick\":()=>GenUI.issueNewTurn(trainingPrompts[training].body)},__dil.jsx(\"icon\",{\"name\":\"message-square\",\"inline\":true}),__dilConstants[\"192\"])),null))),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"193\"]),__dil.jsx(\"text\",null,__dilConstants[\"194\"]),__dil.jsx(\"text\",null,__dilConstants[\"195\"]),__dil.jsx(\"text\",null,__dilConstants[\"196\"]),__dil.jsx(\"table\",null,__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",{\"header\":true},__dil.jsx(\"text\",null,__dilConstants[\"197\"])),__dil.jsx(\"table-cell\",{\"header\":true},__dil.jsx(\"text\",null,__dilConstants[\"198\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"199\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"200\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"201\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"202\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"203\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"204\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"205\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"206\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"207\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"208\"])))),__dil.jsx(\"text\",null,__dilConstants[\"209\"]),__dil.jsx(\"text\",null,__dilConstants[\"210\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"211\"]),__dilConstants[\"212\"]),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"213\"]),__dil.jsx(\"text\",null,__dilConstants[\"214\"]),__dil.jsx(\"text\",null,__dilConstants[\"215\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"text\",{\"weight\":\"medium\"},__dilConstants[\"216\"]),__dil.jsx(\"list\",{\"marker\":\"number\",\"connector\":\"solid\",\"gap\":3},__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"217\"])),__dil.jsx(\"text\",null,__dilConstants[\"218\"]),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"219\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"220\"])),__dil.jsx(\"text\",null,__dilConstants[\"221\"]),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"222\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"223\"])),__dil.jsx(\"text\",null,__dilConstants[\"224\"]),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"225\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"226\"])),__dil.jsx(\"text\",null,__dilConstants[\"227\"]),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"228\"])))),__dil.jsx(\"title\",{\"size\":\"md\"},__dilConstants[\"229\"]),__dil.jsx(\"text\",null,__dilConstants[\"230\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"row\",{\"justify\":\"between\",\"align\":\"center\"},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"231\"])),__dil.jsx(\"badge\",{\"color\":\"secondary\"},__dilSafe(()=>(reflections.length),null),__dilConstants[\"232\"])),__dilSafe(()=>(((__dilEachCollection,__dilEachRenderItem,__dilEachSafe)=>__dilEachSafe?([].constructor.isArray(__dilEachCollection)?(__dilEachCollection?.map?.(__dilEachRenderItem)??[]):[]):__dilEachCollection.map(__dilEachRenderItem))(reflectionItems,(item,i)=>__dilSafe(()=>(__dilSafe(()=>(__dil.jsx(\"checkbox\",{\"key\":i,\"checked\":reflections.includes(i),\"onChange\":v=>setReflections(old=>v?[...old,i]:old.filter(x=>x!==i)),\"lineThrough\":false},item)),null)),null),false)),[]),(__dilSafe(()=>(reflections.length===3),false))?__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3},__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"233\"])):__dil.jsx(\"text\",{\"size\":\"sm\",\"color\":\"secondary\"},__dilConstants[\"234\"])),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"235\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"236\"])),__dilSafe(()=>(__dil.jsx(\"radio-group\",{\"direction\":\"col\",\"value\":finalQuiz,\"onChange\":setFinalQuiz},__dil.jsx(\"radio\",{\"value\":\"a\"},__dilConstants[\"237\"]),__dil.jsx(\"radio\",{\"value\":\"b\"},__dilConstants[\"238\"]),__dil.jsx(\"radio\",{\"value\":\"c\"},__dilConstants[\"239\"]),__dil.jsx(\"radio\",{\"value\":\"d\"},__dilConstants[\"240\"]))),null),(__dilSafe(()=>(finalQuiz!==\"none\"),false))?__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"gap\":2},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dilSafe(()=>(__dil.jsx(\"icon\",{\"name\":finalQuiz===\"c\"?\"check-circle\":\"info\",\"color\":finalQuiz===\"c\"?\"success\":\"secondary\"})),null),__dil.jsx(\"text\",null,__dilSafe(()=>(__dil.jsx(\"bold\",null,finalQuiz===\"c\"?\"정답입니다!\":\"AI의 도움과 자신의 학습을 구분해 보세요.\")),null))),__dilSafe(()=>(__dil.jsx(\"text\",{\"size\":\"sm\"},finalQuiz===\"c\"?\"자신의 생각을 먼저 만들고, 피드백으로 수정하고, 도움 없이 새로운 문제에 적용하는 과정은 실제 이해도를 점검하는 데 도움이 됩니다. AI에 모든 일을 맡기지 않아도 되고 모든 일을 혼자 할 필요도 없습니다.\":\"학습해야 할 부분을 AI에게 전부 맡기면 실제 능력이 늘었는지 확인하기 어렵습니다. 반대로 AI를 전혀 쓰지 않으면 유용한 설명과 피드백을 얻을 기회를 놓칠 수 있습니다.\")),null)):null),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"241\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":2},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"242\"])),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"gap\":1},__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"243\"]),__dil.jsx(\"text\",null,__dilConstants[\"244\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"rgba(24,119,242,0.07)\",\"radius\":\"md\",\"padding\":3,\"gap\":1},__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"245\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"246\"])))),__dil.jsx(\"text\",null,__dilConstants[\"247\"]),__dil.jsx(\"blockquote\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"248\"]))),__dil.jsx(\"text\",null,__dilConstants[\"249\"]),__dil.jsx(\"text\",null,__dilConstants[\"250\"]),__dil.jsx(\"text\",null,__dilConstants[\"251\"]),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"252\"]),__dil.jsx(\"box\",{\"gap\":2},__dilSafe(()=>(__dil.jsx(\"button\",{\"block\":true,\"onClick\":()=>GenUI.issueNewTurn(\"15강으로 넘어가자. AI가 만들어 내는 답변의 신뢰도를 넘어, 사람은 어떻게 증거를 평가하고 불확실성 속에서 합리적으로 판단해야 하는지 확률적 사고, 가설 검증, 반증, 의사결정 사례와 실험으로 비전공자 눈높이에서 가르쳐줘.\")},__dilConstants[\"253\"],__dil.jsx(\"icon\",{\"name\":\"arrow-right\",\"inline\":true}))),null),__dilSafe(()=>(__dil.jsx(\"button\",{\"block\":true,\"variant\":\"outline\",\"color\":\"secondary\",\"onClick\":()=>GenUI.issueNewTurn(\"14강 심화 실습을 하자. 내가 AI를 사용하며 자주 맡기는 작업을 바탕으로 어떤 부분은 자동화하고 어떤 부분은 직접 연습해야 할지 구분하고, 독립적 사고력·전문성·창의성을 위한 개인 훈련 계획을 설계해 줘.\")},__dilConstants[\"254\"])),null),__dilSafe(()=>(__dil.jsx(\"button\",{\"block\":true,\"variant\":\"outline\",\"color\":\"secondary\",\"onClick\":()=>GenUI.issueNewTurn(\"1~14강에서 배운 ChatGPT 사고 원리, Thinking, 프롬프트, 에이전트, 시스템 운영, 인간과 AI의 협업, 독립적 사고력의 내용을 종합하여 한 번에 한 문제씩 소크라테스식 대화로 나의 이해도를 평가해 줘.\")},__dilConstants[\"255\"])),null)),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"256\"],__dilSafe(()=>(__dil.jsx(Link,{\"url\":turn673051search0?.url?.uri,\"title\":__dilConstants[\"257\"],\"__resolutionId\":__dilConstants[\"258\"]})),null),__dilConstants[\"259\"],__dilSafe(()=>(__dil.jsx(Link,{\"url\":turn673051search4?.url?.uri,\"title\":__dilConstants[\"260\"],\"__resolutionId\":__dilConstants[\"261\"]})),null),__dilConstants[\"262\"],__dilSafe(()=>(__dil.jsx(Link,{\"url\":turn673051search13?.url?.uri,\"title\":__dilConstants[\"263\"],\"__resolutionId\":__dilConstants[\"264\"]})),null),__dilConstants[\"265\"],__dilSafe(()=>(__dil.jsx(Link,{\"url\":turn673051search1?.url?.uri,\"title\":__dilConstants[\"266\"],\"__resolutionId\":__dilConstants[\"267\"]})),null)));},{\"key\":\"body:12\"}));",
+ "constants": {
+  "0": "14강. AI를 활용하면서도 내 사고력을 키우는 방법",
+  "1": "Know Your Unknowns · ChatGPT Thinking 원리 이해하기 · 인간의 사고력과 AI 협업",
+  "2": "13강에서는 AI의 자율성이 높아질수록 사람의 역할이 어떻게 달라질 수 있는지 배웠습니다.",
+  "3": "이제 개인의 입장에서 한 가지 중요한 질문을 생각해 보겠습니다.",
+  "4": "\"AI가 내 대신 글을 쓰고, 문제를 풀고, 계획을 세워 준다면 나는 점점 더 유능해질까? 아니면 AI 없이는 생각하기 어려워질까?\"",
+  "5": "답은 ",
+  "6": "AI를 어떻게 사용하느냐에 따라 달라질 수 있다",
+  "7": "입니다.",
+  "8": "AI는 강력한 학습 도구가 될 수도 있고, 내가 직접 생각할 기회를 지나치게 줄이는 도구가 될 수도 있습니다.",
+  "9": "14강의 목표는 AI 사용을 줄이는 것이 아닙니다.",
+  "10": "AI를 활용해 더 좋은 결과를 만들면서도, 스스로 생각하고 배우고 판단하는 능력을 함께 발전시키는 방법",
+  "11": "을 익히는 것입니다.",
+  "12": "1. AI를 잘 쓰는 것과 AI 없이도 이해하는 것은 다르다",
+  "13": "어떤 사람이 AI를 이용해 훌륭한 사업 보고서를 작성했다고 가정해 봅시다.",
+  "14": "보고서에는 시장 조사, 수익 예상, 실행 계획까지 완벽하게 정리되어 있습니다.",
+  "15": "그런데 누군가 이렇게 묻습니다.",
+  "16": "\"왜 이 전략이 다른 전략보다 좋은가요?\"",
+  "17": "그 사람이 AI의 답변을 다시 열지 않고는 설명할 수 없다면 어떻게 될까요?",
+  "18": "결과물은 훌륭할 수 있지만, 그 사람이 문제를 충분히 이해했다고 보기는 어렵습니다.",
+  "19": "결과물을 만드는 능력",
+  "20": "AI를 이용해 높은 품질의 보고서와 답변을 완성",
+  "21": "산출물의 품질",
+  "22": "스스로 이해하는 능력",
+  "23": "AI 없이도 핵심 원리와 판단 근거를 설명하고 새로운 문제에 적용",
+  "24": "개인의 학습과 사고력",
+  "25": "두 능력은 서로 도움이 될 수 있지만, 자동으로 함께 증가하는 것은 아닙니다.",
+  "26": "실제 연구에서는 어떤 결과가 나왔을까?",
+  "27": "2025년 발표된 두 연구를 보면 중요한 차이를 발견할 수 있습니다.",
+  "28": "첫 번째 연구:",
+  "29": " 지식 근로자 319명을 조사한 Microsoft 연구에서는 AI에 대한 신뢰가 높을수록 비판적 사고에 들이는 노력이 적다고 보고하는 경향이 나타났습니다. 다만 이는 설문 연구이므로 AI가 직접 사고력을 떨어뜨렸다는 인과관계를 확정하지는 않습니다. ",
+  "30": "624eac0f-78cb-533b-95ff-98c4c916401a",
+  "31": "두 번째 연구:",
+  "32": " 고등학교 수학 학습자를 대상으로 한 실험에서는 일반적인 AI 도우미에 의존해 연습한 학생들이 AI 없이 시험을 볼 때 대조군보다 성적이 낮아졌습니다. 반면 정답 대신 교사가 설계한 힌트를 제공하는 AI의 경우 그러한 부정적 효과가 상당 부분 완화되었습니다. ",
+  "33": "942d2c4a-6ecd-545a-a687-b8420b25b9e3",
+  "34": "하지만 AI가 학습을 항상 방해하는 것은 아닙니다. 2026년 발표된 한 무작위 실험에서는 AI를 활용한 학습이 이후 AI 없는 지식 평가에도 긍정적인 효과를 보였으며, 특히 개념 설명을 얻는 방식의 활용이 글의 작성 자체를 맡기는 방식보다 지속적인 학습 이점과 연결되었습니다. ",
+  "35": "965e8727-dd6e-5984-99ee-d31eb3b63259",
+  "36": "따라서 현재 연구가 시사하는 바는 이것입니다.",
+  "37": "AI를 쓰느냐 마느냐보다, AI를 사용하는 동안 내가 어떤 사고 활동을 하느냐가 중요합니다.",
+  "38": "2. AI를 활용하는 세 가지 방식",
+  "39": "같은 ChatGPT를 사용해도 목적과 사용 방식에 따라 결과가 달라집니다.",
+  "40": "① 대행 모드 — AI가 대신하기",
+  "41": "\"이 이메일을 정중하게 번역해 줘.\"",
+  "42": "목표: 빠르고 정확한 결과물을 얻기",
+  "43": "② 협업 모드 — AI와 함께 판단하기",
+  "44": "\"내가 만든 계획의 약점과 다른 대안을 찾아줘.\"",
+  "45": "목표: 내 판단을 보완하고 더 나은 결과 만들기",
+  "46": "③ 훈련 모드 — AI를 선생님으로 활용하기",
+  "47": "\"답을 먼저 말하지 말고 내가 직접 해결하도록 힌트를 줘.\"",
+  "48": "목표: AI 없이도 수행할 수 있는 능력 기르기",
+  "49": "대행 모드가 나쁜 것은 아닙니다. 이미 잘 아는 반복 업무를 빠르게 처리하려면 적합합니다.",
+  "50": "하지만 ",
+  "51": "새로운 능력을 배우려는 순간까지 모든 사고를 AI에 맡긴다면 학습 기회를 놓칠 수 있습니다.",
+  "52": "그렇다면 실제로 어떻게 해야 할까요?",
+  "53": "3. 실험 ① — 먼저 생각한 뒤 AI의 답을 보자",
+  "54": "이번에는 직접 경험해 보겠습니다.",
+  "55": "당신은 작은 온라인 쇼핑몰의 운영자입니다.",
+  "56": "최근 고객 불만이 증가하자 AI가 다음과 같은 전략을 제안했습니다.",
+  "57": "AI의 개선 제안 — 가상 사례",
+  "58": "\"고객 불만을 줄이기 위해 불만을 접수한 모든 고객에게 5,000원 할인 쿠폰을 지급하세요.\"",
+  "59": "이 제안은 좋아 보일 수 있습니다. 하지만 실제로 실행해도 괜찮을까요?",
+  "60": "AI의 평가를 보기 전에, 자신의 판단부터 만들어 보세요.",
+  "61": "나의 첫 번째 판단",
+  "62": "이 전략을 바로 실행해도 될까요? 판단 이유와 먼저 확인할 정보 1~2가지를 직접 적어 보세요. 정답을 맞히는 것보다 스스로 생각하는 과정이 중요합니다.",
+  "63": "내 생각에는... 왜냐하면... 먼저 확인할 것은...",
+  "64": "AI의 관점과 비교하기 ",
+  "65": "AI의 제안을 평가하는 관점",
+  "66": "할인 쿠폰은 불만을 완화하는 데 도움이 될 수도 있지만, 불만의 근본 원인을 해결하지 못할 수 있습니다.",
+  "67": "예를 들어 배송 지연이 원인이라면 배송 과정을 개선하는 것이 더 중요할 수 있습니다. 모든 고객에게 쿠폰을 지급할 때 발생하는 비용도 계산해야 합니다.",
+  "68": "확인할 사항",
+  "69": "고객 불만의 주된 원인은 무엇인가?",
+  "70": "쿠폰 지급 비용은 감당할 수 있는가?",
+  "71": "쿠폰이 실제 문제 해결과 만족도 향상에 도움이 되는가?",
+  "72": "쿠폰 외에 어떤 대안이 있는가?",
+  "73": "자기 점검",
+  "74": "내 첫 판단과 비교해 보세요. AI가 알려주기 전에 내가 발견한 문제는 무엇이고, 새롭게 알게 된 문제는 무엇인가요?",
+  "75": "이 실험의 목적은 AI보다 더 빨리 정답을 맞히는 것이 아닙니다.",
+  "76": "AI의 설명을 읽기 전에 내 관점과 가정을 만들어 두는 것",
+  "77": "입니다.",
+  "78": "이렇게 하면 AI의 결론을 무의식적으로 받아들이는 대신, 자신의 판단과 비교할 기준이 생깁니다.",
+  "79": "4. 독립적 사고를 키우는 '5단계 협업 루프'",
+  "80": "매번 AI를 사용하기 전에 오래 고민할 필요는 없습니다.",
+  "81": "하지만 학습이나 중요한 판단에서는 아래 순서를 연습해 볼 수 있습니다.",
+  "82": "1. 내가 먼저 생각하기",
+  "83": "지금 아는 것, 나의 가설, 모르는 것 정리",
+  "84": "2. AI의 도움받기",
+  "85": "설명, 대안, 반례, 필요한 근거 요청",
+  "86": "3. 비교하고 반박하기",
+  "87": "AI와 내 의견이 다른 이유 확인",
+  "88": "4. 내 언어로 다시 설명하기",
+  "89": "답변을 보지 않고 핵심 원리를 재구성",
+  "90": "5. AI 없이 다른 문제 풀기",
+  "91": "배운 것을 새로운 상황에 적용해 확인",
+  "92": "마지막 단계가 특히 중요합니다.",
+  "93": "AI의 설명을 들을 때는 이해한 것 같아도 실제로 혼자 적용하려고 하면 막힐 수 있습니다.",
+  "94": "그래서 ",
+  "95": "AI 없이도 문제를 해결할 수 있는지",
+  "96": "를 가끔 시험해 보는 것이 좋습니다.",
+  "97": "이는 AI를 활용한 결과의 품질뿐 아니라 학습자의 실제 능력을 측정하는 방법입니다.",
+  "98": "5. 전문성: AI의 답을 검토할 능력을 어떻게 기를까?",
+  "99": "이번에는 전문성(Expertise)을 생각해 봅시다.",
+  "100": "전문성은 단순히 지식을 많이 외우는 것만이 아닙니다.",
+  "101": "중요한 상황에서 무엇이 핵심인지 알아보고, 사용할 근거와 판단 기준을 선택하고, 예외적인 상황에 대응하는 능력도 포함됩니다.",
+  "102": "예를 들어 어떤 사람이 AI에게 주식 투자 분석을 요청했다고 가정해 보겠습니다.",
+  "103": "AI가 매끄러운 분석 보고서를 만들 수는 있습니다.",
+  "104": "그러나 실제로 그 보고서를 평가하려면 다음과 같은 지식이 필요합니다.",
+  "105": "전문성을 이루는 세 가지 층",
+  "106": "기초 개념",
+  "107": "주가, 이익, 현금흐름, 위험 등의 개념을 이해합니다.",
+  "108": "판단 기준",
+  "109": "어떤 수치를 비교해야 하고, 어떤 전제가 잘못되면 결론이 달라지는지 이해합니다.",
+  "110": "실전 적용과 피드백",
+  "111": "실제 상황에 지식을 적용하고, 결과와 오류를 확인하면서 판단을 개선합니다.",
+  "112": "AI는 세 가지 층 모두에서 도움을 줄 수 있습니다.",
+  "113": "하지만 AI가 분석을 대신 작성했다는 이유만으로 내가 이 능력들을 습득한 것은 아닙니다.",
+  "114": "전문성을 키우는 좋은 질문",
+  "115": "다음 두 요청을 비교해 보겠습니다.",
+  "116": "결과물 중심 질문",
+  "117": "\"이 업계의 분석 보고서를 만들어 줘.\"",
+  "118": "전문성 개발 중심 질문",
+  "119": "\"이 업계를 분석할 때 전문가가 먼저 확인하는 핵심 지표 5가지를 가르쳐 줘. 내가 각 지표를 해석해 보면 오류와 빠뜨린 가정을 피드백해 줘.\"",
+  "120": "두 번째 요청에서는 AI가 단순히 작업을 대신하는 데 그치지 않고 ",
+  "121": "내가 전문가처럼 판단하는 방법을 익히는 데 도움을 줍니다.",
+  "122": "또한 내가 이해하지 못한 용어나 가정이 있으면 그 부분을 따로 배우는 것이 좋습니다.",
+  "123": "이것은 7강에서 배운 Know Your Unknowns와도 연결됩니다.",
+  "124": "모르는 사실을 찾는 것뿐 아니라, 무엇을 알아야 올바르게 판단할 수 있는지 배우는 것",
+  "125": "입니다.",
+  "126": "6. 창의성: AI가 아이디어를 대신 내면 창의력이 줄어들까?",
+  "127": "AI는 짧은 시간에 많은 아이디어를 제시할 수 있습니다.",
+  "128": "하지만 아이디어의 개수가 많다고 해서 모두 창의적이거나 유용한 것은 아닙니다.",
+  "129": "창의성에서는 최소한 세 가지 활동을 구분하면 좋습니다.",
+  "130": "발산",
+  "131": "다양한 아이디어 생성",
+  "132": "결합",
+  "133": "서로 다른 아이디어 연결",
+  "134": "선택",
+  "135": "현실성과 가치를 평가",
+  "136": "AI는 새로운 관점을 찾거나 다양한 조합을 제안하는 데 유용할 수 있습니다.",
+  "137": "그러나 어느 아이디어가 자신의 목표와 상황에 의미 있는지 결정하는 일은 여전히 중요합니다.",
+  "138": "실험 ② — AI를 아이디어 자판기가 아니라 창의적 협업자로 사용하기",
+  "139": "다음 상황을 상상해 보겠습니다.",
+  "140": "\"지역 서점을 더 많은 사람이 방문하도록 만들고 싶다.\"",
+  "141": "AI에게 무조건 \"기발한 아이디어 20개\"를 요구하는 대신, 먼저 자신이 원하는 방향을 선택해 보세요.",
+  "142": "1단계. 내가 중요하게 생각하는 방향 선택",
+  "143": "사람과 사람을 연결하고 싶다.",
+  "144": "방문 자체가 재미있는 경험이 되면 좋겠다.",
+  "145": "책을 통해 새로운 배움을 얻도록 돕고 싶다.",
+  "146": "2단계. AI가 제안할 수 있는 아이디어",
+  "147": "한 단계 확장하기:",
+  "148": " ",
+  "149": "먼저 선택한 방향에서 떠오르는 아이디어를 스스로 하나 생각해 보세요. 이후 AI의 예시와 비교해 보세요.",
+  "150": "마지막 질문: 이 아이디어를 실제로 실행하려면 예산, 장소, 고객의 반응 중 무엇을 먼저 검증해야 할까요?",
+  "151": "이 실험에서 AI의 역할은 ",
+  "152": "내가 선택한 방향을 확장하고 새로운 조합을 제시하는 것",
+  "153": "입니다.",
+  "154": "반대로 내가 할 일은 방향을 선택하고, 가치와 현실성을 판단하고, 실제로 실험할 아이디어를 정하는 것입니다.",
+  "155": "창의적 활동이라고 모든 아이디어를 직접 만들어야 하는 것은 아닙니다. AI가 만든 아이디어를 비판적으로 선택하고 변형하는 것도 창의적인 작업이 될 수 있습니다.",
+  "156": "다만 AI가 내놓은 아이디어가 실제로 독창적인지, 이미 널리 사용된 방법은 아닌지 확인이 필요한 경우도 있습니다.",
+  "157": "7. 학습 능력: '이해한 느낌'과 '정말 아는 것' 구분하기",
+  "158": "학습에서 가장 조심할 점 중 하나는 ",
+  "159": "설명을 이해한 느낌과 실제로 혼자 문제를 해결할 수 있는 능력을 혼동하는 것",
+  "160": "입니다.",
+  "161": "예를 들어 AI가 \"데이터 드리프트\"를 매우 쉽게 설명했다고 가정해 보겠습니다.",
+  "162": "설명을 읽는 동안에는 충분히 이해한 것 같습니다.",
+  "163": "하지만 다음 날 AI 없이 누군가에게 설명하려고 하면 막힐 수도 있습니다.",
+  "164": "그래서 중요한 학습 활동이 ",
+  "165": "인출 연습(Retrieval Practice)",
+  "166": " 입니다.",
+  "167": "자료를 보지 않고 기억에서 배운 내용을 꺼내보는 것입니다.",
+  "168": "AI 없이 설명하기 — 짧은 복습 실험",
+  "169": "문제:",
+  "170": " 12강에서 배운 ",
+  "171": "데이터 드리프트",
+  "172": "를 초등학생에게 설명하듯 한두 문장으로 말해 보세요.",
+  "173": "내 설명은...",
+  "174": "모범 설명과 비교하기",
+  "175": "예시 설명",
+  "176": "\"처음 AI가 배우거나 평가할 때 들어오던 정보와 지금 들어오는 정보가 달라지는 현상이야. 예를 들어 처음에는 배송 문의가 많았는데 나중에는 앱 오류 문의가 많아지는 거지.\"",
+  "177": "스스로 평가하기",
+  "178": "내 설명에 '과거와 현재의 데이터 차이'가 들어 있는지 확인해 보세요. 추가로 그 변화가 실제 정확도에 어떤 영향을 주는지 확인해야 한다고 설명했다면 더욱 좋습니다.",
+  "179": "AI를 활용한 학습에서도 단순히 답을 제공받는 것보다, 자신이 생각한 내용을 설명하고 피드백받는 방식이 유용할 수 있습니다.",
+  "180": "ChatGPT의 ",
+  "181": "공부 모드(Study Mode)",
+  "182": " 는 답을 바로 제시하기보다 질문과 힌트를 제공하고 이해도를 확인하는 방식으로 학습을 지원하도록 설계되었습니다. 다만 실제 동작이 언제나 이런 방식으로 진행되는 것은 아니며, 필요하면 \"정답을 먼저 알려주지 마\"라고 요청할 수 있습니다. ",
+  "183": "f6f56486-f9e8-5487-bada-8d928fdfc15f",
+  "184": "공부 모드가 없어도 일반 대화에서 같은 방식으로 요청할 수 있습니다.",
+  "185": "8. 바로 사용할 수 있는 세 가지 훈련 프롬프트",
+  "186": "필요한 능력에 따라 프롬프트를 선택해 보세요.",
+  "187": "독립적 사고력 키우기",
+  "188": "전문 지식과 판단력 키우기",
+  "189": "창의적 아이디어 발전시키기",
+  "190": " 프롬프트",
+  "191": " 복사",
+  "192": " 실습하기",
+  "193": "9. AI에 맡겨도 되는 일과 직접 연습해야 하는 일",
+  "194": "여기서 중요한 균형이 필요합니다.",
+  "195": "모든 업무를 일부러 어렵게 수행할 필요는 없습니다.",
+  "196": "이미 잘 아는 반복 작업을 AI에게 위임해 시간을 절약하고, 그 시간을 더 중요한 학습이나 판단에 사용하는 것도 좋은 전략입니다.",
+  "197": "업무의 성격",
+  "198": "추천 사용 방식",
+  "199": "익숙하고 반복적인 작업",
+  "200": "AI에 위임하고 결과 확인",
+  "201": "처음 배우는 개념",
+  "202": "내가 먼저 생각하고 AI에게 힌트 요청",
+  "203": "새로운 아이디어가 필요한 작업",
+  "204": "내 아이디어와 AI의 대안을 결합",
+  "205": "중요한 의사결정",
+  "206": "AI의 관점 활용 + 근거 검증 + 직접 판단",
+  "207": "반드시 직접 할 줄 알아야 하는 기술",
+  "208": "AI 없이 연습하는 시간 확보",
+  "209": "예를 들어 계산기를 잘 활용한다고 해서 기본적인 계산 원리를 몰라도 되는 것은 아닙니다.",
+  "210": "마찬가지로 AI가 보고서를 잘 작성해 주더라도, 보고서의 핵심 결론을 설명하고 근거를 평가할 수 있는 능력은 필요합니다.",
+  "211": "반복 작업은 AI에 맡기고, 나의 성장을 결정하는 사고 활동은 의도적으로 연습하는 것",
+  "212": "이 실용적인 균형입니다.",
+  "213": "10. 4주간의 AI 협업 사고력 훈련",
+  "214": "지금까지 배운 것을 일상에 적용할 수 있도록 작은 훈련 계획을 만들어 보겠습니다.",
+  "215": "하루 15~20분 정도를 기준으로 한 예시입니다.",
+  "216": "4주 실천 계획",
+  "217": "1주 차 — 먼저 생각하기",
+  "218": "매일 하나의 질문에 대해 AI를 열기 전에 나의 답과 이유를 2~3문장으로 적어 봅니다.",
+  "219": "목표: AI의 결론을 보기 전에 자신의 판단을 만드는 습관",
+  "220": "2주 차 — 반례와 근거 찾기",
+  "221": "AI에게 내 주장에 반대되는 관점과 틀릴 수 있는 조건을 요청합니다. 사실 주장은 가능한 한 원문 자료로 확인합니다.",
+  "222": "목표: 그럴듯한 설명을 무비판적으로 받아들이지 않는 능력",
+  "223": "3주 차 — 아이디어 발전시키기",
+  "224": "내가 아이디어를 하나 제안한 다음 AI의 대안과 결합하고, 장점과 단점을 비교합니다.",
+  "225": "목표: AI를 답변 생성기가 아니라 창의적 협업자로 활용",
+  "226": "4주 차 — AI 없이 수행하기",
+  "227": "한 주 동안 배운 내용을 AI 없이 설명하고, 이전에 보지 않은 새 문제에 적용해 봅니다.",
+  "228": "목표: 실제로 내 능력이 향상되었는지 확인",
+  "229": "내가 발전하고 있는지 판단하는 세 가지 질문",
+  "230": "일주일에 한 번 다음 질문에 답해 보세요.",
+  "231": "주간 사고력 점검",
+  "232": "/3",
+  "233": "세 가지 습관을 모두 실천했습니다. 다음에는 같은 능력을 조금 더 어려운 문제에 적용해 보세요.",
+  "234": "점수가 낮더라도 괜찮습니다. 이것은 실제 지능이나 전문성을 측정하는 검사가 아니라 학습 습관을 확인하는 체크리스트입니다.",
+  "235": "11. 14강 최종 이해도 테스트",
+  "236": "Q. AI를 활용하면서 자신의 사고력을 키우는 데 가장 적합한 방법은 무엇일까요?",
+  "237": "A. 모든 문제를 AI 없이 직접 해결한다.",
+  "238": "B. AI가 만든 답을 많이 읽으면 자연스럽게 전문성이 생긴다고 생각한다.",
+  "239": "C. 중요한 학습 문제는 먼저 스스로 생각하고, AI의 피드백을 받은 뒤, 다시 AI 없이 설명하거나 적용해 본다.",
+  "240": "D. AI가 더 정확할 수 있으니 자신의 판단은 가능한 한 사용하지 않는다.",
+  "241": "12. 14강의 핵심 결론",
+  "242": "AI 시대의 핵심 역량은 단순히 AI로 좋은 답을 만드는 것이 아닙니다.",
+  "243": "결과물 중심",
+  "244": "\"AI가 나 대신 얼마나 잘할 수 있을까?\"",
+  "245": "성장 중심",
+  "246": "\"AI와 함께 일하면서 나는 어떤 능력을 더 잘할 수 있게 되었을까?\"",
+  "247": "오늘 배운 원칙을 한 문장으로 요약하면 다음과 같습니다.",
+  "248": "\"시간을 아끼는 일은 AI에 맡기되, 내 사고력과 전문성을 키우는 데 필요한 생각까지 모두 맡기지는 말자.\"",
+  "249": "1강에서 시작한 질문은 \"ChatGPT는 어떻게 생각할까?\"였습니다.",
+  "250": "14강에 도착한 지금은 \"ChatGPT와 함께 일하면서 나는 어떻게 더 잘 생각할 수 있을까?\"라는 질문까지 도달했습니다.",
+  "251": "이것이 이번 강의의 가장 중요한 성과입니다.",
+  "252": "다음 강의",
+  "253": "15강 · AI 시대의 증거 기반 판단과 불확실성 다루기 ",
+  "254": "14강 실습 · 나만의 AI 협업 학습법 설계",
+  "255": "1~14강 종합 이해도 테스트",
+  "256": "참고 자료: ",
+  "257": "Microsoft Research — 생성형 AI와 비판적 사고(2025)",
+  "258": "25bfac6e-fbcd-5e68-a028-1e13eb99de53",
+  "259": " · ",
+  "260": "PNAS — 생성형 AI와 학습 효과(2025)",
+  "261": "dedf923e-efb9-5796-821d-1bd07d4a9183",
+  "262": " · ",
+  "263": "IZA — 생성형 AI 활용 방식과 학습 효과(2026)",
+  "264": "4ddbf0e3-3cd8-5180-91fb-b24f383fd167",
+  "265": " · ",
+  "266": "OpenAI — ChatGPT 공부 모드 사용법",
+  "267": "3e979f04-30fe-57ef-933b-57fafb04a40e"
+ },
+ "resolutions": {
+  "25bfac6e-fbcd-5e68-a028-1e13eb99de53": {
+   "status": "resolved",
+   "state": {
+    "url": "https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/?lang=zh-cn&utm_source=chatgpt.com",
+    "title": "Microsoft Research — 생성형 AI와 비판적 사고(2025)",
+    "source_label": "microsoft.com",
+    "domain": "microsoft.com",
+    "snippet": null,
+    "metadata_label": null,
+    "refid": null,
+    "title_before_last_word": "Microsoft Research — 생성형 AI와 비판적",
+    "title_last_word": "사고(2025)"
+   },
+   "safe_urls": [
+    "https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/?lang=zh-cn&utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Link"
+  },
+  "dedf923e-efb9-5796-821d-1bd07d4a9183": {
+   "status": "resolved",
+   "state": {
+    "url": "https://doi.org/10.1073/pnas.2422633122?utm_source=chatgpt.com",
+    "title": "PNAS — 생성형 AI와 학습 효과(2025)",
+    "source_label": "doi.org",
+    "domain": "doi.org",
+    "snippet": null,
+    "metadata_label": null,
+    "refid": null,
+    "title_before_last_word": "PNAS — 생성형 AI와 학습",
+    "title_last_word": "효과(2025)"
+   },
+   "safe_urls": [
+    "https://doi.org/10.1073/pnas.2422633122?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Link"
+  },
+  "4ddbf0e3-3cd8-5180-91fb-b24f383fd167": {
+   "status": "resolved",
+   "state": {
+    "url": "https://www.iza.org/publications/dp/18792/none?utm_source=chatgpt.com",
+    "title": "IZA — 생성형 AI 활용 방식과 학습 효과(2026)",
+    "source_label": "iza.org",
+    "domain": "iza.org",
+    "snippet": null,
+    "metadata_label": null,
+    "refid": null,
+    "title_before_last_word": "IZA — 생성형 AI 활용 방식과 학습",
+    "title_last_word": "효과(2026)"
+   },
+   "safe_urls": [
+    "https://www.iza.org/publications/dp/18792/none?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Link"
+  },
+  "3e979f04-30fe-57ef-933b-57fafb04a40e": {
+   "status": "resolved",
+   "state": {
+    "url": "https://help.openai.com/ko-kr/articles/11780217-using-study-mode-in-chatgpt?utm_source=chatgpt.com",
+    "title": "OpenAI — ChatGPT 공부 모드 사용법",
+    "source_label": "help.openai.com",
+    "domain": "help.openai.com",
+    "snippet": null,
+    "metadata_label": null,
+    "refid": null,
+    "title_before_last_word": "OpenAI — ChatGPT 공부 모드",
+    "title_last_word": "사용법"
+   },
+   "safe_urls": [
+    "https://help.openai.com/ko-kr/articles/11780217-using-study-mode-in-chatgpt?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Link"
+  },
+  "624eac0f-78cb-533b-95ff-98c4c916401a": {
+   "status": "resolved",
+   "state": {
+    "items": [
+     {
+      "url": "https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/?lang=zh-cn&utm_source=chatgpt.com",
+      "ref_id": "turn673051search0",
+      "refs": [
+       {
+        "turn_index": 673051,
+        "ref_type": "search",
+        "ref_index": 0
+       }
+      ],
+      "source_label": "Microsoft",
+      "source_name": "Microsoft Research",
+      "authors": [
+       "Hao-Ping (Hank) Lee",
+       "Advait Sarkar",
+       "Lev Tankelevitch",
+       "Ian Drosos",
+       "Sean Rintel",
+       "Richard Banks",
+       "Nicholas Wilson"
+      ],
+      "title": "The Impact of Generative AI on Critical Thinking: Self-Reported Reductions in Cognitive Effort and Confidence Effects From a Survey of Knowledge Workers",
+      "snippet": null,
+      "pub_timestamp": 1743465600.0,
+      "metadata_label": "4월 1, 2025"
+     }
+    ],
+    "active_index": 0,
+    "sources_title": "Source 1개"
+   },
+   "safe_urls": [
+    "https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/?lang=zh-cn&utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Cite"
+  },
+  "942d2c4a-6ecd-545a-a687-b8420b25b9e3": {
+   "status": "resolved",
+   "state": {
+    "items": [
+     {
+      "url": "https://doi.org/10.1073/pnas.2422633122?utm_source=chatgpt.com",
+      "ref_id": "turn673051search4",
+      "refs": [
+       {
+        "turn_index": 673051,
+        "ref_type": "search",
+        "ref_index": 4
+       }
+      ],
+      "source_label": "DOI",
+      "source_name": "Proceedings of the National Academy of Sciences",
+      "authors": [
+       "Bastani, Hamsa",
+       "Bastani, Osbert",
+       "Sungu, Alp",
+       "Ge, Haosen",
+       "Kabakcı, Özge",
+       "Mariman, Rei"
+      ],
+      "title": "Generative AI without guardrails can harm learning: Evidence from high school mathematics",
+      "snippet": null,
+      "pub_timestamp": 1750809600.0,
+      "metadata_label": "6월 25, 2025"
+     }
+    ],
+    "active_index": 0,
+    "sources_title": "Source 1개"
+   },
+   "safe_urls": [
+    "https://doi.org/10.1073/pnas.2422633122?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Cite"
+  },
+  "965e8727-dd6e-5984-99ee-d31eb3b63259": {
+   "status": "resolved",
+   "state": {
+    "items": [
+     {
+      "url": "https://www.iza.org/publications/dp/18792/none?utm_source=chatgpt.com",
+      "ref_id": "turn673051search13",
+      "refs": [
+       {
+        "turn_index": 673051,
+        "ref_type": "search",
+        "ref_index": 13
+       }
+      ],
+      "source_label": "IZA - Institute of Labor Economics",
+      "title": "Experimental Evidence on the Learning Impact of Generative AI",
+      "snippet": null,
+      "pub_timestamp": 1782864000.0,
+      "metadata_label": "7월 1, 2026"
+     }
+    ],
+    "active_index": 0,
+    "sources_title": "Source 1개"
+   },
+   "safe_urls": [
+    "https://www.iza.org/publications/dp/18792/none?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Cite"
+  },
+  "f6f56486-f9e8-5487-bada-8d928fdfc15f": {
+   "status": "resolved",
+   "state": {
+    "items": [
+     {
+      "url": "https://help.openai.com/ko-kr/articles/11780217-using-study-mode-in-chatgpt?utm_source=chatgpt.com",
+      "ref_id": "turn673051search1",
+      "refs": [
+       {
+        "turn_index": 673051,
+        "ref_type": "search",
+        "ref_index": 1
+       }
+      ],
+      "source_label": "OpenAI Help Center",
+      "source_name": "OpenAI Help Center",
+      "title": "ChatGPT에서 공부 모드 사용하기",
+      "snippet": null,
+      "pub_timestamp": null,
+      "metadata_label": null
+     }
+    ],
+    "active_index": 0,
+    "sources_title": "Source 1개"
+   },
+   "safe_urls": [
+    "https://help.openai.com/ko-kr/articles/11780217-using-study-mode-in-chatgpt?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Cite"
+  }
+ },
+ "bindings": {
+  "turn673051search0": {
+   "title": "The Impact of Generative AI on Critical Thinking: Self-Reported Reductions in Cognitive Effort and Confidence Effects From a Survey of Knowledge Workers",
+   "timestamp": 1743465600.0,
+   "domain": "www.microsoft.com",
+   "url": {
+    "$type": "uri",
+    "uri": "https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/?lang=zh-cn&utm_source=chatgpt.com"
+   }
+  },
+  "turn673051search1": {
+   "title": "ChatGPT에서 공부 모드 사용하기 | OpenAI Help Center",
+   "domain": "help.openai.com",
+   "url": {
+    "$type": "uri",
+    "uri": "https://help.openai.com/ko-kr/articles/11780217-using-study-mode-in-chatgpt?utm_source=chatgpt.com"
+   }
+  },
+  "turn673051search13": {
+   "title": "Experimental Evidence on the Learning Impact of Generative AI | IZA - Institute of Labor Economics",
+   "timestamp": 1782864000.0,
+   "domain": "www.iza.org",
+   "url": {
+    "$type": "uri",
+    "uri": "https://www.iza.org/publications/dp/18792/none?utm_source=chatgpt.com"
+   }
+  },
+  "turn673051search4": {
+   "title": "Generative AI without guardrails can harm learning: Evidence from high school mathematics",
+   "timestamp": 1750809600.0,
+   "domain": "doi.org",
+   "url": {
+    "$type": "uri",
+    "uri": "https://doi.org/10.1073/pnas.2422633122?utm_source=chatgpt.com"
+   }
+  }
+ },
+ "widgets": []
+}

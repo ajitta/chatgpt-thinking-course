@@ -15,7 +15,7 @@
 1. **2강 발행본의 GitHub 링크**: 발행본 끝에 "2강 원문 전체 읽기"(GitHub) 링크가 남아 있습니다. 원고에서는 지웠습니다. 발행본에서 지울지(재발행) 사용자 결정 대기.
 2. **3강**: `naver-lesson` 스킬(또는 "3강 네이버 글 만들어")로 시작. 3강 원문 도식 `sources/conversation/assets/svg-04-lesson-03.svg`(고양이 삼단논법)는 완성본이라 그대로 쓸 수 있습니다.
 3. **5강, 13강 전에**: 네이버 블로그 관리에서 `ChatGPT Thinking` 아래 카테고리 "AI 활용과 업무 시스템"(5~12강), "사람의 사고와 불확실한 판단"(13~20강)을 만들고 카테고리 번호를 `lessons-plan.json`의 `categoryNo`에 적습니다.
-4. **나중에**: github.io 강의별 학습 페이지를 다 만든 뒤, 각 네이버 글 끝에 학습 페이지 링크를 한꺼번에 넣습니다. 그전에는 GitHub(github.com) 링크를 달지 않습니다(`lint_manuscript.py`가 막음).
+4. **github.io 강의 페이지**: 1–20강 학습 페이지를 만들었습니다(2026-11-11, `docs/lessons/NN/`, `main`에 반영되면 공개). 주소는 `https://ajitta.github.io/chatgpt-thinking-course/lessons/NN/`(NN은 01~20)입니다. 공개된 뒤 각 네이버 글 끝에 해당 강의 링크를 한꺼번에 넣습니다. 루트 주소는 이제 1강이 아니라 과정 홈이라, 발행된 1강 글의 '1강 학습 페이지' 링크도 이때 `lessons/01/`로 바꿉니다. GitHub(github.com) 링크는 계속 달지 않습니다(`lint_manuscript.py`가 막음).
 
 ## 강의 하나를 만드는 흐름 (요약)
 

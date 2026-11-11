@@ -8,9 +8,8 @@
 
 - **기준 형식: Markdown.** GitHub에서 바로 읽고, 강의별 수정 이력을 비교하고, 다른 형식으로 옮기기 쉽습니다. `lessons/`에 강의마다 파일 하나를 둡니다.
 - **네이버 블로그용: 일반 텍스트.** `blog/lesson-01.txt`부터 `lesson-30.txt`까지 한 강의씩 복사해 사용할 수 있습니다. 블로그 편집기에서 제목·단락·표를 다듬어 주세요.
-- **1강 학습 사이트: [본문과 대화형 실습](https://ajitta.github.io/chatgpt-thinking-course/).** 원문을 바탕으로 읽기 순서·문단·도표를 웹에 맞게 편집하고, 두 퀴즈와 문장 조각 생성 시연을 배치했습니다. 현재 웹 강의는 1강만 제공합니다.
+- **웹 강의: [1–20강 학습 사이트](https://ajitta.github.io/chatgpt-thinking-course/).** 공개 대화에 있던 강의 화면을 원문 그대로 옮겼습니다. 선택 문제, 슬라이더 계산, 체크리스트, 직접 적기 실습이 원문의 정답·피드백·계산식대로 동작하고, 1강부터 20강까지 이전/다음으로 이어 읽습니다. 21–30강은 아직 웹에 없습니다.
 - **네이버 블로그: [1강 핵심·요약 글](https://blog.naver.com/ajitta/224472328521).** 토큰·의미와 규칙·학습과 어텐션·Thinking의 한계를 요약하고, 해당 1강 학습 페이지로 바로 연결합니다. 2–30강은 블로그에 게시하지 않았습니다.
-- 나머지 강의의 HTML 학습 사이트와 실습은 필요할 때 Markdown을 기준으로 확장할 수 있습니다.
 
 ## 학습 방법
 
@@ -18,42 +17,42 @@
 
 ## 전체 목차
 
-아래 부 구분은 GitHub 정리를 위해 새로 붙인 편집 분류입니다. 강의 번호와 제목은 원문에서 가져왔습니다. 모든 행의 상태는 **원문 기반 정적 편집**입니다.
+아래 부 구분은 GitHub 정리를 위해 새로 붙인 편집 분류입니다. 강의 번호와 제목은 원문에서 가져왔습니다. Markdown 파일은 모두 **원문 기반 정적 편집**이고, 1–20강의 웹 강의는 원문 화면과 실습을 그대로 옮긴 판본입니다.
 
 ### AI Thinking의 기본 원리
 
-| 강의 | 제목 | 블로그용 파일 |
-|---|---|---|
-| 01 | ['다음 단어 맞히기'가 어떻게 '논리적 사고'가 되었을까?](lessons/01-ai-fundamentals/lesson-01.md) | [텍스트](blog/lesson-01.txt) |
-| 02 | [ChatGPT는 어떻게 숫자로 '의미'를 표현할까?](lessons/01-ai-fundamentals/lesson-02.md) | [텍스트](blog/lesson-02.txt) |
-| 03 | [ChatGPT는 정말 '이해'하고 '생각'하는 걸까?](lessons/01-ai-fundamentals/lesson-03.md) | [텍스트](blog/lesson-03.txt) |
-| 04 | [ChatGPT는 왜 자신 있게 틀린 답을 할까?](lessons/01-ai-fundamentals/lesson-04.md) | [텍스트](blog/lesson-04.txt) |
+| 강의 | 제목 | 블로그용 파일 | 웹 강의 |
+|---|---|---|---|
+| 01 | ['다음 단어 맞히기'가 어떻게 '논리적 사고'가 되었을까?](lessons/01-ai-fundamentals/lesson-01.md) | [텍스트](blog/lesson-01.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/01/) |
+| 02 | [ChatGPT는 어떻게 숫자로 '의미'를 표현할까?](lessons/01-ai-fundamentals/lesson-02.md) | [텍스트](blog/lesson-02.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/02/) |
+| 03 | [ChatGPT는 정말 '이해'하고 '생각'하는 걸까?](lessons/01-ai-fundamentals/lesson-03.md) | [텍스트](blog/lesson-03.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/03/) |
+| 04 | [ChatGPT는 왜 자신 있게 틀린 답을 할까?](lessons/01-ai-fundamentals/lesson-04.md) | [텍스트](blog/lesson-04.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/04/) |
 
 ### AI 활용과 업무 시스템
 
-| 강의 | 제목 | 블로그용 파일 |
-|---|---|---|
-| 05 | [ChatGPT를 제대로 활용하는 4가지 방법](lessons/02-ai-workflows/lesson-05.md) | [텍스트](blog/lesson-05.txt) |
-| 06 | [원하는 답을 얻는 프롬프트 설계법](lessons/02-ai-workflows/lesson-06.md) | [텍스트](blog/lesson-06.txt) |
-| 07 | [AI에게 일을 잘 위임하는 방법](lessons/02-ai-workflows/lesson-07.md) | [텍스트](blog/lesson-07.txt) |
-| 08 | [AI 에이전트는 어떻게 스스로 일을 수행할까?](lessons/02-ai-workflows/lesson-08.md) | [텍스트](blog/lesson-08.txt) |
-| 09 | [AI 여러 명이 팀을 이루면 무슨 일이 일어날까?](lessons/02-ai-workflows/lesson-09.md) | [텍스트](blog/lesson-09.txt) |
-| 10 | [나만의 AI 업무 시스템 설계하기](lessons/02-ai-workflows/lesson-10.md) | [텍스트](blog/lesson-10.txt) |
-| 11 | [AI 업무 시스템의 성과·비용·오류 관리](lessons/02-ai-workflows/lesson-11.md) | [텍스트](blog/lesson-11.txt) |
-| 12 | [AI 업무 시스템을 안전하고 안정적으로 운영하는 방법](lessons/02-ai-workflows/lesson-12.md) | [텍스트](blog/lesson-12.txt) |
+| 강의 | 제목 | 블로그용 파일 | 웹 강의 |
+|---|---|---|---|
+| 05 | [ChatGPT를 제대로 활용하는 4가지 방법](lessons/02-ai-workflows/lesson-05.md) | [텍스트](blog/lesson-05.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/05/) |
+| 06 | [원하는 답을 얻는 프롬프트 설계법](lessons/02-ai-workflows/lesson-06.md) | [텍스트](blog/lesson-06.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/06/) |
+| 07 | [AI에게 일을 잘 위임하는 방법](lessons/02-ai-workflows/lesson-07.md) | [텍스트](blog/lesson-07.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/07/) |
+| 08 | [AI 에이전트는 어떻게 스스로 일을 수행할까?](lessons/02-ai-workflows/lesson-08.md) | [텍스트](blog/lesson-08.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/08/) |
+| 09 | [AI 여러 명이 팀을 이루면 무슨 일이 일어날까?](lessons/02-ai-workflows/lesson-09.md) | [텍스트](blog/lesson-09.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/09/) |
+| 10 | [나만의 AI 업무 시스템 설계하기](lessons/02-ai-workflows/lesson-10.md) | [텍스트](blog/lesson-10.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/10/) |
+| 11 | [AI 업무 시스템의 성과·비용·오류 관리](lessons/02-ai-workflows/lesson-11.md) | [텍스트](blog/lesson-11.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/11/) |
+| 12 | [AI 업무 시스템을 안전하고 안정적으로 운영하는 방법](lessons/02-ai-workflows/lesson-12.md) | [텍스트](blog/lesson-12.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/12/) |
 
 ### 사람의 사고와 불확실한 판단
 
-| 강의 | 제목 | 블로그용 파일 |
-|---|---|---|
-| 13 | [AI 시대, 사람의 역할은 어떻게 달라질까?](lessons/03-judgment-and-decisions/lesson-13.md) | [텍스트](blog/lesson-13.txt) |
-| 14 | [AI를 활용하면서도 내 사고력을 키우는 방법](lessons/03-judgment-and-decisions/lesson-14.md) | [텍스트](blog/lesson-14.txt) |
-| 15 | [AI 시대의 증거 기반 판단과 불확실성 다루기](lessons/03-judgment-and-decisions/lesson-15.md) | [텍스트](blog/lesson-15.txt) |
-| 16 | [AI의 확신은 얼마나 믿을 수 있을까?](lessons/03-judgment-and-decisions/lesson-16.md) | [텍스트](blog/lesson-16.txt) |
-| 17 | [실패를 미리 찾아내는 프리모텀과 레드팀](lessons/03-judgment-and-decisions/lesson-17.md) | [텍스트](blog/lesson-17.txt) |
-| 18 | [예측할 수 없는 위험과 회복탄력성](lessons/03-judgment-and-decisions/lesson-18.md) | [텍스트](blog/lesson-18.txt) |
-| 19 | [불확실할수록 작게 결정하고 빠르게 배우는 방법](lessons/03-judgment-and-decisions/lesson-19.md) | [텍스트](blog/lesson-19.txt) |
-| 20 | [나만의 AI 의사결정 운영체계 만들기](lessons/03-judgment-and-decisions/lesson-20.md) | [텍스트](blog/lesson-20.txt) |
+| 강의 | 제목 | 블로그용 파일 | 웹 강의 |
+|---|---|---|---|
+| 13 | [AI 시대, 사람의 역할은 어떻게 달라질까?](lessons/03-judgment-and-decisions/lesson-13.md) | [텍스트](blog/lesson-13.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/13/) |
+| 14 | [AI를 활용하면서도 내 사고력을 키우는 방법](lessons/03-judgment-and-decisions/lesson-14.md) | [텍스트](blog/lesson-14.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/14/) |
+| 15 | [AI 시대의 증거 기반 판단과 불확실성 다루기](lessons/03-judgment-and-decisions/lesson-15.md) | [텍스트](blog/lesson-15.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/15/) |
+| 16 | [AI의 확신은 얼마나 믿을 수 있을까?](lessons/03-judgment-and-decisions/lesson-16.md) | [텍스트](blog/lesson-16.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/16/) |
+| 17 | [실패를 미리 찾아내는 프리모텀과 레드팀](lessons/03-judgment-and-decisions/lesson-17.md) | [텍스트](blog/lesson-17.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/17/) |
+| 18 | [예측할 수 없는 위험과 회복탄력성](lessons/03-judgment-and-decisions/lesson-18.md) | [텍스트](blog/lesson-18.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/18/) |
+| 19 | [불확실할수록 작게 결정하고 빠르게 배우는 방법](lessons/03-judgment-and-decisions/lesson-19.md) | [텍스트](blog/lesson-19.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/19/) |
+| 20 | [나만의 AI 의사결정 운영체계 만들기](lessons/03-judgment-and-decisions/lesson-20.md) | [텍스트](blog/lesson-20.txt) | [웹](https://ajitta.github.io/chatgpt-thinking-course/lessons/20/) |
 
 ### 실행·학습·장기 성장
 
@@ -77,7 +76,7 @@
 
 ## 파일 구성
 
-`README.md`는 목차, `lessons/`는 기준 강의 파일, `blog/`는 블로그용 복사본, `sources/`는 수집 시점의 텍스트와 출처 기록, `docs/`는 1강 실습 페이지입니다.
+`README.md`는 목차, `lessons/`는 기준 강의 파일, `blog/`는 블로그용 복사본, `sources/`는 수집 시점의 텍스트와 출처 기록, `docs/`는 1–20강 학습 사이트(`node site/build.mjs`로 생성), `site/`는 그 생성 스크립트입니다.
 
 내용을 고칠 때는 원문과 편집 내용을 구분해 기록하고 블로그용 파일에도 반영해 주세요. 원문에 소개된 31강, 통합 시험, 후속 실습 버튼은 이 1–30강 저장소의 제공 범위에 포함되지 않습니다.
 

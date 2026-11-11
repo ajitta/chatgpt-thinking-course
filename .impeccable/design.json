@@ -1,0 +1,644 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-11T13:48:38+00:00",
+  "title": "Design System: Know Your Unknowns · ChatGPT Thinking 원리 이해하기",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "종이",
+        "canonical": "#faf9f5",
+        "oklch": "oklch(98.2% 0.005 95.1)",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#252523",
+          "#43423f",
+          "#62615e",
+          "#83827f",
+          "#a6a5a1",
+          "#cac9c6",
+          "#efeeed"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "녹흑 잉크",
+        "canonical": "#182720",
+        "oklch": "oklch(25.7% 0.024 164.0)",
+        "tonalRamp": [
+          "#080c0a",
+          "#1e2823",
+          "#37463f",
+          "#55665d",
+          "#76877e",
+          "#98aaa1",
+          "#c0cdc6",
+          "#e9f0ed"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "회녹",
+        "canonical": "#48564d",
+        "oklch": "oklch(43.8% 0.023 157.1)",
+        "tonalRamp": [
+          "#080c0a",
+          "#1f2722",
+          "#39463d",
+          "#57655c",
+          "#78877d",
+          "#9aa9a0",
+          "#c1ccc5",
+          "#eaf0ec"
+        ]
+      },
+      "faint": {
+        "role": "neutral",
+        "displayName": "옅은 회녹",
+        "canonical": "#5f6d63",
+        "oklch": "oklch(52.0% 0.023 154.4)",
+        "tonalRamp": [
+          "#080c09",
+          "#1f2722",
+          "#39463d",
+          "#57655b",
+          "#78877c",
+          "#9ba99f",
+          "#c2ccc5",
+          "#eaf0ec"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "숲 녹색",
+        "canonical": "#216044",
+        "oklch": "oklch(44.0% 0.080 161.0)",
+        "tonalRamp": [
+          "#010f07",
+          "#052d1c",
+          "#0e4e34",
+          "#326f52",
+          "#549173",
+          "#79b495",
+          "#abd5be",
+          "#def5e8"
+        ]
+      },
+      "accent-strong": {
+        "role": "primary",
+        "displayName": "짙은 숲색",
+        "canonical": "#16442f",
+        "oklch": "oklch(34.8% 0.063 160.6)",
+        "tonalRamp": [
+          "#030e08",
+          "#102b1e",
+          "#214c37",
+          "#3f6c55",
+          "#608e76",
+          "#84b199",
+          "#b2d2c0",
+          "#e1f4e9"
+        ]
+      },
+      "accent-tint": {
+        "role": "primary",
+        "displayName": "연녹 면",
+        "canonical": "#e7f0e8",
+        "oklch": "oklch(94.6% 0.014 148.8)",
+        "tonalRamp": [
+          "#0a0c0a",
+          "#222622",
+          "#3d443e",
+          "#5c645d",
+          "#7d857e",
+          "#9fa8a0",
+          "#c5cbc6",
+          "#ecefec"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "선 회녹",
+        "canonical": "#758477",
+        "oklch": "oklch(59.7% 0.026 149.1)",
+        "tonalRamp": [
+          "#080c09",
+          "#1f2820",
+          "#39463b",
+          "#576659",
+          "#78877a",
+          "#9baa9d",
+          "#c2cdc3",
+          "#eaf0eb"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "구분선",
+        "canonical": "#d4dbd3",
+        "oklch": "oklch(88.4% 0.013 141.8)",
+        "tonalRamp": [
+          "#0a0c0a",
+          "#232622",
+          "#3e443e",
+          "#5d635c",
+          "#7e847d",
+          "#a1a7a0",
+          "#c6cbc5",
+          "#edefec"
+        ]
+      },
+      "rule-strong": {
+        "role": "neutral",
+        "displayName": "진한 구분선",
+        "canonical": "#b9c3b9",
+        "oklch": "oklch(80.7% 0.018 145.4)",
+        "tonalRamp": [
+          "#090c09",
+          "#222722",
+          "#3c453d",
+          "#5b645b",
+          "#7c857c",
+          "#9fa89f",
+          "#c4cbc4",
+          "#ecf0ec"
+        ]
+      },
+      "bg-1": {
+        "role": "neutral",
+        "displayName": "흰 면",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "bg-2": {
+        "role": "neutral",
+        "displayName": "옅은 면",
+        "canonical": "#f0f2ec",
+        "oklch": "oklch(95.8% 0.008 121.6)",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#242523",
+          "#41433e",
+          "#60625d",
+          "#81837e",
+          "#a4a6a0",
+          "#c8cac6",
+          "#eeefec"
+        ]
+      },
+      "bg-3": {
+        "role": "neutral",
+        "displayName": "짙은 면",
+        "canonical": "#e1e7df",
+        "oklch": "oklch(92.1% 0.012 137.8)",
+        "tonalRamp": [
+          "#0a0c0a",
+          "#232622",
+          "#3f443d",
+          "#5e635c",
+          "#7f847d",
+          "#a1a7a0",
+          "#c6cac5",
+          "#edefec"
+        ]
+      },
+      "success": {
+        "role": "status",
+        "displayName": "정답 녹색",
+        "canonical": "#1d6a3e",
+        "oklch": "oklch(46.6% 0.103 153.9)",
+        "tonalRamp": [
+          "#000f05",
+          "#002e15",
+          "#015029",
+          "#277245",
+          "#4b9465",
+          "#71b788",
+          "#a7d7b5",
+          "#dbf7e3"
+        ]
+      },
+      "danger": {
+        "role": "status",
+        "displayName": "오류 적갈",
+        "canonical": "#a3352b",
+        "oklch": "oklch(48.9% 0.147 28.8)",
+        "tonalRamp": [
+          "#1d0101",
+          "#4a0604",
+          "#7c110c",
+          "#a4362c",
+          "#cb5a4d",
+          "#f17f71",
+          "#ffb3a7",
+          "#fee9e5"
+        ]
+      },
+      "danger-tint": {
+        "role": "status",
+        "displayName": "오류 면",
+        "canonical": "#f7e9e6",
+        "oklch": "oklch(94.4% 0.016 32.0)",
+        "tonalRamp": [
+          "#0e0a0a",
+          "#2a2322",
+          "#4a3f3d",
+          "#6a5e5c",
+          "#8c7f7c",
+          "#aea29f",
+          "#d0c7c5",
+          "#f2edec"
+        ]
+      },
+      "danger-fill": {
+        "role": "status",
+        "displayName": "오류 채움",
+        "canonical": "#c25e4f",
+        "oklch": "oklch(60.0% 0.131 30.2)",
+        "tonalRamp": [
+          "#1c0201",
+          "#470d07",
+          "#771c12",
+          "#9e3e31",
+          "#c46051",
+          "#e98575",
+          "#fdb4a7",
+          "#fee9e5"
+        ]
+      },
+      "warning": {
+        "role": "status",
+        "displayName": "주의 황토",
+        "canonical": "#7a5200",
+        "oklch": "oklch(47.1% 0.099 76.3)",
+        "tonalRamp": [
+          "#130900",
+          "#342101",
+          "#5a3b00",
+          "#81580c",
+          "#a47a37",
+          "#c79d5e",
+          "#e2c499",
+          "#fdecd3"
+        ]
+      },
+      "warning-tint": {
+        "role": "status",
+        "displayName": "주의 면",
+        "canonical": "#f6eedb",
+        "oklch": "oklch(95.0% 0.027 87.9)",
+        "tonalRamp": [
+          "#0d0b07",
+          "#29251b",
+          "#484133",
+          "#686150",
+          "#898271",
+          "#aca493",
+          "#cec9bc",
+          "#f1eee7"
+        ]
+      },
+      "warning-fill": {
+        "role": "status",
+        "displayName": "주의 채움",
+        "canonical": "#b9852f",
+        "oklch": "oklch(65.3% 0.118 76.0)",
+        "tonalRamp": [
+          "#130900",
+          "#342100",
+          "#593b03",
+          "#825804",
+          "#aa771c",
+          "#ce9b4c",
+          "#e7c38f",
+          "#ffebd1"
+        ]
+      },
+      "diagram": {
+        "role": "neutral",
+        "displayName": "도표 회녹",
+        "canonical": "#8b978e",
+        "oklch": "oklch(66.4% 0.019 153.4)",
+        "tonalRamp": [
+          "#090c0a",
+          "#202722",
+          "#3b453d",
+          "#59655c",
+          "#7a867d",
+          "#9da9a0",
+          "#c3ccc5",
+          "#ebf0ec"
+        ]
+      },
+      "diagram-light": {
+        "role": "neutral",
+        "displayName": "옅은 도표 회녹",
+        "canonical": "#bcc7be",
+        "oklch": "oklch(81.9% 0.017 151.0)",
+        "tonalRamp": [
+          "#090c0a",
+          "#212722",
+          "#3c453e",
+          "#5a645c",
+          "#7b857d",
+          "#9ea8a0",
+          "#c4cbc5",
+          "#ebf0ec"
+        ]
+      },
+      "focus": {
+        "role": "status",
+        "displayName": "초점 황토",
+        "canonical": "#805700",
+        "oklch": "oklch(48.9% 0.102 77.1)",
+        "tonalRamp": [
+          "#120900",
+          "#342100",
+          "#593b01",
+          "#815802",
+          "#a47a33",
+          "#c89d5b",
+          "#e3c497",
+          "#feecd2"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "과정 홈의 과정명. 홈의 유일한 h1."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "강의 제목(강의 페이지 h1)."
+      },
+      "title-section": {
+        "displayName": "Section title",
+        "purpose": "강의 본문 h2. 860px 이하 24.5px, 위에 1px 구분선."
+      },
+      "title-unit": {
+        "displayName": "Unit title",
+        "purpose": "과정 홈의 부 이름. 560px 이하 22px."
+      },
+      "title-sub": {
+        "displayName": "Sub title",
+        "purpose": "강의 본문 h3. 860px 이하 19.5px."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "본문. 860px 이하 17px. 읽기 열 최대 720px."
+      },
+      "body-sm": {
+        "displayName": "Body small",
+        "purpose": "표, 입력란, 버튼, 작은 원문 문구."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "마스트헤드, 목차, 범위 표기."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "캡션, 콜로폰."
+      },
+      "number": {
+        "displayName": "Number",
+        "purpose": "강의 번호와 범위. 녹색 고정폭 숫자."
+      }
+    },
+    "shadows": [
+      {
+        "name": "inset-stroke-accent",
+        "value": "inset 0 0 0 1px var(--accent)",
+        "purpose": "선택된 선택지·체크의 테두리를 한 겹 더하는 선. 깊이가 아닌 테두리 대용."
+      },
+      {
+        "name": "inset-stroke-secondary",
+        "value": "inset 0 0 0 1px var(--rule-strong)",
+        "purpose": "secondary 배지의 테두리 대용."
+      }
+    ],
+    "motion": [
+      {
+        "name": "color-transition",
+        "value": "background-color .15s ease-out, border-color .15s ease-out, color .15s ease-out",
+        "purpose": "버튼, 강의 행, 이전/다음 카드의 hover 색 전환."
+      },
+      {
+        "name": "disclosure-rotate",
+        "value": "transform .2s ease-out",
+        "purpose": "목차 펼침 표시 회전."
+      },
+      {
+        "name": "press",
+        "value": "translateY(1px)",
+        "purpose": "버튼을 누르는 동안. prefers-reduced-motion에서는 끔."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "@media (prefers-reduced-motion: reduce) { transition: none }",
+        "purpose": "모든 전환과 누름 이동을 끔."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide",
+        "value": "1080px"
+      },
+      {
+        "name": "single-column",
+        "value": "860px"
+      },
+      {
+        "name": "phone",
+        "value": "560px"
+      },
+      {
+        "name": "lesson-container-2col",
+        "value": "600px (container lesson)"
+      },
+      {
+        "name": "lesson-container-1col",
+        "value": "430px (container lesson)"
+      },
+      {
+        "name": "lesson-container-tight",
+        "value": "330px (container lesson)"
+      }
+    ],
+    "borders": [
+      {
+        "name": "unit-opener",
+        "value": "2px solid var(--ink)",
+        "purpose": "부를 여는 선. 과정 홈의 부와 강의 목차의 부 표시에만."
+      },
+      {
+        "name": "default",
+        "value": "1px solid var(--rule) / var(--rule-strong) / var(--line)",
+        "purpose": "모든 상자, 구분선, 입력 요소."
+      },
+      {
+        "name": "focus",
+        "value": "3px solid var(--focus), offset 3px",
+        "purpose": "모든 :focus-visible."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Solid Button",
+      "kind": "button",
+      "refersTo": "button-solid",
+      "description": "실행 버튼과 홈의 \"1강부터 읽기\". 화면마다 하나의 주 동작.",
+      "html": "<button class=\"ds-btn-solid\">1강부터 읽기</button>",
+      "css": ".ds-btn-solid{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:9px 18px;font:inherit;font-size:16px;font-weight:650;line-height:1.4;border-radius:5px;border:1px solid var(--accent,#216044);background:var(--accent,#216044);color:#fff;cursor:pointer;transition:background-color .15s ease-out,color .15s ease-out}.ds-btn-solid:hover{background:var(--accent-strong,#16442f)}.ds-btn-solid:active{transform:translateY(1px)}.ds-btn-solid:focus-visible{outline:3px solid var(--focus,#805700);outline-offset:3px}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "보조 동작(다시 하기, 복사).",
+      "html": "<button class=\"ds-btn-outline\">다시 풀기</button>",
+      "css": ".ds-btn-outline{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:9px 18px;font:inherit;font-size:16px;font-weight:650;line-height:1.4;border-radius:5px;border:1px solid var(--accent,#216044);background:var(--bg-1,#fff);color:var(--accent,#216044);cursor:pointer;transition:background-color .15s ease-out}.ds-btn-outline:hover{background:var(--accent-tint,#e7f0e8)}.ds-btn-outline:active{transform:translateY(1px)}.ds-btn-outline:focus-visible{outline:3px solid var(--focus,#805700);outline-offset:3px}"
+    },
+    {
+      "name": "Choice",
+      "kind": "input",
+      "refersTo": "choice",
+      "description": "원문 선택 문제의 라디오 선택지. 선택되면 녹색 테두리와 연녹 면.",
+      "html": "<label class=\"ds-choice\"><input type=\"radio\" name=\"ds-q\" checked><span>다음 토큰을 확률로 고른다</span></label><label class=\"ds-choice\"><input type=\"radio\" name=\"ds-q\"><span>정답을 검색해서 붙인다</span></label>",
+      "css": ".ds-choice{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;margin:0 0 8px;border:1px solid var(--line,#758477);border-radius:5px;background:var(--bg-1,#fff);cursor:pointer;font-size:17px;line-height:1.6;color:var(--ink,#182720)}.ds-choice:hover{background:#f4f6f1}.ds-choice:has(input:checked){border-color:var(--accent,#216044);box-shadow:inset 0 0 0 1px var(--accent,#216044);background:var(--accent-tint,#e7f0e8)}.ds-choice input{accent-color:var(--accent,#216044);width:19px;height:19px;margin:4px 0 0;flex:none}.ds-choice input:focus-visible{outline:3px solid var(--focus,#805700);outline-offset:3px}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "직접 적어 보기 입력란. 입력은 저장하지 않음.",
+      "html": "<textarea class=\"ds-field\" rows=\"3\" placeholder=\"내 말로 적어 보세요\"></textarea>",
+      "css": ".ds-field{width:100%;font:inherit;font-size:16px;line-height:1.6;color:var(--ink,#182720);background:var(--bg-1,#fff);border:1px solid var(--line,#758477);border-radius:5px;padding:10px 12px;resize:vertical}.ds-field:focus{border-color:var(--accent,#216044);outline:3px solid var(--focus,#805700);outline-offset:1px}"
+    },
+    {
+      "name": "Segmented Control",
+      "kind": "input",
+      "refersTo": "choice",
+      "description": "원문의 구간 선택. 선택된 칸은 녹색 채움.",
+      "html": "<div class=\"ds-seg\"><label class=\"ds-seg-item\"><input type=\"radio\" name=\"ds-s\" checked><span>짧게</span></label><label class=\"ds-seg-item\"><input type=\"radio\" name=\"ds-s\"><span>길게</span></label></div>",
+      "css": ".ds-seg{display:flex;border:1px solid var(--line,#758477);border-radius:6px;padding:3px;background:var(--bg-1,#fff)}.ds-seg-item{flex:1 1 0;position:relative;cursor:pointer}.ds-seg-item input{position:absolute;opacity:0;inset:0;margin:0}.ds-seg-item span{display:block;padding:8px 14px;border-radius:4px;text-align:center;font-size:16px;font-weight:600;color:var(--muted,#48564d)}.ds-seg-item input:checked+span{background:var(--accent,#216044);color:#fff}.ds-seg-item input:focus-visible+span{outline:3px solid var(--focus,#805700);outline-offset:2px}.ds-seg-item:hover input:not(:checked)+span{background:var(--bg-2,#f0f2ec);color:var(--ink,#182720)}"
+    },
+    {
+      "name": "Badge",
+      "kind": "chip",
+      "refersTo": "badge-info",
+      "description": "원문 배지. 알약형은 배지와 출처 표기에만.",
+      "html": "<span class=\"ds-badge\">기본</span> <span class=\"ds-badge ds-badge-info\">정보</span> <span class=\"ds-badge ds-badge-secondary\">보조</span>",
+      "css": ".ds-badge{display:inline-flex;align-items:center;padding:2px 10px;border-radius:999px;background:var(--bg-3,#e1e7df);color:var(--ink,#182720);font-size:14px;font-weight:600;line-height:1.6;white-space:nowrap}.ds-badge-info{background:var(--accent-tint,#e7f0e8);color:var(--accent-strong,#16442f)}.ds-badge-secondary{background:transparent;color:var(--muted,#48564d);box-shadow:inset 0 0 0 1px var(--rule-strong,#b9c3b9)}"
+    },
+    {
+      "name": "Unit Opener",
+      "kind": "custom",
+      "refersTo": "unit-row",
+      "description": "과정 홈의 부. 2px 잉크 선 위에 부 이름과 범위, 녹색 번호의 강의 행.",
+      "html": "<section class=\"ds-unit\"><div class=\"ds-unit-head\"><h2>AI의 기본 원리</h2><p>1–4강</p></div><ol><li><a href=\"#\"><span class=\"ds-no\">1강</span><span class=\"ds-ttl\">ChatGPT는 어떻게 답을 만들까</span></a></li><li><a href=\"#\"><span class=\"ds-no\">2강</span><span class=\"ds-ttl\">토큰과 확률</span></a></li></ol></section>",
+      "css": ".ds-unit{border-top:2px solid var(--ink,#182720);padding-top:16px;color:var(--ink,#182720)}.ds-unit-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px}.ds-unit-head h2{margin:0;font-size:25px;line-height:1.4;letter-spacing:-0.03em;font-weight:750}.ds-unit-head p{margin:0;font-size:15px;color:var(--muted,#48564d);font-variant-numeric:tabular-nums}.ds-unit ol{list-style:none;margin:10px 0 0;padding:0}.ds-unit a{display:grid;grid-template-columns:60px minmax(0,1fr);gap:8px;align-items:baseline;padding:14px 8px 14px 0;border-bottom:1px solid var(--rule,#d4dbd3);color:inherit;text-decoration:none;transition:background-color .15s ease-out}.ds-no{color:var(--accent,#216044);font-weight:750;font-size:16px;font-variant-numeric:tabular-nums}.ds-ttl{font-size:19px;line-height:1.55;font-weight:600;letter-spacing:-0.015em}.ds-unit a:hover{background:var(--accent-tint,#e7f0e8)}.ds-unit a:hover .ds-ttl{text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--accent,#216044)}.ds-unit a:focus-visible{outline:3px solid var(--focus,#805700);outline-offset:3px}"
+    },
+    {
+      "name": "Lesson Rail",
+      "kind": "nav",
+      "description": "강의 페이지 왼쪽 목차. 2px 잉크 선의 부 표시와 이 강의 차례.",
+      "html": "<nav class=\"ds-rail\"><p class=\"ds-rail-part\"><a href=\"#\">AI의 기본 원리</a><span>1–4강 중 1번째</span></p><ol><li><a href=\"#\" class=\"on\">다음 토큰 예측</a></li><li><a href=\"#\">확률과 선택</a></li></ol></nav>",
+      "css": ".ds-rail{font-size:15px;line-height:1.55;width:236px}.ds-rail-part{margin:0 0 14px;padding-top:10px;border-top:2px solid var(--ink,#182720);display:flex;flex-direction:column;gap:2px}.ds-rail-part a{color:var(--ink,#182720);font-weight:750;text-decoration:none}.ds-rail-part a:hover{color:var(--accent,#216044);text-decoration:underline}.ds-rail-part span{font-size:13.5px;color:var(--muted,#48564d);font-variant-numeric:tabular-nums}.ds-rail ol{list-style:none;margin:0;padding:0}.ds-rail li a{display:block;padding:6px 0 6px 12px;color:var(--muted,#48564d);text-decoration:none;border-left:1px solid var(--rule,#d4dbd3)}.ds-rail li a:hover{color:var(--accent,#216044);border-left-color:var(--accent,#216044)}.ds-rail li a.on{color:var(--ink,#182720);font-weight:650;border-left-color:var(--ink,#182720)}.ds-rail a:focus-visible{outline:3px solid var(--focus,#805700);outline-offset:3px}"
+    },
+    {
+      "name": "Pager Link",
+      "kind": "nav",
+      "refersTo": "pager-link",
+      "description": "강의 끝의 이전/다음 카드.",
+      "html": "<a class=\"ds-pager\" href=\"#\"><span class=\"ds-ttl\"><span class=\"ds-no\">2강</span> 토큰과 확률</span><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg></a>",
+      "css": ".ds-pager{display:flex;align-items:center;gap:12px;padding:18px 20px;border:1px solid var(--rule-strong,#b9c3b9);border-radius:7px;text-decoration:none;color:var(--ink,#182720);background:var(--bg-1,#fff);transition:border-color .15s ease-out,background-color .15s ease-out}.ds-pager:hover{border-color:var(--accent,#216044);background:var(--accent-tint,#e7f0e8)}.ds-pager .ds-ttl{flex:1 1 auto;font-size:18px;font-weight:700;line-height:1.5;letter-spacing:-0.02em}.ds-pager .ds-no{color:var(--accent,#216044);font-variant-numeric:tabular-nums}.ds-pager svg{color:var(--accent,#216044);flex:none}.ds-pager:focus-visible{outline:3px solid var(--focus,#805700);outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "교과서의 단원 페이지",
+    "overview": "비전공자가 읽고 답을 고르는 학습지입니다. ENERGY 1 / RHYTHM 2 / MOTION 1. 과정 홈은 교과서의 단원 펼침면처럼 세 부(part)를 차례로 엽니다. 각 부는 2px 짙은 선 위에 부 이름과 강의 범위를 두고, 강의는 녹색 번호가 붙은 한 줄씩 이어집니다. 강의 페이지는 같은 종이 위에 원본 ChatGPT 강의 화면(문장, 도표, 실습)을 옮겨 놓은 틀이며, 틀은 원문보다 앞에 나서지 않습니다.\n\n밝은 종이색, 짙은 본문색, 녹색 한 가지 강조색을 씁니다. 강조색은 강의 번호, 링크, 선택 상태, 실행 버튼을 구분합니다. 시스템 글꼴은 한글 가독성과 빠른 로딩을 위해 사용합니다. 장식 이미지, 추적 스크립트, 외부 글꼴, 외부 라이브러리, 계정 기능은 두지 않습니다. 아이콘은 사이트 안의 SVG 스프라이트(`docs/assets/icons.svg`, Lucide)에서 가져옵니다. 원문 이미지는 원래 주소에서 불러오며 원문이 아닌 것을 원문처럼 꾸미지 않습니다.\n\n넓은 화면은 왼쪽 고정 목차(rail)와 읽기 열, 좁은 화면은 본문 위 목차와 한 열의 읽기 영역입니다. 라디오, 체크박스, 구간 선택, 슬라이더, 버튼은 모두 키보드로 조작합니다. 실습의 상태 변화(선택, 정답, 오답, 재시도)는 원문의 피드백 문장으로 화면에 나타나고 `#live-status`(`role=\"status\"`)로 보조 기술에 전달합니다. 페이지는 사용자의 답, 입력, 진도를 저장하지 않습니다.",
+    "keyCharacteristics": [
+      "종이 바탕, 짙은 녹흑색 글자, 녹색 강조색 하나",
+      "부의 시작을 알리는 2px 짙은 선이 유일한 굵은 선이자 정체성 표지",
+      "그림자 없는 평면, 1px 선과 옅은 면색으로 구획",
+      "번호는 녹색 고정폭 숫자(tabular)",
+      "한국어는 어절 단위 줄바꿈(`word-break: keep-all`)",
+      "모션은 색 전환 수준이며 움직임 줄이기 설정을 따름"
+    ],
+    "rules": [
+      {
+        "name": "The One Green Rule",
+        "body": "강조색은 녹색 하나뿐입니다. 원문 강의의 파랑은 모두 accent로, 청회색은 diagram으로, 빨강·주황은 danger-fill·warning-fill로 옮깁니다. 이 대응은 `docs/assets/runtime.js`의 `COLORS` 표(원문 lessons 1–20의 모든 색 리터럴)와 `BACKGROUNDS` 표가 맡습니다. 새 원문 색이 나오면 표에 추가해 팔레트 토큰으로 보내고, 원문 색을 그대로 화면에 두지 않습니다.",
+        "section": "colors"
+      },
+      {
+        "name": "The Status Is Not Accent Rule",
+        "body": "정답·오류·주의 색은 원문 피드백의 의미를 전할 때만 씁니다. 장식이나 강조에 빌려 쓰지 않습니다.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Number Rule",
+        "body": "강의 번호, 범위(1–4강), 위치(N / 20), 표와 차트의 숫자는 고정폭 숫자(`tabular-nums`)로 씁니다. 강의 번호는 녹색 750입니다.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Eyebrow Rule",
+        "body": "제목 위에 작은 머리글(eyebrow, kicker)을 두지 않습니다. 부의 이름과 범위는 제목 자체와 같은 줄(오른쪽 범위 표기)에 둡니다.",
+        "section": "typography"
+      },
+      {
+        "name": "The Keep-All Rule",
+        "body": "본문은 `word-break: keep-all`, 제목은 `text-wrap: balance`, 문단은 `text-wrap: pretty`로 한국어 어절을 끊지 않습니다.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Paper Rule",
+        "body": "모든 면은 종이 위에 평평하게 놓입니다. 떠 있는 카드, 흐린 그림자, 겹친 패널을 만들지 않습니다.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Unit Opener Rule",
+        "body": "2px 짙은 잉크 선은 부(part)를 여는 표지입니다. 과정 홈의 각 부와 강의 목차의 부 표시에만 쓰고, 다른 구획이나 상자에 쓰지 않습니다.",
+        "section": "shapes"
+      },
+      {
+        "name": "The One Frame Rule",
+        "body": "면색이 있는 상자가 테두리 있는 상자 안에 들어가면 두 번째 테두리를 그리지 않습니다.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** 원문의 모든 색을 `COLORS` 표로 팔레트 토큰에 대응시키세요(파랑 → accent, 청회색 → diagram, 빨강·주황 → danger-fill·warning-fill).",
+      "**Do** 부를 열 때만 2px 잉크 선을 쓰고, 그 밖의 테두리와 구분선은 1px로 두세요.",
+      "**Do** 테두리 있는 상자 안의 면색 상자는 테두리 없이 면색만으로 구분하세요.",
+      "**Do** 강의 번호와 숫자는 녹색 또는 잉크의 고정폭 숫자로 쓰세요.",
+      "**Do** 모서리는 3 / 5 / 7 / 9px 단계에서 고르고, 999px는 알약형 배지와 출처에만 쓰세요.",
+      "**Do** 모든 조작 요소에 3px focus 외곽선을 보이고 키보드로 조작되게 하세요.",
+      "**Do** 상태 변화는 원문 피드백 문장으로 보이고 `role=\"status\"`로 전달하세요.",
+      "**Do** 읽기 열의 격자는 컨테이너 쿼리로 줄이고, 열을 지켜야 하는 비교 격자에는 `.keep`을 붙이세요.",
+      "**Do** 모션은 색 전환(.15s ease-out)에 머물게 하고 움직임 줄이기 설정을 따르세요."
+    ],
+    "donts": [
+      "**Don't** 원문의 파랑이나 두 번째 강조색을 화면에 남기지 마세요.",
+      "**Don't** 제목 위에 eyebrow나 kicker 같은 작은 머리글을 두지 마세요.",
+      "**Don't** 그림자로 상자를 띄우지 마세요. inset 1px 선만 테두리 대용으로 씁니다.",
+      "**Don't** 2px 잉크 선을 일반 구획, 카드, 강조에 쓰지 마세요.",
+      "**Don't** faint를 문단 길이의 보조 문구에 쓰지 마세요(종이 위 5.17:1). 보조 문구는 muted입니다.",
+      "**Don't** 외부 글꼴, 외부 라이브러리, 추적 스크립트, 계정 기능, 응답·진도 저장을 넣지 마세요.",
+      "**Don't** 원문의 \"ChatGPT에 이어서 묻기\" 버튼을 싣거나, 동작하지 않는 것을 버튼처럼 꾸미지 마세요.",
+      "**Don't** 장식 이미지를 넣거나 원문이 아닌 그림을 원문처럼 보이게 하지 마세요."
+    ]
+  }
+}

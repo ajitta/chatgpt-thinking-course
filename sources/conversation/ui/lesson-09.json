@@ -1,0 +1,573 @@
+{
+ "lesson": 9,
+ "source": {
+  "share_url": "https://chatgpt.com/share/6af33303-9c00-83e8-a5b8-bb134c40db5c",
+  "conversation_md_message": 31,
+  "message_id": "8872426e-b034-4e86-b58c-1332425b9524",
+  "text_sha256": "109e0635d26ee47700114200477eb4bc9799b91999eb167d90a5763102a055ce"
+ },
+ "start_at_title": null,
+ "code": "function __dilSafe(evaluate,failureValue){try{return evaluate()}catch{return failureValue}}\n\nDIL.render(__dil.jsx(()=>{const __dilConstants=DIL.useConstants();const __dilModelDataBindings=DIL.useAppData((appData)=>appData.opGenui?.modelDataBindings??{});const turn144103search2=__dilModelDataBindings[\"turn144103search2\"];const turn144103search5=__dilModelDataBindings[\"turn144103search5\"];const turn144103search8=__dilModelDataBindings[\"turn144103search8\"];const [decision,setDecision] = DIL.useState(\"none\",{key:\"decision\"})\nconst jobs = __dilSafe(()=>([{title:\"회의록 1페이지 요약\",answer:\"single\",why:\"짧고 범위가 명확한 작업이라 일반적으로 한 에이전트면 충분합니다.\"},{title:\"해외 5개 시장의 조사와 비교\",answer:\"multi\",why:\"시장별 조사를 독립적인 작업으로 나누어 병렬로 진행하고 결과를 통합할 수 있습니다.\"},{title:\"한 파일의 같은 표를 여러 AI가 동시에 수정\",answer:\"single\",why:\"동일한 자료에 대한 동시 변경은 충돌을 일으킬 수 있습니다. 한 에이전트 또는 순차·잠금 방식이 적합합니다.\"},{title:\"대규모 보고서의 조사·작성·독립 검토\",answer:\"multi\",why:\"업무의 성격과 검증 기준이 달라 역할을 분리하는 이점이 있을 수 있습니다.\"}]),undefined)\nconst [jobIndex,setJobIndex] = DIL.useState(0,{key:\"jobIndex\"})\nconst [jobAnswers,setJobAnswers] = DIL.useState({},{key:\"jobAnswers\"})\nconst job = __dilSafe(()=>(jobs[jobIndex]),undefined)\nconst teamPrompt = __dilSafe(()=>(`[목표]\n최종적으로 달성하려는 결과는 [목표]야.\n\n[AI 팀 설계]\n이 업무를 전문 영역별로 나누어 줘.\n각 에이전트의 담당 업무, 필요한 자료,\n사용 가능한 도구와 권한을 정의해 줘.\n\n[협업 방식]\n동시에 수행할 수 있는 작업과\n선행 작업이 필요한 작업을 구분해 줘.\n각 작업의 결과물과 전달 형식을 정해 줘.\n\n[미지의 영역]\n각 에이전트가 모르는 것과\n확인되지 않은 가정을 명시해 줘.\n\n[충돌 해결]\n서로 다른 결과가 나오면 다수결로 결정하지 말고,\n원래 자료와 근거를 비교해 원인을 찾아줘.\n\n[검증]\n개별 결과, 결과 간 일관성,\n외부 증거를 각각 확인할 기준을 만들어 줘.\n\n[권한과 승인]\n외부 발송, 결제, 삭제, 공유, 중요한 변경은\n승인 없이 진행하지 마.\n\n[최종 보고]\n확인된 결과, 남은 불확실성,\n완료하지 못한 작업, 내가 승인할 사항을\n구분해서 보여줘.\n\n먼저 팀 구조와 작업 계획을 제안하고\n실행 전에 검토받아 줘.`),undefined)\nconst [finalAnswer,setFinalAnswer] = DIL.useState(\"none\",{key:\"finalAnswer\"})\nreturn __dil.jsx(__dil.Fragment,null,__dil.jsx(\"title\",{\"size\":\"xl\"},__dilConstants[\"0\"]),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"1\"]),__dil.jsx(\"text\",null,__dilConstants[\"2\"]),__dil.jsx(\"text\",null,__dilConstants[\"3\"]),__dil.jsx(\"blockquote\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"4\"]))),__dil.jsx(\"text\",null,__dilConstants[\"5\"]),__dil.jsx(\"text\",null,__dilConstants[\"6\"]),__dil.jsx(\"text\",null,__dilConstants[\"7\"]),__dil.jsx(\"text\",null,__dilConstants[\"8\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":3},__dil.jsx(\"icon\",{\"name\":\"network\",\"size\":\"xl\",\"color\":\"secondary\"}),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"9\"])),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"10\"]))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":3},__dil.jsx(\"icon\",{\"name\":\"users\",\"size\":\"xl\",\"color\":\"secondary\"}),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"11\"])),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"12\"]))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":3},__dil.jsx(\"icon\",{\"name\":\"git-compare\",\"size\":\"xl\",\"color\":\"secondary\"}),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"13\"])),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"14\"]))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":3},__dil.jsx(\"icon\",{\"name\":\"shield-check\",\"size\":\"xl\",\"color\":\"secondary\"}),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"15\"])),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"16\"])))),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"17\"]),__dil.jsx(\"grid\",{\"columns\":2,\"gap\":3},__dil.jsx(\"grid-item\",null,__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":2,\"height\":\"100%\"},__dil.jsx(\"text\",{\"weight\":\"medium\",\"textAlign\":\"center\"},__dilConstants[\"18\"]),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":2,\"align\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"user-round\",\"color\":\"secondary\"}),__dil.jsx(\"text\",{\"size\":\"xs\"},__dilConstants[\"19\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"rgba(24,119,242,0.07)\",\"radius\":\"lg\",\"padding\":3,\"align\":\"center\",\"gap\":1},__dil.jsx(\"icon\",{\"name\":\"bot\",\"size\":\"2xl\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"20\"])),__dil.jsx(\"text\",{\"size\":\"xs\",\"textAlign\":\"center\"},__dilConstants[\"21\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":2,\"align\":\"center\"},__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"22\"])))),__dil.jsx(\"grid-item\",null,__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":2,\"height\":\"100%\"},__dil.jsx(\"text\",{\"weight\":\"medium\",\"textAlign\":\"center\"},__dilConstants[\"23\"]),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":2,\"align\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"user-round\",\"color\":\"secondary\"}),__dil.jsx(\"text\",{\"size\":\"xs\"},__dilConstants[\"24\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"rgba(24,119,242,0.07)\",\"radius\":\"md\",\"padding\":2,\"align\":\"center\"},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"25\"]))),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"grid\",{\"columns\":3,\"gap\":1},__dilSafe(()=>(((__dilEachCollection,__dilEachRenderItem,__dilEachSafe)=>__dilEachSafe?([].constructor.isArray(__dilEachCollection)?(__dilEachCollection?.map?.(__dilEachRenderItem)??[]):[]):__dilEachCollection.map(__dilEachRenderItem))([{icon:\"search\",name:\"조사\"},{icon:\"calculator\",name:\"계산\"},{icon:\"file-check\",name:\"검증\"}],(a)=>__dilSafe(()=>(__dilSafe(()=>(__dil.jsx(\"grid-item\",{\"key\":a.name},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":2,\"gap\":1,\"align\":\"center\"},__dilSafe(()=>(__dil.jsx(\"icon\",{\"name\":a.icon,\"size\":\"sm\"})),null),__dilSafe(()=>(__dil.jsx(\"text\",{\"size\":\"2xs\"},a.name)),null)))),null)),null),false)),[])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":2,\"align\":\"center\"},__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"26\"]))))),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"27\"]),__dilConstants[\"28\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"29\"]),__dilConstants[\"30\"]),__dil.jsx(\"text\",null,__dilConstants[\"31\"]),__dil.jsx(\"text\",null,__dilConstants[\"32\"]),__dil.jsx(\"text\",null,__dilConstants[\"33\"],__dil.jsx(\"bold\",null,__dilConstants[\"34\"])),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"35\"]),__dil.jsx(\"text\",null,__dilConstants[\"36\"]),__dil.jsx(\"text\",null,__dilConstants[\"37\"]),__dil.jsx(\"text\",null,__dilConstants[\"38\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"box\",{\"background\":\"rgba(24,119,242,0.07)\",\"radius\":\"lg\",\"padding\":3,\"align\":\"center\",\"gap\":1},__dil.jsx(\"icon\",{\"name\":\"briefcase-business\",\"size\":\"xl\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"39\"])),__dil.jsx(\"text\",{\"size\":\"sm\",\"color\":\"secondary\",\"textAlign\":\"center\"},__dilConstants[\"40\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"svg\",{\"viewBox\":__dilConstants[\"41\"],\"width\":__dilConstants[\"42\"],\"height\":__dilConstants[\"43\"]},__dil.jsx(\"path\",{\"d\":__dilConstants[\"44\"],\"stroke\":__dilConstants[\"45\"],\"strokeWidth\":__dilConstants[\"46\"],\"fill\":__dilConstants[\"47\"],\"strokeLinecap\":__dilConstants[\"48\"]}),__dilSafe(()=>(((__dilEachCollection,__dilEachRenderItem,__dilEachSafe)=>__dilEachSafe?([].constructor.isArray(__dilEachCollection)?(__dilEachCollection?.map?.(__dilEachRenderItem)??[]):[]):__dilEachCollection.map(__dilEachRenderItem))([46,140,234],(x)=>__dilSafe(()=>(__dilSafe(()=>(__dil.jsx(\"circle\",{\"cx\":x,\"cy\":__dilConstants[\"49\"],\"r\":__dilConstants[\"50\"],\"fill\":__dilConstants[\"51\"]})),null)),null),false)),[]))),__dil.jsx(\"grid\",{\"columns\":3,\"gap\":2},__dil.jsx(\"grid-item\",null,__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":2,\"align\":\"center\",\"gap\":1,\"height\":\"100%\"},__dil.jsx(\"icon\",{\"name\":\"search\",\"size\":\"lg\"}),__dil.jsx(\"text\",{\"weight\":\"medium\",\"size\":\"sm\"},__dilConstants[\"52\"]),__dil.jsx(\"text\",{\"size\":\"xs\",\"color\":\"secondary\",\"textAlign\":\"center\"},__dilConstants[\"53\"]))),__dil.jsx(\"grid-item\",null,__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":2,\"align\":\"center\",\"gap\":1,\"height\":\"100%\"},__dil.jsx(\"icon\",{\"name\":\"calculator\",\"size\":\"lg\"}),__dil.jsx(\"text\",{\"weight\":\"medium\",\"size\":\"sm\"},__dilConstants[\"54\"]),__dil.jsx(\"text\",{\"size\":\"xs\",\"color\":\"secondary\",\"textAlign\":\"center\"},__dilConstants[\"55\"]))),__dil.jsx(\"grid-item\",null,__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":2,\"align\":\"center\",\"gap\":1,\"height\":\"100%\"},__dil.jsx(\"icon\",{\"name\":\"file-pen-line\",\"size\":\"lg\"}),__dil.jsx(\"text\",{\"weight\":\"medium\",\"size\":\"sm\"},__dilConstants[\"56\"]),__dil.jsx(\"text\",{\"size\":\"xs\",\"color\":\"secondary\",\"textAlign\":\"center\"},__dilConstants[\"57\"])))),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down-up\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"md\",\"padding\":3,\"align\":\"center\",\"gap\":1},__dil.jsx(\"icon\",{\"name\":\"shield-check\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"58\"])),__dil.jsx(\"text\",{\"size\":\"sm\",\"color\":\"secondary\",\"textAlign\":\"center\"},__dilConstants[\"59\"]))),__dil.jsx(\"text\",null,__dilConstants[\"60\"]),__dil.jsx(\"table\",null,__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",{\"header\":true},__dil.jsx(\"text\",null,__dilConstants[\"61\"])),__dil.jsx(\"table-cell\",{\"header\":true},__dil.jsx(\"text\",null,__dilConstants[\"62\"])),__dil.jsx(\"table-cell\",{\"header\":true},__dil.jsx(\"text\",null,__dilConstants[\"63\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"64\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"65\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"66\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"67\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"68\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"69\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"70\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"71\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"72\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"73\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"74\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"75\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"76\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"77\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"78\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"79\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"80\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"81\"])))),__dil.jsx(\"text\",null,__dilConstants[\"82\"],__dil.jsx(\"bold\",null,__dilConstants[\"83\"]),__dilConstants[\"84\"]),__dil.jsx(\"text\",null,__dilConstants[\"85\"],__dilSafe(()=>(__dil.jsx(Cite,{\"refs\":__dilConstants[\"86\"],\"__resolutionId\":__dilConstants[\"87\"]})),null)),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"88\"]),__dil.jsx(\"text\",null,__dilConstants[\"89\"]),__dil.jsx(\"text\",null,__dilConstants[\"90\"]),__dil.jsx(\"box\",{\"gap\":3},__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":2},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dil.jsx(\"badge\",{\"color\":\"info\"},__dilConstants[\"91\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"92\"]))),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"93\"]),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":3,\"gap\":2},__dil.jsx(\"box\",{\"align\":\"center\"},__dil.jsx(\"box\",{\"background\":\"surface\",\"border\":true,\"radius\":\"md\",\"padding\":2,\"width\":\"60%\",\"align\":\"center\"},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"94\"])))),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down-up\",\"color\":\"secondary\"})),__dil.jsx(\"grid\",{\"columns\":3,\"gap\":2},__dilSafe(()=>(((__dilEachCollection,__dilEachRenderItem,__dilEachSafe)=>__dilEachSafe?([].constructor.isArray(__dilEachCollection)?(__dilEachCollection?.map?.(__dilEachRenderItem)??[]):[]):__dilEachCollection.map(__dilEachRenderItem))([\"조사 AI\",\"재무 AI\",\"홍보 AI\"],(name)=>__dilSafe(()=>(__dilSafe(()=>(__dil.jsx(\"grid-item\",{\"key\":name},__dil.jsx(\"box\",{\"background\":\"surface\",\"radius\":\"md\",\"padding\":2,\"align\":\"center\"},__dilSafe(()=>(__dil.jsx(\"text\",{\"size\":\"xs\",\"weight\":\"medium\"},name)),null)))),null)),null),false)),[]))),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"95\"]),__dil.jsx(\"text\",{\"size\":\"sm\",\"weight\":\"medium\"},__dilConstants[\"96\"])),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":2},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dil.jsx(\"badge\",null,__dilConstants[\"97\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"98\"]))),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"99\"]),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":3},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":1},__dil.jsx(\"box\",{\"background\":\"surface\",\"padding\":2,\"radius\":\"md\",\"flex\":\"1\",\"align\":\"center\"},__dil.jsx(\"text\",{\"size\":\"xs\",\"weight\":\"medium\"},__dilConstants[\"100\"])),__dil.jsx(\"icon\",{\"name\":\"arrow-right\",\"size\":\"sm\"}),__dil.jsx(\"box\",{\"background\":\"surface\",\"padding\":2,\"radius\":\"md\",\"flex\":\"1\",\"align\":\"center\"},__dil.jsx(\"text\",{\"size\":\"xs\",\"weight\":\"medium\"},__dilConstants[\"101\"])))),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"102\"]),__dil.jsx(\"text\",{\"size\":\"sm\",\"weight\":\"medium\"},__dilConstants[\"103\"]))),__dil.jsx(\"text\",null,__dilConstants[\"104\"],__dil.jsx(\"bold\",null,__dilConstants[\"105\"]),__dilConstants[\"106\"],__dilSafe(()=>(__dil.jsx(Cite,{\"ref\":\"turn144103search9\",\"__resolutionId\":__dilConstants[\"107\"]})),null)),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"108\"]),__dil.jsx(\"text\",null,__dilConstants[\"109\"]),__dil.jsx(\"text\",null,__dilConstants[\"110\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":2},__dil.jsx(\"text\",{\"weight\":\"medium\"},__dilConstants[\"111\"]),__dil.jsx(\"box\",{\"gap\":2},__dil.jsx(\"text\",{\"size\":\"sm\",\"weight\":\"medium\"},__dilConstants[\"112\"]),__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":1},__dilSafe(()=>(((__dilEachCollection,__dilEachRenderItem,__dilEachSafe)=>__dilEachSafe?([].constructor.isArray(__dilEachCollection)?(__dilEachCollection?.map?.(__dilEachRenderItem)??[]):[]):__dilEachCollection.map(__dilEachRenderItem))([\"장소 조사\",\"예산 분석\",\"초안 작성\"],(step,i)=>__dilSafe(()=>(__dil.jsx(__dil.Fragment,null,(__dilSafe(()=>(i>0),false))?__dil.jsx(\"icon\",{\"name\":\"arrow-right\",\"size\":\"xs\",\"color\":\"tertiary\"}):null,__dil.jsx(\"box\",{\"flex\":\"1\",\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":2,\"align\":\"center\"},__dilSafe(()=>(__dil.jsx(\"text\",{\"size\":\"xs\",\"textAlign\":\"center\"},step)),null)))),null),false)),[]))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"box\",{\"gap\":2},__dil.jsx(\"text\",{\"size\":\"sm\",\"weight\":\"medium\"},__dilConstants[\"113\"]),__dil.jsx(\"grid\",{\"columns\":3,\"gap\":2},__dilSafe(()=>(((__dilEachCollection,__dilEachRenderItem,__dilEachSafe)=>__dilEachSafe?([].constructor.isArray(__dilEachCollection)?(__dilEachCollection?.map?.(__dilEachRenderItem)??[]):[]):__dilEachCollection.map(__dilEachRenderItem))([\"장소 조사\",\"예산 조사\",\"초안 작성\"],(step)=>__dilSafe(()=>(__dilSafe(()=>(__dil.jsx(\"grid-item\",{\"key\":step},__dil.jsx(\"box\",{\"background\":\"rgba(24,119,242,0.07)\",\"radius\":\"md\",\"padding\":2,\"align\":\"center\"},__dilSafe(()=>(__dil.jsx(\"text\",{\"size\":\"xs\",\"textAlign\":\"center\"},step)),null)))),null)),null),false)),[])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"align\":\"center\"},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"114\"]))))),__dil.jsx(\"text\",null,__dilConstants[\"115\"]),__dil.jsx(\"text\",null,__dilConstants[\"116\"],__dil.jsx(\"bold\",null,__dilConstants[\"117\"])),__dil.jsx(\"text\",null,__dilConstants[\"118\"]),__dil.jsx(\"text\",null,__dilConstants[\"119\"]),__dil.jsx(\"text\",null,__dilConstants[\"120\"],__dilSafe(()=>(__dil.jsx(Cite,{\"ref\":\"turn144103search7\",\"__resolutionId\":__dilConstants[\"121\"]})),null)),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"122\"]),__dil.jsx(\"text\",null,__dilConstants[\"123\"]),__dil.jsx(\"text\",null,__dilConstants[\"124\"]),__dil.jsx(\"text\",null,__dilConstants[\"125\"]),__dil.jsx(\"box\",{\"gap\":2},__dil.jsx(\"box\",{\"border\":true,\"radius\":\"lg\",\"padding\":3,\"gap\":2},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dil.jsx(\"icon\",{\"name\":\"search\",\"color\":\"secondary\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"126\"]))),__dilConstants[\"127\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"lg\",\"padding\":3,\"gap\":2},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dil.jsx(\"icon\",{\"name\":\"calculator\",\"color\":\"secondary\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"128\"]))),__dilConstants[\"129\"])),__dil.jsx(\"text\",null,__dilConstants[\"130\"]),__dil.jsx(\"text\",null,__dilConstants[\"131\"]),__dil.jsx(\"text\",null,__dilConstants[\"132\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"lg\",\"padding\":3,\"gap\":2},__dil.jsx(\"table\",null,__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",{\"header\":true},__dil.jsx(\"text\",null,__dilConstants[\"133\"])),__dil.jsx(\"table-cell\",{\"header\":true,\"align\":\"end\"},__dil.jsx(\"text\",null,__dilConstants[\"134\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"135\"])),__dil.jsx(\"table-cell\",{\"align\":\"end\"},__dil.jsx(\"text\",null,__dilConstants[\"136\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"137\"])),__dil.jsx(\"table-cell\",{\"align\":\"end\"},__dil.jsx(\"text\",null,__dilConstants[\"138\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"139\"])),__dil.jsx(\"table-cell\",{\"align\":\"end\"},__dil.jsx(\"text\",null,__dilConstants[\"140\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"141\"])),__dil.jsx(\"table-cell\",{\"align\":\"end\"},__dil.jsx(\"text\",null,__dilConstants[\"142\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"143\"]))),__dil.jsx(\"table-cell\",{\"align\":\"end\"},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"144\"]))))),__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dil.jsx(\"icon\",{\"name\":\"alert-triangle\",\"color\":\"danger\"}),__dil.jsx(\"text\",{\"weight\":\"medium\"},__dilConstants[\"145\"])),__dil.jsx(\"caption\",null,__dilConstants[\"146\"])),__dil.jsx(\"title\",{\"size\":\"md\"},__dilConstants[\"147\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"148\"])),__dilSafe(()=>(__dil.jsx(\"radio-group\",{\"direction\":\"col\",\"value\":decision,\"onChange\":setDecision},__dil.jsx(\"radio\",{\"value\":\"a\"},__dilConstants[\"149\"]),__dil.jsx(\"radio\",{\"value\":\"b\"},__dilConstants[\"150\"]),__dil.jsx(\"radio\",{\"value\":\"c\"},__dilConstants[\"151\"]),__dil.jsx(\"radio\",{\"value\":\"d\"},__dilConstants[\"152\"]))),null),(__dilSafe(()=>(decision!==\"none\"),false))?__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"gap\":2},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dilSafe(()=>(__dil.jsx(\"icon\",{\"name\":decision===\"c\"?\"check-circle\":\"info\",\"color\":decision===\"c\"?\"success\":\"secondary\"})),null),__dil.jsx(\"text\",null,__dilSafe(()=>(__dil.jsx(\"bold\",null,decision===\"c\"?\"정답입니다!\":\"중요한 것은 의견 수가 아니라 근거입니다.\")),null))),__dilSafe(()=>(__dil.jsx(\"text\",{\"size\":\"sm\"},decision===\"c\"?\"전문 역할이 있다고 해서 그 AI의 답이 자동으로 맞는 것은 아닙니다. 서로 다른 답이 나오면 원본 자료와 계산 방법을 확인해 불일치의 원인을 찾아야 합니다.\":\"AI의 전문 역할이나 다수결만으로 사실을 확정할 수 없습니다. 충돌하는 항목을 찾아 독립적인 자료로 확인해야 합니다.\")),null)):null),__dil.jsx(\"text\",null,__dilConstants[\"153\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"154\"])),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"155\"]),__dil.jsx(\"text\",null,__dilConstants[\"156\"]),__dil.jsx(\"text\",null,__dilConstants[\"157\"]),__dil.jsx(\"text\",null,__dilConstants[\"158\"]),__dil.jsx(\"text\",null,__dilConstants[\"159\"],__dil.jsx(\"bold\",null,__dilConstants[\"160\"]),__dilConstants[\"161\"]),__dil.jsx(\"table\",null,__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",{\"header\":true},__dil.jsx(\"text\",null,__dilConstants[\"162\"])),__dil.jsx(\"table-cell\",{\"header\":true},__dil.jsx(\"text\",null,__dilConstants[\"163\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"164\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"165\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"166\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"167\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"168\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"169\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"170\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"171\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"172\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"173\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"174\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"175\"])))),__dil.jsx(\"text\",null,__dilConstants[\"176\"]),__dil.jsx(\"text\",null,__dilConstants[\"177\"]),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"178\"]),__dil.jsx(\"text\",null,__dilConstants[\"179\"]),__dil.jsx(\"blockquote\",null,__dil.jsx(\"text\",null,__dilConstants[\"180\"])),__dil.jsx(\"text\",null,__dilConstants[\"181\"]),__dil.jsx(\"text\",null,__dilConstants[\"182\"],__dil.jsx(\"bold\",null,__dilConstants[\"183\"]),__dilConstants[\"184\"]),__dil.jsx(\"text\",null,__dilConstants[\"185\"]),__dil.jsx(\"text\",null,__dilConstants[\"186\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"text\",{\"weight\":\"medium\"},__dilConstants[\"187\"]),__dil.jsx(\"list\",{\"marker\":\"number\",\"connector\":\"solid\",\"gap\":3},__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"188\"])),__dil.jsx(\"text\",null,__dilConstants[\"189\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"190\"])),__dil.jsx(\"text\",null,__dilConstants[\"191\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"192\"])),__dil.jsx(\"text\",null,__dilConstants[\"193\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"194\"])),__dil.jsx(\"text\",null,__dilConstants[\"195\"])))),__dil.jsx(\"text\",null,__dilConstants[\"196\"],__dilSafe(()=>(__dil.jsx(Cite,{\"refs\":__dilConstants[\"197\"],\"__resolutionId\":__dilConstants[\"198\"]})),null)),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"199\"]),__dil.jsx(\"text\",null,__dilConstants[\"200\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"201\"])),__dil.jsx(\"text\",null,__dilConstants[\"202\"]),__dil.jsx(\"text\",null,__dilConstants[\"203\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"lg\",\"padding\":3,\"gap\":2},__dil.jsx(\"text\",{\"weight\":\"medium\"},__dilConstants[\"204\"]),__dil.jsx(\"table\",null,__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",{\"header\":true},__dil.jsx(\"text\",null,__dilConstants[\"205\"])),__dil.jsx(\"table-cell\",{\"header\":true},__dil.jsx(\"text\",null,__dilConstants[\"206\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"207\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"208\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"209\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"210\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"211\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"212\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"213\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"214\"]))))),__dil.jsx(\"text\",null,__dilConstants[\"215\"],__dil.jsx(\"bold\",null,__dilConstants[\"216\"]),__dilConstants[\"217\"],__dilSafe(()=>(__dil.jsx(Cite,{\"ref\":\"turn144103search8\",\"__resolutionId\":__dilConstants[\"218\"]})),null)),__dil.jsx(\"title\",{\"size\":\"md\"},__dilConstants[\"219\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"row\",{\"justify\":\"between\",\"align\":\"center\"},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"220\"])),__dil.jsx(\"badge\",null,__dilSafe(()=>(jobIndex+1),null),__dilConstants[\"221\"])),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":3},__dilSafe(()=>(__dil.jsx(\"title\",{\"size\":\"md\"},job.title)),null)),__dilSafe(()=>(__dil.jsx(\"radio-group\",{\"direction\":\"col\",\"value\":jobAnswers[jobIndex]??\"none\",\"onChange\":v=>setJobAnswers(old=>({...old,[jobIndex]:v}))},__dil.jsx(\"radio\",{\"value\":\"single\"},__dilConstants[\"222\"]),__dil.jsx(\"radio\",{\"value\":\"multi\"},__dilConstants[\"223\"]))),null),(__dilSafe(()=>(jobAnswers[jobIndex]),false))?__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"padding\":3,\"radius\":\"md\",\"gap\":1},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dilSafe(()=>(__dil.jsx(\"icon\",{\"name\":jobAnswers[jobIndex]===job.answer?\"check-circle\":\"lightbulb\",\"color\":jobAnswers[jobIndex]===job.answer?\"success\":\"secondary\"})),null),__dil.jsx(\"text\",null,__dilSafe(()=>(__dil.jsx(\"bold\",null,jobAnswers[jobIndex]===job.answer?\"적절한 판단입니다.\":\"이 기준도 생각해 보세요.\")),null))),__dilSafe(()=>(__dil.jsx(\"text\",{\"size\":\"sm\"},job.why)),null)):null,__dil.jsx(\"row\",{\"justify\":\"between\"},__dilSafe(()=>(__dil.jsx(\"button\",{\"disabled\":jobIndex===0,\"color\":\"secondary\",\"variant\":\"outline\",\"onClick\":()=>setJobIndex(i=>i-1)},__dil.jsx(\"icon\",{\"name\":\"chevron-left\",\"inline\":true}),__dilConstants[\"224\"])),null),(__dilSafe(()=>(jobIndex<3),false))?__dilSafe(()=>(__dil.jsx(\"button\",{\"disabled\":!jobAnswers[jobIndex],\"onClick\":()=>setJobIndex(i=>i+1)},__dilConstants[\"225\"],__dil.jsx(\"icon\",{\"name\":\"chevron-right\",\"inline\":true}))),null):__dilSafe(()=>(__dil.jsx(\"button\",{\"color\":\"secondary\",\"variant\":\"outline\",\"onClick\":()=>{setJobIndex(0);setJobAnswers({})}},__dilConstants[\"226\"],__dil.jsx(\"icon\",{\"name\":\"refresh-cw\",\"inline\":true}))),null)),(__dilSafe(()=>(Object.keys(jobAnswers).length===4),false))?__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"align\":\"center\",\"gap\":1},__dil.jsx(\"title\",{\"size\":\"xl\",\"tabularNums\":true},__dilSafe(()=>(jobs.filter((j,i)=>jobAnswers[i]===j.answer).length),null),__dilConstants[\"227\"]),__dil.jsx(\"text\",{\"size\":\"sm\",\"color\":\"secondary\"},__dilConstants[\"228\"])):null),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"229\"]),__dil.jsx(\"text\",null,__dilConstants[\"230\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":2},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"align\":\"center\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"231\"])),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"232\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"align\":\"center\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"233\"])),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"234\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"align\":\"center\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"235\"])),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"236\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"align\":\"center\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"237\"])),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"238\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"align\":\"center\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"239\"])),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"240\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"rgba(24,119,242,0.07)\",\"radius\":\"md\",\"padding\":3,\"align\":\"center\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"241\"])),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"242\"]))),__dil.jsx(\"text\",null,__dilConstants[\"243\"],__dil.jsx(\"bold\",null,__dilConstants[\"244\"]),__dilConstants[\"245\"]),__dil.jsx(\"text\",null,__dilConstants[\"246\"]),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"247\"]),__dil.jsx(\"text\",null,__dilConstants[\"248\"]),__dil.jsx(\"text\",null,__dilConstants[\"249\"]),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":3,\"gap\":3},__dil.jsx(\"text\",{\"weight\":\"medium\"},__dilConstants[\"250\"]),__dilSafe(()=>(__dil.jsx(\"text\",{\"size\":\"sm\",\"preserveWhitespace\":true},teamPrompt)),null),__dilSafe(()=>(__dil.jsx(\"button\",{\"block\":true,\"color\":\"secondary\",\"variant\":\"outline\",\"onClick\":()=>GenUI.copy(teamPrompt)},__dil.jsx(\"icon\",{\"name\":\"copy\",\"inline\":true}),__dilConstants[\"251\"])),null)),__dil.jsx(\"divider\",null),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"252\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"253\"])),__dilSafe(()=>(__dil.jsx(\"radio-group\",{\"direction\":\"col\",\"value\":finalAnswer,\"onChange\":setFinalAnswer},__dil.jsx(\"radio\",{\"value\":\"a\"},__dilConstants[\"254\"]),__dil.jsx(\"radio\",{\"value\":\"b\"},__dilConstants[\"255\"]),__dil.jsx(\"radio\",{\"value\":\"c\"},__dilConstants[\"256\"]),__dil.jsx(\"radio\",{\"value\":\"d\"},__dilConstants[\"257\"]))),null),(__dilSafe(()=>(finalAnswer!==\"none\"),false))?__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"gap\":2},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dilSafe(()=>(__dil.jsx(\"icon\",{\"name\":finalAnswer===\"c\"?\"check-circle\":\"info\",\"color\":finalAnswer===\"c\"?\"success\":\"secondary\"})),null),__dil.jsx(\"text\",null,__dilSafe(()=>(__dil.jsx(\"bold\",null,finalAnswer===\"c\"?\"정답입니다!\":\"핵심은 AI의 숫자가 아니라 협업 구조입니다.\")),null))),__dilSafe(()=>(__dil.jsx(\"text\",{\"size\":\"sm\"},finalAnswer===\"c\"?\"업무 분담, 정보 전달, 충돌 해결, 근거 검증, 권한 관리가 함께 작동해야 멀티 에이전트의 장점을 활용할 수 있습니다.\":\"여러 AI의 일치된 의견도 틀릴 수 있습니다. 독립적인 근거와 명확한 책임 구조를 갖추는 것이 중요합니다.\")),null)):null),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"258\"]),__dil.jsx(\"text\",null,__dilConstants[\"259\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"260\"])),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"261\"])),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"262\"])),__dil.jsx(\"text\",null,__dilConstants[\"263\"]),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"264\"]),__dil.jsx(\"box\",{\"gap\":2},__dilSafe(()=>(__dil.jsx(\"button\",{\"block\":true,\"onClick\":()=>GenUI.issueNewTurn(\"10강으로 넘어가자. 지금까지 배운 Thinking, 프롬프트, 도구, 싱글·멀티 에이전트, 검증을 통합해서 실제 AI 업무 시스템 하나를 설계하는 전 과정을 비전공자 눈높이에서 가르쳐줘.\")},__dilConstants[\"265\"],__dil.jsx(\"icon\",{\"name\":\"arrow-right\",\"inline\":true}))),null),__dilSafe(()=>(__dil.jsx(\"button\",{\"block\":true,\"variant\":\"outline\",\"color\":\"secondary\",\"onClick\":()=>GenUI.issueNewTurn(\"9강 실습을 하자. 내가 실제로 해결하고 싶은 프로젝트를 기준으로 AI 팀장과 전문 AI 직원들의 역할, 업무 분배, 정보 전달, 충돌 해결, 검증 구조를 단계별로 설계해 줘.\")},__dilConstants[\"266\"])),null),__dilSafe(()=>(__dil.jsx(\"button\",{\"block\":true,\"variant\":\"outline\",\"color\":\"secondary\",\"onClick\":()=>GenUI.issueNewTurn(\"1~9강의 ChatGPT 원리부터 멀티 에이전트까지 이해도를 소크라테스식 문답으로 한 문제씩 테스트해 줘.\")},__dilConstants[\"267\"])),null)),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"268\"],__dilSafe(()=>(__dil.jsx(Link,{\"url\":turn144103search2?.url?.uri,\"title\":__dilConstants[\"269\"],\"__resolutionId\":__dilConstants[\"270\"]})),null),__dilConstants[\"271\"],__dilSafe(()=>(__dil.jsx(Link,{\"url\":turn144103search8?.url?.uri,\"title\":__dilConstants[\"272\"],\"__resolutionId\":__dilConstants[\"273\"]})),null),__dilConstants[\"274\"],__dilSafe(()=>(__dil.jsx(Link,{\"url\":turn144103search5?.url?.uri,\"title\":__dilConstants[\"275\"],\"__resolutionId\":__dilConstants[\"276\"]})),null)));},{\"key\":\"body:7\"}));",
+ "constants": {
+  "0": "9강. AI 여러 명이 팀을 이루면 무슨 일이 일어날까?",
+  "1": "Know Your Unknowns · AI Thinking 원리 이해하기 · 멀티 에이전트 시스템 입문",
+  "2": "8강에서는 AI 에이전트가 도구를 사용해 여러 단계의 작업을 수행하는 원리를 배웠습니다.",
+  "3": "이제 한 가지 흥미로운 질문이 생깁니다.",
+  "4": "\"똑똑한 AI 한 명에게 모든 일을 맡기는 것과, 여러 AI에게 전문가 역할을 나누어 협업하게 하는 것 중 무엇이 더 좋을까?\"",
+  "5": "사람의 회사 조직을 떠올리면 이해하기 쉽습니다.",
+  "6": "혼자 모든 일을 처리하는 직원도 있지만, 회사에서는 기획자, 조사 담당자, 재무 담당자, 검토 담당자가 서로 협력합니다.",
+  "7": "AI에서도 비슷한 구조를 만들 수 있습니다.",
+  "8": "오늘은 다음 네 가지를 이해하는 것이 목표입니다.",
+  "9": "① 멀티 에이전트란 무엇인가?",
+  "10": "한 명의 AI와 여러 전문 AI의 차이",
+  "11": "② AI 팀은 어떻게 협업하는가?",
+  "12": "팀장, 전문가, 업무 전달 구조",
+  "13": "③ AI끼리 의견이 충돌하면?",
+  "14": "서로 다른 답을 조정하고 확인하는 방법",
+  "15": "④ 누가 최종 결과를 책임지는가?",
+  "16": "독립적인 검증과 인간의 승인",
+  "17": "1. 싱글 에이전트와 멀티 에이전트의 차이",
+  "18": "싱글 에이전트",
+  "19": "사용자",
+  "20": "AI 한 명",
+  "21": "조사·분석·작성·검토",
+  "22": "최종 결과",
+  "23": "멀티 에이전트",
+  "24": "사용자",
+  "25": "AI 팀장",
+  "26": "통합 결과",
+  "27": "싱글 에이전트",
+  "28": "는 하나의 AI가 여러 도구를 사용하면서 전체 작업을 진행합니다.",
+  "29": "멀티 에이전트 시스템(Multi-Agent System)",
+  "30": " 은 여러 에이전트가 각자 맡은 업무를 수행하고, 중간 결과를 전달하거나 통합하여 하나의 목표를 달성합니다.",
+  "31": "여기서 꼭 알아야 할 사실이 있습니다.",
+  "32": "AI 에이전트가 여러 명이라는 것은 반드시 서로 다른 AI 모델 여러 개가 있다는 뜻이 아닙니다. 같은 기반 모델을 사용하면서도 각 에이전트에 서로 다른 지침, 도구, 접근 권한, 작업 범위를 부여할 수 있습니다.",
+  "33": "즉, ",
+  "34": "서로 다른 사람을 여러 명 고용하는 것보다는, 전문 역할과 업무 흐름을 분리하는 것에 가깝습니다.",
+  "35": "2. AI 팀장과 전문 AI 직원은 무엇을 할까?",
+  "36": "가상의 회사를 운영한다고 생각해 봅시다.",
+  "37": "다음 달에 고객 30명을 초청하는 세미나를 열려고 합니다. 전체 예산은 100만 원입니다.",
+  "38": "AI 팀은 다음과 같이 구성할 수 있습니다.",
+  "39": "AI 팀장 — 오케스트레이터(Orchestrator)",
+  "40": "목표를 이해하고 업무를 나누며 결과를 통합",
+  "41": "0 0 280 40",
+  "42": "85%",
+  "43": "40px",
+  "44": "M140 0 V16 H46 V34 M140 16 V34 M140 16 H234 V34",
+  "45": "#8296ab",
+  "46": "2",
+  "47": "none",
+  "48": "round",
+  "49": "34",
+  "50": "3.5",
+  "51": "#388bd2",
+  "52": "조사 AI",
+  "53": "장소 및 견적 조사",
+  "54": "재무 AI",
+  "55": "예산 및 비용 검토",
+  "56": "홍보 AI",
+  "57": "초청 문구 작성",
+  "58": "검증 AI 및 사람의 승인",
+  "59": "결과를 증거와 대조하고 실행 여부 결정",
+  "60": "각 AI가 맡는 업무는 다음과 같습니다.",
+  "61": "역할",
+  "62": "주요 업무",
+  "63": "결과물",
+  "64": "AI 팀장",
+  "65": "작업 분배, 진행 관리, 결과 통합",
+  "66": "종합 계획",
+  "67": "조사 AI",
+  "68": "장소·서비스 정보 확인",
+  "69": "조사 자료",
+  "70": "재무 AI",
+  "71": "예산 계산, 비용 비교",
+  "72": "예산표",
+  "73": "홍보 AI",
+  "74": "안내문 및 홍보 메시지 작성",
+  "75": "초안",
+  "76": "검증 AI",
+  "77": "출처·숫자·조건 점검",
+  "78": "검증 보고",
+  "79": "사람",
+  "80": "목표·우선순위·승인 결정",
+  "81": "최종 판단",
+  "82": "이처럼 일을 나눠 수행하는 방식을 ",
+  "83": "오케스트레이션(Orchestration)",
+  "84": " 이라고 합니다.",
+  "85": "OpenAI의 에이전트 개발 문서에서는 중앙 관리자 방식과 전문가에게 제어권을 넘기는 방식 등을 대표적인 멀티 에이전트 구조로 설명합니다. ",
+  "86": [
+   "turn144103search2",
+   "turn144103search8"
+  ],
+  "87": "624eac0f-78cb-533b-95ff-98c4c916401a",
+  "88": "3. AI 팀이 협력하는 방식은 크게 두 가지",
+  "89": "여러 AI가 함께 일한다고 해서 항상 AI 팀장이 모든 일을 지휘하는 것은 아닙니다.",
+  "90": "실제로는 두 가지 대표적인 방식이 있습니다.",
+  "91": "방식 A",
+  "92": "중앙 관리자 방식",
+  "93": "Manager / Agents as Tools",
+  "94": "AI 팀장",
+  "95": "AI 팀장이 각 전문가에게 업무를 맡기고, 결과를 받아 통합합니다. 사용자와의 대화 및 최종 답변은 팀장이 담당합니다.",
+  "96": "적합한 상황: 여러 분야의 결과를 모아 하나의 보고서나 계획을 만드는 경우",
+  "97": "방식 B",
+  "98": "업무 인계 방식",
+  "99": "Handoff",
+  "100": "접수 AI",
+  "101": "전문 AI",
+  "102": "처음 요청을 받은 AI가 적절한 전문가에게 작업의 제어권을 넘깁니다. 해당 전문 AI가 이후 대화나 작업을 직접 담당할 수 있습니다.",
+  "103": "적합한 상황: 고객 문의를 환불·배송·기술지원 담당 AI로 연결하는 경우",
+  "104": "두 방식 모두 실제로 사용되는 구조입니다. 어느 방식이 더 우수하다고 단정할 수는 없습니다. ",
+  "105": "누가 최종 답변과 작업의 제어권을 갖는지",
+  "106": "가 중요한 선택 기준입니다. ",
+  "107": "942d2c4a-6ecd-545a-a687-b8420b25b9e3",
+  "108": "4. 여러 AI가 동시에 일하면 더 빨라질까?",
+  "109": "멀티 에이전트 시스템의 장점 중 하나는 일부 작업을 동시에 수행할 수 있다는 것입니다.",
+  "110": "세미나 준비를 예로 들어보겠습니다.",
+  "111": "두 가지 업무 진행 방식 비교",
+  "112": "순차 진행",
+  "113": "병렬 진행",
+  "114": "결과 통합과 검증",
+  "115": "업무가 서로 독립적이라면 병렬 진행으로 시간을 줄일 수 있습니다.",
+  "116": "그러나 ",
+  "117": "모든 일을 동시에 할 수 있는 것은 아닙니다.",
+  "118": "예를 들어 장소의 최종 비용이 정해져야 정확한 예산표를 만들 수 있다면, 재무 AI는 조사 AI의 결과를 받아야 합니다.",
+  "119": "또 여러 AI가 같은 문서를 동시에 수정하면 서로의 변경 사항을 덮어쓸 위험도 있습니다.",
+  "120": "따라서 좋은 멀티 에이전트 시스템은 동시에 진행할 작업과 순서를 지켜야 할 작업을 구별합니다. ",
+  "121": "965e8727-dd6e-5984-99ee-d31eb3b63259",
+  "122": "5. 실험: AI끼리 의견이 충돌하면 누구 말을 믿어야 할까?",
+  "123": "이제 이번 강의에서 가장 중요한 상황을 살펴보겠습니다.",
+  "124": "가상의 세미나 프로젝트 예산은 100만 원입니다.",
+  "125": "AI 팀이 다음과 같이 보고했다고 가정해 보세요.",
+  "126": "조사 AI의 보고",
+  "127": "\"행사장 비용은 55만 원입니다. 단, 부가세 10%가 별도입니다.\"",
+  "128": "재무 AI의 보고",
+  "129": "\"행사장 55만 원, 식음료 30만 원, 홍보물 10만 원으로 총 95만 원입니다. 예산 내에 있습니다.\"",
+  "130": "그런데 문제가 있습니다.",
+  "131": "재무 AI는 행사장 비용에 부가세를 반영하지 않았습니다.",
+  "132": "실제 가정한 총액은 다음과 같습니다.",
+  "133": "항목",
+  "134": "금액",
+  "135": "행사장",
+  "136": "550,000원",
+  "137": "행사장 부가세 10%",
+  "138": "55,000원",
+  "139": "식음료",
+  "140": "300,000원",
+  "141": "홍보물",
+  "142": "100,000원",
+  "143": "총합",
+  "144": "1,005,000원",
+  "145": "예산 초과: 5,000원",
+  "146": "교육용 가상 견적입니다. 다른 비용의 세금 포함 여부도 실제 업무에서는 확인해야 합니다.",
+  "147": "당신이 AI 팀장이라면?",
+  "148": "Q. 서로 다른 보고가 들어왔을 때 가장 적절한 행동은 무엇일까요?",
+  "149": "A. 계산을 담당한 재무 AI가 전문이므로 재무 AI를 믿는다.",
+  "150": "B. AI 팀장이 다수의 의견을 모아 결정한다.",
+  "151": "C. 원래 견적과 세금 조건을 다시 확인하고 비용을 재계산한다.",
+  "152": "D. 두 AI가 의견이 다르므로 아무 결과도 사용할 수 없다.",
+  "153": "이 실험에서 우리가 배워야 할 원칙은 다음과 같습니다.",
+  "154": "AI끼리 의견이 다를 때는 누가 더 자신 있게 말하는지를 보지 말고, 어떤 증거를 사용했는지 확인해야 합니다.",
+  "155": "6. AI 팀의 협업을 가능하게 하는 '공통 기록'",
+  "156": "사람이 협업할 때도 중요한 정보를 공유하지 않으면 문제가 생깁니다.",
+  "157": "예를 들어 조사 담당자만 행사장 견적이 바뀐 사실을 알고 있고 재무 담당자는 옛날 견적을 사용한다면 계산이 틀어집니다.",
+  "158": "AI도 마찬가지입니다.",
+  "159": "그래서 여러 에이전트에게는 ",
+  "160": "공통으로 확인할 수 있는 업무 기록과 정보 전달 규칙",
+  "161": "이 중요합니다.",
+  "162": "공유할 정보",
+  "163": "예시",
+  "164": "공통 목표",
+  "165": "30명 규모의 행사, 100만 원 이하",
+  "166": "확인된 사실",
+  "167": "행사장 공식 견적 55만 원, 부가세 별도",
+  "168": "미확인 정보",
+  "169": "장비 이용료 포함 여부",
+  "170": "결정 사항",
+  "171": "예산 초과 시 대안 조사",
+  "172": "진행 상태",
+  "173": "조사 완료, 재무 재검토 중",
+  "174": "승인 상태",
+  "175": "예약 승인 전",
+  "176": "이렇게 기록하면 AI 팀장이 각 전문가의 작업 상태를 비교할 수 있습니다.",
+  "177": "다만 모든 에이전트에게 모든 정보를 공개해야 한다는 뜻은 아닙니다. 고객 개인정보나 민감한 업무 자료는 해당 작업에 필요한 에이전트만 접근하도록 제한해야 합니다.",
+  "178": "7. 검증 AI가 있으면 결과를 무조건 믿어도 될까?",
+  "179": "여기에는 또 다른 함정이 있습니다.",
+  "180": "\"조사 AI가 조사하고, 재무 AI가 계산하고, 검증 AI가 검증했으니 이제 틀릴 가능성은 없겠지?\"",
+  "181": "아닙니다.",
+  "182": "여러 AI가 ",
+  "183": "같은 잘못된 자료",
+  "184": "를 사용한다면 모두 같은 결론에 도달할 수 있습니다.",
+  "185": "예를 들어 공식 견적을 확인하지 않은 채 인터넷에 올라온 오래된 가격표만 공유하면, 여러 에이전트가 같은 오류를 반복할 수 있습니다.",
+  "186": "이를 막기 위해서는 단순한 AI 간 의견 비교를 넘어서 실제 증거를 확인해야 합니다.",
+  "187": "멀티 에이전트 검증의 4단계",
+  "188": "개별 검증",
+  "189": "각 에이전트가 맡은 작업의 조건을 충족했는지 점검합니다.",
+  "190": "상호 검증",
+  "191": "서로 연결되는 결과가 일치하는지 비교합니다. 예를 들어 장소 견적과 예산표의 금액을 대조합니다.",
+  "192": "외부 증거 검증",
+  "193": "견적서, 공식 문서, 계산 결과 등 AI의 주장과 독립적인 자료를 확인합니다.",
+  "194": "사람의 최종 승인",
+  "195": "검증 결과와 남은 위험을 확인하고 실행 여부를 결정합니다.",
+  "196": "OpenAI의 에이전트 개발 가이드도 에이전트별 평가, 전체 작업 흐름의 테스트, 관찰과 개선을 중요하게 다룹니다. ",
+  "197": [
+   "turn144103search0",
+   "turn144103search6"
+  ],
+  "198": "f6f56486-f9e8-5487-bada-8d928fdfc15f",
+  "199": "8. 멀티 에이전트가 항상 좋은 것은 아니다",
+  "200": "여기서 의외의 사실 하나를 배워야 합니다.",
+  "201": "AI를 더 많이 투입한다고 항상 더 똑똑해지거나 더 정확해지는 것은 아닙니다.",
+  "202": "예를 들어 \"이 문장을 영어로 번역해 줘\"라는 작업에 AI 팀장, 번역 AI, 검토 AI, 승인 AI 등 여러 단계를 만드는 것은 불필요한 비용과 복잡성을 추가할 수 있습니다.",
+  "203": "반대로 수백 페이지의 자료를 검토하고, 서로 다른 시장을 조사하고, 독립적인 분석을 종합하는 일은 전문 에이전트로 나누는 것이 유리할 수 있습니다.",
+  "204": "언제 한 명, 언제 여러 명을 사용할까?",
+  "205": "한 명이 적합한 경우",
+  "206": "여러 명이 유리할 수 있는 경우",
+  "207": "간단한 번역·요약",
+  "208": "서로 다른 자료를 폭넓게 조사",
+  "209": "하나의 짧은 분석",
+  "210": "여러 전문 분야의 분석 통합",
+  "211": "순서대로 진행해야 하는 작은 작업",
+  "212": "독립적인 작업을 병렬 수행",
+  "213": "도구와 지침이 단순함",
+  "214": "도구와 업무 영역이 매우 복잡함",
+  "215": "OpenAI의 실무 가이드 역시 ",
+  "216": "가능하면 단일 에이전트의 능력을 먼저 충분히 활용하고, 필요할 때 여러 에이전트로 분리하는 접근",
+  "217": "을 권장합니다. 여러 에이전트는 추가 비용과 관리 부담을 만들기 때문입니다. ",
+  "218": "4d343fcd-41df-5b74-81df-63c72367c41d",
+  "219": "직접 판단해 보기",
+  "220": "AI 팀 구성 실험",
+  "221": "/4",
+  "222": "싱글 에이전트가 더 적합하다.",
+  "223": "멀티 에이전트가 유리할 수 있다.",
+  "224": " 이전",
+  "225": "다음 ",
+  "226": "다시 풀기 ",
+  "227": "/4",
+  "228": "권장 구조와 일치한 선택 수",
+  "229": "9. 좋은 멀티 에이전트 시스템을 설계하는 공식",
+  "230": "이제 오늘 배운 내용을 하나의 구조로 정리해 보겠습니다.",
+  "231": "목표 및 성공 기준",
+  "232": "사람이 정의",
+  "233": "AI 팀장의 작업 분해",
+  "234": "독립 작업, 순차 작업, 승인 필요 작업 구분",
+  "235": "전문 AI의 작업 수행",
+  "236": "필요한 도구와 권한만 사용",
+  "237": "결과 통합 및 충돌 해결",
+  "238": "서로 다른 주장과 정보의 근거 비교",
+  "239": "검증 및 인간 승인",
+  "240": "실제 증거 확인, 중요한 행동 승인",
+  "241": "최종 실행과 성과 확인",
+  "242": "실제 결과가 목표를 달성했는지 판단",
+  "243": "여기서 특히 중요한 원칙은 ",
+  "244": "AI 팀장이 업무 조정자라는 사실과 최종 사실 검증자가 된다는 것이 같지는 않다",
+  "245": "는 것입니다.",
+  "246": "AI 팀장도 틀릴 수 있습니다. 따라서 증거 확인과 실행 승인 구조가 별도로 필요합니다.",
+  "247": "10. AI 팀장에게 사용할 실전 프롬프트",
+  "248": "아래 템플릿은 AI 팀을 설계하거나, 하나의 ChatGPT에게 여러 전문가 관점으로 작업을 나누어 검토하도록 요청할 때 사용할 수 있습니다.",
+  "249": "다만 하나의 ChatGPT에게 여러 역할을 요청했다고 실제로 독립된 멀티 에이전트가 생성되는 것은 아닙니다. 실제 멀티 에이전트 운영에는 이를 지원하는 시스템이 필요합니다.",
+  "250": "멀티 에이전트 협업 설계 템플릿",
+  "251": " 템플릿 복사",
+  "252": "11. 9강 최종 이해도 테스트",
+  "253": "Q. 멀티 에이전트 시스템이 정말 효과적으로 작동하기 위한 가장 중요한 조건은 무엇일까요?",
+  "254": "A. AI 에이전트의 숫자가 많아야 한다.",
+  "255": "B. 모든 AI가 동일한 답을 하면 자동으로 정답으로 인정한다.",
+  "256": "C. 각 AI가 다른 작업을 하되 결과를 통합하고, 충돌과 오류를 검증하며, 적절한 승인 구조를 갖춘다.",
+  "257": "D. AI 팀장이 있으므로 사람의 최종 판단이 필요 없다.",
+  "258": "12. 9강의 핵심 결론",
+  "259": "오늘 배운 멀티 에이전트의 원리는 세 문장으로 정리할 수 있습니다.",
+  "260": "첫째, 여러 AI를 사용하는 목적은 AI의 숫자를 늘리는 것이 아니라 업무를 효과적으로 나누는 것입니다.",
+  "261": "둘째, AI끼리 협력해도 오류는 발생하며, 특히 공유된 잘못된 정보는 팀 전체의 판단을 오염시킬 수 있습니다.",
+  "262": "셋째, 좋은 AI 팀은 단순히 일을 많이 하는 팀이 아니라 서로의 결과를 검토하고, 모르는 것을 드러내며, 중요한 결정에서 사람의 통제를 유지하는 팀입니다.",
+  "263": "이것이 Know Your Unknowns의 관점에서 본 멀티 에이전트 시스템입니다.",
+  "264": "다음 강의",
+  "265": "10강 · 나만의 AI 업무 시스템 설계하기 ",
+  "266": "9강 실습 · 나만의 AI 팀 구성하기",
+  "267": "1~9강 종합 이해도 테스트",
+  "268": "참고 자료: ",
+  "269": "OpenAI Agents SDK — 에이전트 오케스트레이션",
+  "270": "25bfac6e-fbcd-5e68-a028-1e13eb99de53",
+  "271": " · ",
+  "272": "OpenAI — AI 에이전트 구축 실무 가이드",
+  "273": "dedf923e-efb9-5796-821d-1bd07d4a9183",
+  "274": " · ",
+  "275": "Anthropic — 멀티 에이전트 연구 시스템 구축 사례",
+  "276": "4ddbf0e3-3cd8-5180-91fb-b24f383fd167"
+ },
+ "resolutions": {
+  "25bfac6e-fbcd-5e68-a028-1e13eb99de53": {
+   "status": "resolved",
+   "state": {
+    "url": "https://openai.github.io/openai-agents-python/ko/multi_agent/?utm_source=chatgpt.com",
+    "title": "OpenAI Agents SDK — 에이전트 오케스트레이션",
+    "source_label": "openai.github.io",
+    "domain": "openai.github.io",
+    "snippet": null,
+    "metadata_label": null,
+    "refid": null,
+    "title_before_last_word": "OpenAI Agents SDK — 에이전트",
+    "title_last_word": "오케스트레이션"
+   },
+   "safe_urls": [
+    "https://openai.github.io/openai-agents-python/ko/multi_agent/?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Link"
+  },
+  "dedf923e-efb9-5796-821d-1bd07d4a9183": {
+   "status": "resolved",
+   "state": {
+    "url": "https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/?utm_source=chatgpt.com",
+    "title": "OpenAI — AI 에이전트 구축 실무 가이드",
+    "source_label": "openai.com",
+    "domain": "openai.com",
+    "snippet": null,
+    "metadata_label": null,
+    "refid": null,
+    "title_before_last_word": "OpenAI — AI 에이전트 구축 실무",
+    "title_last_word": "가이드"
+   },
+   "safe_urls": [
+    "https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Link"
+  },
+  "4ddbf0e3-3cd8-5180-91fb-b24f383fd167": {
+   "status": "resolved",
+   "state": {
+    "url": "https://www.anthropic.com/engineering/multi-agent-research-system?trk=article-ssr-frontend-pulse_little-text-block&utm_source=chatgpt.com",
+    "title": "Anthropic — 멀티 에이전트 연구 시스템 구축 사례",
+    "source_label": "anthropic.com",
+    "domain": "anthropic.com",
+    "snippet": null,
+    "metadata_label": null,
+    "refid": null,
+    "title_before_last_word": "Anthropic — 멀티 에이전트 연구 시스템 구축",
+    "title_last_word": "사례"
+   },
+   "safe_urls": [
+    "https://www.anthropic.com/engineering/multi-agent-research-system?trk=article-ssr-frontend-pulse_little-text-block&utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Link"
+  },
+  "624eac0f-78cb-533b-95ff-98c4c916401a": {
+   "status": "resolved",
+   "state": {
+    "items": [
+     {
+      "url": "https://openai.github.io/openai-agents-python/ko/multi_agent/?utm_source=chatgpt.com",
+      "ref_id": "turn144103search2",
+      "refs": [
+       {
+        "turn_index": 144103,
+        "ref_type": "search",
+        "ref_index": 2
+       }
+      ],
+      "source_label": "OpenAI Agents SDK",
+      "title": "에이전트 오케스트레이션",
+      "snippet": null,
+      "pub_timestamp": null,
+      "metadata_label": null
+     },
+     {
+      "url": "https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/?utm_source=chatgpt.com",
+      "ref_id": "turn144103search8",
+      "refs": [
+       {
+        "turn_index": 144103,
+        "ref_type": "search",
+        "ref_index": 8
+       }
+      ],
+      "source_label": "OpenAI",
+      "source_name": "OpenAI",
+      "title": "A Practical Guide to Building AI Agents",
+      "snippet": null,
+      "pub_timestamp": 1768435200.0,
+      "metadata_label": "1월 15, 2026"
+     }
+    ],
+    "active_index": 0,
+    "sources_title": "Sources 2개"
+   },
+   "safe_urls": [
+    "https://openai.github.io/openai-agents-python/ko/multi_agent/?utm_source=chatgpt.com",
+    "https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Cite"
+  },
+  "942d2c4a-6ecd-545a-a687-b8420b25b9e3": {
+   "status": "resolved",
+   "state": {
+    "items": [
+     {
+      "url": "https://developers.openai.com/api/docs/guides/agents/orchestration?utm_source=chatgpt.com",
+      "ref_id": "turn144103search9",
+      "refs": [
+       {
+        "turn_index": 144103,
+        "ref_type": "search",
+        "ref_index": 9
+       }
+      ],
+      "source_label": "OpenAI API",
+      "source_name": "OpenAI Developers",
+      "title": "Orchestration and handoffs",
+      "snippet": null,
+      "pub_timestamp": null,
+      "metadata_label": null
+     }
+    ],
+    "active_index": 0,
+    "sources_title": "Source 1개"
+   },
+   "safe_urls": [
+    "https://developers.openai.com/api/docs/guides/agents/orchestration?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Cite"
+  },
+  "965e8727-dd6e-5984-99ee-d31eb3b63259": {
+   "status": "resolved",
+   "state": {
+    "items": [
+     {
+      "url": "https://developers.openai.com/api/docs/guides/responses-multi-agent?utm_source=chatgpt.com",
+      "ref_id": "turn144103search7",
+      "refs": [
+       {
+        "turn_index": 144103,
+        "ref_type": "search",
+        "ref_index": 7
+       }
+      ],
+      "source_label": "OpenAI API",
+      "source_name": "OpenAI Developers",
+      "title": "Multi-agent",
+      "snippet": null,
+      "pub_timestamp": null,
+      "metadata_label": null
+     }
+    ],
+    "active_index": 0,
+    "sources_title": "Source 1개"
+   },
+   "safe_urls": [
+    "https://developers.openai.com/api/docs/guides/responses-multi-agent?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Cite"
+  },
+  "f6f56486-f9e8-5487-bada-8d928fdfc15f": {
+   "status": "resolved",
+   "state": {
+    "items": [
+     {
+      "url": "https://openai.github.io/openai-agents-python/multi_agent/?utm_source=chatgpt.com",
+      "ref_id": "turn144103search0",
+      "refs": [
+       {
+        "turn_index": 144103,
+        "ref_type": "search",
+        "ref_index": 0
+       }
+      ],
+      "source_label": "OpenAI Agents SDK",
+      "title": "Agent orchestration",
+      "snippet": null,
+      "pub_timestamp": null,
+      "metadata_label": null
+     },
+     {
+      "url": "https://developers.openai.com/tracks/building-agents?utm_source=chatgpt.com",
+      "ref_id": "turn144103search6",
+      "refs": [
+       {
+        "turn_index": 144103,
+        "ref_type": "search",
+        "ref_index": 6
+       }
+      ],
+      "source_label": "OpenAI Developers",
+      "source_name": "OpenAI Developers",
+      "title": "Building agents",
+      "snippet": null,
+      "pub_timestamp": null,
+      "metadata_label": null
+     }
+    ],
+    "active_index": 0,
+    "sources_title": "Sources 2개"
+   },
+   "safe_urls": [
+    "https://openai.github.io/openai-agents-python/multi_agent/?utm_source=chatgpt.com",
+    "https://developers.openai.com/tracks/building-agents?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Cite"
+  },
+  "4d343fcd-41df-5b74-81df-63c72367c41d": {
+   "status": "resolved",
+   "state": {
+    "items": [
+     {
+      "url": "https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/?utm_source=chatgpt.com",
+      "ref_id": "turn144103search8",
+      "refs": [
+       {
+        "turn_index": 144103,
+        "ref_type": "search",
+        "ref_index": 8
+       }
+      ],
+      "source_label": "OpenAI",
+      "source_name": "OpenAI",
+      "title": "A Practical Guide to Building AI Agents",
+      "snippet": null,
+      "pub_timestamp": 1768435200.0,
+      "metadata_label": "1월 15, 2026"
+     }
+    ],
+    "active_index": 0,
+    "sources_title": "Source 1개"
+   },
+   "safe_urls": [
+    "https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Cite"
+  }
+ },
+ "bindings": {
+  "turn144103search2": {
+   "title": "에이전트 오케스트레이션 - OpenAI Agents SDK",
+   "domain": "openai.github.io",
+   "url": {
+    "$type": "uri",
+    "uri": "https://openai.github.io/openai-agents-python/ko/multi_agent/?utm_source=chatgpt.com"
+   }
+  },
+  "turn144103search5": {
+   "title": "How we built our multi-agent research system \\ Anthropic",
+   "timestamp": 1749772800.0,
+   "domain": "www.anthropic.com",
+   "url": {
+    "$type": "uri",
+    "uri": "https://www.anthropic.com/engineering/multi-agent-research-system?trk=article-ssr-frontend-pulse_little-text-block&utm_source=chatgpt.com"
+   }
+  },
+  "turn144103search8": {
+   "title": "A Practical Guide to Building AI Agents | OpenAI",
+   "timestamp": 1768435200.0,
+   "domain": "openai.com",
+   "url": {
+    "$type": "uri",
+    "uri": "https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/?utm_source=chatgpt.com"
+   }
+  }
+ },
+ "widgets": []
+}

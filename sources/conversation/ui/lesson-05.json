@@ -1,0 +1,382 @@
+{
+ "lesson": 5,
+ "source": {
+  "share_url": "https://chatgpt.com/share/6af33303-9c00-83e8-a5b8-bb134c40db5c",
+  "conversation_md_message": 19,
+  "message_id": "d45fce59-dffb-4f01-8d34-ffd9fd2a4d1b",
+  "text_sha256": "001986f2035a6b2f7e38f2ea4d0ef5abff402923ba447a64eb1b0f105959a8f1"
+ },
+ "start_at_title": null,
+ "code": "function __dilSafe(evaluate,failureValue){try{return evaluate()}catch{return failureValue}}\n\nDIL.render(__dil.jsx(()=>{const __dilConstants=DIL.useConstants();const __dilModelDataBindings=DIL.useAppData((appData)=>appData.opGenui?.modelDataBindings??{});const [pick1,setPick1] = DIL.useState(\"none\",{key:\"pick1\"})\nconst [verify,setVerify] = DIL.useState(\"none\",{key:\"verify\"})\nconst checks = __dilSafe(()=>([\"출처가 실제로 존재하는가?\",\"출처의 작성 주체가 신뢰할 만한가?\",\"출처에 AI가 주장한 내용이 실제로 있는가?\",\"자료의 발표 날짜가 질문과 맞는가?\",\"다른 독립적인 근거와도 일치하는가?\"]),undefined)\nconst [checked,setChecked] = DIL.useState([],{key:\"checked\"})\nconst [scenario,setScenario] = DIL.useState(\"simple\",{key:\"scenario\"})\nconst prompts = __dilSafe(()=>({simple:{title:\"일반 답변\",prompt:\"아래 문장을 더 자연스럽고 간결한 한국어로 바꿔줘. 원래 의미는 유지하고, 수정한 문장만 보여줘.\\n\\n[여기에 문장 입력]\"},thinking:{title:\"Thinking\",prompt:\"다음 문제를 해결해 줘.\\n\\n목표: [달성하려는 결과]\\n조건: [제약 조건]\\n선택지: [가능한 대안]\\n\\n조건을 빠뜨리지 말고 대안을 비교해 줘. 권장안을 선택한 근거와 예상되는 단점, 확인이 필요한 가정도 알려줘.\"},search:{title:\"웹 검색\",prompt:\"오늘 기준으로 [주제]의 최신 정보를 웹에서 검색해 줘. 공식 발표와 신뢰할 만한 출처를 우선하고, 발표 날짜와 핵심 사실을 구분해 정리해 줘. 확인되지 않은 정보는 추정이라고 명시해 줘.\"},combined:{title:\"검색 + Thinking + 검증\",prompt:\"[중요한 결정이나 문제]를 분석해 줘.\\n\\n1. 먼저 최신 공식 자료를 찾아 사실관계와 날짜를 확인해 줘.\\n2. 확인된 사실과 나의 조건을 바탕으로 가능한 대안을 비교해 줘.\\n3. 결론에 중요한 핵심 주장마다 근거 출처를 제시해 줘.\\n4. 출처가 실제로 해당 주장을 뒷받침하는지 대조해 줘.\\n5. 검증되지 않은 내용과 남은 위험을 별도로 알려줘.\\n\\n나의 조건: [조건 입력]\"}}),undefined)\nconst exercises = __dilSafe(()=>([{q:\"직장 동료에게 보낼 감사 메시지를 짧게 작성하고 싶습니다.\",best:\"instant\",why:\"새로운 사실 확인이나 복잡한 추론이 필요하지 않으므로 일반 답변이 효율적입니다.\"},{q:\"내일 서울에 비가 오는지 알고 싶습니다.\",best:\"search\",why:\"최신 기상예보가 핵심이므로 실시간에 가까운 정보 확인이 먼저입니다.\"},{q:\"이미 주어진 복잡한 조건에 맞춰 팀별 업무를 배분하고 싶습니다.\",best:\"thinking\",why:\"핵심은 주어진 제약 조건을 분석하고 일관된 해법을 찾는 것입니다.\"},{q:\"최근 개정된 법규를 적용해 사업 비용과 위험을 비교해야 합니다.\",best:\"combined\",why:\"최신 공식 법규 확인, 복잡한 분석, 조항 검증이 모두 필요합니다. 중요한 법률 판단은 전문가 검토도 필요할 수 있습니다.\"}]),undefined)\nconst [idx,setIdx] = DIL.useState(0,{key:\"idx\"})\nconst [answers,setAnswers] = DIL.useState({},{key:\"answers\"})\nconst current = __dilSafe(()=>(exercises[idx]),undefined)\nconst selected = __dilSafe(()=>(answers[idx]??\"none\"),undefined)\nreturn __dil.jsx(__dil.Fragment,null,__dil.jsx(\"title\",{\"size\":\"xl\"},__dilConstants[\"0\"]),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"sm\"},__dilConstants[\"1\"]),__dil.jsx(\"text\",null,__dilConstants[\"2\"]),__dil.jsx(\"text\",null,__dilConstants[\"3\"]),__dil.jsx(\"blockquote\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"4\"]))),__dil.jsx(\"text\",null,__dilConstants[\"5\"],__dil.jsx(\"bold\",null,__dilConstants[\"6\"]),__dilConstants[\"7\"]),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"8\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"size\":\"48px\",\"align\":\"center\",\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"zap\",\"size\":\"xl\"})),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"9\"])),__dil.jsx(\"text\",{\"size\":\"sm\",\"color\":\"secondary\"},__dilConstants[\"10\"]))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"size\":\"48px\",\"align\":\"center\",\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"brain-circuit\",\"size\":\"xl\"})),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"11\"])),__dil.jsx(\"text\",{\"size\":\"sm\",\"color\":\"secondary\"},__dilConstants[\"12\"]))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"size\":\"48px\",\"align\":\"center\",\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"globe\",\"size\":\"xl\"})),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"13\"])),__dil.jsx(\"text\",{\"size\":\"sm\",\"color\":\"secondary\"},__dilConstants[\"14\"]))),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"row\",{\"align\":\"start\",\"gap\":3},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"size\":\"48px\",\"align\":\"center\",\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"shield-check\",\"size\":\"xl\"})),__dil.jsx(\"box\",{\"flex\":\"1\",\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"15\"])),__dil.jsx(\"text\",{\"size\":\"sm\",\"color\":\"secondary\"},__dilConstants[\"16\"])))),__dil.jsx(\"text\",null,__dilConstants[\"17\"]),__dil.jsx(\"text\",null,__dilConstants[\"18\"],__dil.jsx(\"bold\",null,__dilConstants[\"19\"]),__dilConstants[\"20\"],__dilSafe(()=>(__dil.jsx(Cite,{\"refs\":__dilConstants[\"21\"],\"__resolutionId\":__dilConstants[\"22\"]})),null)),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"23\"]),__dil.jsx(\"text\",null,__dilConstants[\"24\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":2},__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"25\"])),__dil.jsx(\"text\",{\"size\":\"sm\",\"color\":\"secondary\"},__dilConstants[\"26\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"27\"])),__dil.jsx(\"text\",{\"size\":\"sm\",\"color\":\"secondary\"},__dilConstants[\"28\"])),__dil.jsx(\"row\",{\"justify\":\"center\"},__dil.jsx(\"icon\",{\"name\":\"arrow-down\",\"color\":\"tertiary\"})),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"gap\":1},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"29\"])),__dil.jsx(\"text\",{\"size\":\"sm\",\"color\":\"secondary\"},__dilConstants[\"30\"]))),__dil.jsx(\"title\",{\"size\":\"md\"},__dilConstants[\"31\"]),__dil.jsx(\"table\",null,__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",{\"header\":true},__dil.jsx(\"text\",null,__dilConstants[\"32\"])),__dil.jsx(\"table-cell\",{\"header\":true},__dil.jsx(\"text\",null,__dilConstants[\"33\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"34\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"35\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"36\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"37\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"38\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"39\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"40\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"41\"]))),__dil.jsx(\"table-row\",null,__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"42\"])),__dil.jsx(\"table-cell\",null,__dil.jsx(\"text\",null,__dilConstants[\"43\"])))),__dil.jsx(\"text\",null,__dilConstants[\"44\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"45\"])),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"46\"]),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":3,\"gap\":2},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"47\"])),__dil.jsx(\"text\",null,__dilConstants[\"48\"]),__dil.jsx(\"list\",{\"marker\":\"bullet\"},__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dilConstants[\"49\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dilConstants[\"50\"])),__dil.jsx(\"list-item\",null,__dil.jsx(\"text\",null,__dilConstants[\"51\"]))),__dil.jsx(\"text\",null,__dilConstants[\"52\"])),__dil.jsx(\"text\",null,__dilConstants[\"53\"]),__dil.jsx(\"text\",null,__dilConstants[\"54\"],__dil.jsx(\"bold\",null,__dilConstants[\"55\"]),__dilConstants[\"56\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"lg\",\"padding\":3,\"gap\":3},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"57\"])),__dilSafe(()=>(__dil.jsx(\"radio-group\",{\"direction\":\"col\",\"value\":pick1,\"onChange\":setPick1},__dil.jsx(\"radio\",{\"value\":\"a\"},__dilConstants[\"58\"]),__dil.jsx(\"radio\",{\"value\":\"b\"},__dilConstants[\"59\"]),__dil.jsx(\"radio\",{\"value\":\"c\"},__dilConstants[\"60\"]))),null),(__dilSafe(()=>(pick1 !== \"none\"),false))?__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"padding\":3,\"radius\":\"md\",\"gap\":2},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dilSafe(()=>(__dil.jsx(\"icon\",{\"name\":pick1===\"b\"?\"check-circle\":\"info\",\"color\":pick1===\"b\"?\"success\":\"secondary\"})),null),__dil.jsx(\"text\",null,__dilSafe(()=>(__dil.jsx(\"bold\",null,pick1===\"b\"?\"정답입니다!\":\"조건을 비교해 볼까요?\")),null))),__dil.jsx(\"text\",{\"size\":\"sm\"},__dil.jsx(\"text\",null,__dilConstants[\"61\"],__dil.jsx(\"bold\",null,__dilConstants[\"62\"]),__dilConstants[\"63\"]))):null),__dil.jsx(\"text\",null,__dilConstants[\"64\"]),__dil.jsx(\"text\",null,__dilConstants[\"65\"]),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"66\"]),__dil.jsx(\"text\",null,__dilConstants[\"67\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"lg\",\"padding\":3,\"gap\":2},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"68\"])),__dil.jsx(\"text\",null,__dilConstants[\"69\"])),__dil.jsx(\"text\",null,__dilConstants[\"70\"]),__dil.jsx(\"text\",null,__dilConstants[\"71\"]),__dil.jsx(\"box\",{\"gap\":2},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dil.jsx(\"badge\",null,__dilConstants[\"72\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"73\"]),__dilConstants[\"74\"])),__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dil.jsx(\"badge\",null,__dilConstants[\"75\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"76\"]),__dilConstants[\"77\"])),__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dil.jsx(\"badge\",null,__dilConstants[\"78\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"79\"]),__dilConstants[\"80\"]))),__dil.jsx(\"text\",null,__dilConstants[\"81\"],__dilSafe(()=>(__dil.jsx(Cite,{\"ref\":\"turn738992search1\",\"__resolutionId\":__dilConstants[\"82\"]})),null)),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"83\"]),__dil.jsx(\"text\",null,__dilConstants[\"84\"]),__dil.jsx(\"text\",null,__dilConstants[\"85\"]),__dil.jsx(\"box\",{\"gap\":2},__dil.jsx(\"box\",{\"border\":true,\"radius\":\"lg\",\"padding\":3,\"gap\":2},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dil.jsx(\"icon\",{\"name\":\"file-text\",\"color\":\"secondary\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"86\"]))),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"87\"])),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"lg\",\"padding\":3,\"gap\":2},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dil.jsx(\"icon\",{\"name\":\"bot\",\"color\":\"secondary\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"88\"]))),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"89\"]))),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"90\"])),__dilSafe(()=>(__dil.jsx(\"radio-group\",{\"direction\":\"col\",\"value\":verify,\"onChange\":setVerify},__dil.jsx(\"radio\",{\"value\":\"yes\"},__dilConstants[\"91\"]),__dil.jsx(\"radio\",{\"value\":\"no\"},__dilConstants[\"92\"]),__dil.jsx(\"radio\",{\"value\":\"maybe\"},__dilConstants[\"93\"]))),null),(__dilSafe(()=>(verify !== \"none\"),false))?__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"padding\":3,\"radius\":\"md\",\"gap\":2},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dilSafe(()=>(__dil.jsx(\"icon\",{\"name\":verify===\"no\"?\"check-circle\":\"alert-circle\",\"color\":verify===\"no\"?\"success\":\"secondary\"})),null),__dil.jsx(\"text\",null,__dilSafe(()=>(__dil.jsx(\"bold\",null,verify===\"no\"?\"정확합니다!\":\"검증의 핵심은 원문 대조입니다.\")),null))),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"94\"])):null),__dil.jsx(\"text\",null,__dilConstants[\"95\"]),__dil.jsx(\"blockquote\",null,__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"96\"]))),__dil.jsx(\"text\",null,__dilConstants[\"97\"],__dilSafe(()=>(__dil.jsx(Cite,{\"ref\":\"turn738992search0\",\"__resolutionId\":__dilConstants[\"98\"]})),null)),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"99\"]),__dil.jsx(\"text\",null,__dilConstants[\"100\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"row\",{\"justify\":\"between\",\"align\":\"center\"},__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"101\"])),__dil.jsx(\"badge\",null,__dilSafe(()=>(checked.length),null),__dilConstants[\"102\"])),__dil.jsx(\"box\",{\"background\":\"surface-tertiary\",\"height\":\"7px\",\"radius\":\"full\",\"clip\":true},__dilSafe(()=>(__dil.jsx(\"box\",{\"height\":\"100%\",\"background\":\"#3283cd\",\"width\":`${checked.length*20}%`,\"radius\":\"full\"})),null)),__dilSafe(()=>((checks).map((item,i)=>__dilSafe(()=>(__dilSafe(()=>(__dil.jsx(\"checkbox\",{\"key\":i,\"checked\":checked.includes(i),\"onChange\":v=>setChecked(old=>v?[...old,i]:old.filter(x=>x!==i)),\"lineThrough\":false},item)),null)),null))),[]),(__dilSafe(()=>(checked.length===5),false))?__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dil.jsx(\"icon\",{\"name\":\"check-circle\",\"color\":\"success\"}),__dil.jsx(\"text\",{\"size\":\"sm\"},__dilConstants[\"103\"])):null,__dilSafe(()=>(__dil.jsx(\"button\",{\"block\":true,\"variant\":\"outline\",\"color\":\"secondary\",\"size\":\"sm\",\"onClick\":()=>setChecked([])},__dilConstants[\"104\"])),null)),__dil.jsx(\"text\",null,__dilConstants[\"105\"]),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"106\"]),__dil.jsx(\"text\",null,__dilConstants[\"107\"]),__dil.jsx(\"text\",null,__dilConstants[\"108\"],__dil.jsx(\"bold\",null,__dilConstants[\"109\"]),__dilConstants[\"110\"]),__dil.jsx(\"text\",null,__dilConstants[\"111\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dilSafe(()=>(__dil.jsx(\"radio-group\",{\"direction\":\"col\",\"value\":scenario,\"onChange\":setScenario},__dil.jsx(\"radio\",{\"value\":\"simple\"},__dilConstants[\"112\"]),__dil.jsx(\"radio\",{\"value\":\"thinking\"},__dilConstants[\"113\"]),__dil.jsx(\"radio\",{\"value\":\"search\"},__dilConstants[\"114\"]),__dil.jsx(\"radio\",{\"value\":\"combined\"},__dilConstants[\"115\"]))),null),__dil.jsx(\"divider\",{\"color\":\"subtle\"}),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilSafe(()=>(prompts[scenario].title),null),__dilConstants[\"116\"])),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"padding\":3,\"radius\":\"lg\"},__dilSafe(()=>(__dil.jsx(\"text\",{\"preserveWhitespace\":true,\"size\":\"sm\"},prompts[scenario].prompt)),null)),__dil.jsx(\"row\",{\"gap\":2},__dilSafe(()=>(__dil.jsx(\"button\",{\"color\":\"primary\",\"block\":true,\"onClick\":()=>GenUI.copy(prompts[scenario].prompt)},__dil.jsx(\"icon\",{\"name\":\"copy\",\"inline\":true}),__dilConstants[\"117\"])),null),__dilSafe(()=>(__dil.jsx(\"button\",{\"color\":\"secondary\",\"variant\":\"outline\",\"block\":true,\"onClick\":()=>GenUI.issueNewTurn(prompts[scenario].prompt)},__dil.jsx(\"icon\",{\"name\":\"message-square\",\"inline\":true}),__dilConstants[\"118\"])),null))),__dil.jsx(\"text\",null,__dilConstants[\"119\"],__dilSafe(()=>(__dil.jsx(Cite,{\"refs\":__dilConstants[\"120\"],\"__resolutionId\":__dilConstants[\"121\"]})),null)),__dil.jsx(\"text\",null,__dilConstants[\"122\"],__dil.jsx(\"bold\",null,__dilConstants[\"123\"]),__dilConstants[\"124\"],__dilSafe(()=>(__dil.jsx(Cite,{\"ref\":\"turn738992search8\",\"__resolutionId\":__dilConstants[\"125\"]})),null)),__dil.jsx(\"divider\",null),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"126\"]),__dil.jsx(\"text\",null,__dilConstants[\"127\"]),__dil.jsx(\"box\",{\"border\":true,\"radius\":\"xl\",\"padding\":3,\"gap\":3},__dil.jsx(\"row\",{\"align\":\"center\",\"justify\":\"between\"},__dil.jsx(\"badge\",{\"color\":\"secondary\"},__dilConstants[\"128\"],__dilSafe(()=>(idx+1),null),__dilConstants[\"129\"]),__dil.jsx(\"text\",{\"color\":\"secondary\",\"size\":\"xs\"},__dilConstants[\"130\"])),__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"lg\",\"padding\":3},__dilSafe(()=>(__dil.jsx(\"title\",{\"size\":\"md\"},current.q)),null)),__dilSafe(()=>(__dil.jsx(\"radio-group\",{\"direction\":\"col\",\"value\":selected,\"onChange\":v=>setAnswers(old=>({...old,[idx]:v}))},__dil.jsx(\"radio\",{\"value\":\"instant\"},__dilConstants[\"131\"]),__dil.jsx(\"radio\",{\"value\":\"thinking\"},__dilConstants[\"132\"]),__dil.jsx(\"radio\",{\"value\":\"search\"},__dilConstants[\"133\"]),__dil.jsx(\"radio\",{\"value\":\"combined\"},__dilConstants[\"134\"]))),null),(__dilSafe(()=>(selected!==\"none\"),false))?__dil.jsx(\"box\",{\"background\":\"surface-secondary\",\"radius\":\"md\",\"padding\":3,\"gap\":2},__dil.jsx(\"row\",{\"align\":\"center\",\"gap\":2},__dilSafe(()=>(__dil.jsx(\"icon\",{\"name\":selected===current.best?\"check-circle\":\"lightbulb\",\"color\":selected===current.best?\"success\":\"secondary\"})),null),__dil.jsx(\"text\",null,__dilSafe(()=>(__dil.jsx(\"bold\",null,selected===current.best?\"잘 판단하셨습니다!\":\"더 적합한 조합을 살펴봅시다.\")),null))),__dilSafe(()=>(__dil.jsx(\"text\",{\"size\":\"sm\"},current.why)),null)):null,__dil.jsx(\"row\",{\"align\":\"center\",\"justify\":\"between\"},__dilSafe(()=>(__dil.jsx(\"button\",{\"color\":\"secondary\",\"variant\":\"outline\",\"disabled\":idx===0,\"onClick\":()=>setIdx(i=>i-1)},__dil.jsx(\"icon\",{\"name\":\"chevron-left\",\"inline\":true}),__dilConstants[\"135\"])),null),(__dilSafe(()=>(idx<3),false))?__dilSafe(()=>(__dil.jsx(\"button\",{\"disabled\":selected===\"none\",\"onClick\":()=>setIdx(i=>i+1)},__dilConstants[\"136\"],__dil.jsx(\"icon\",{\"name\":\"chevron-right\",\"inline\":true}))),null):__dilSafe(()=>(__dil.jsx(\"button\",{\"color\":\"primary\",\"onClick\":()=>{setIdx(0);setAnswers({})}},__dilConstants[\"137\"],__dil.jsx(\"icon\",{\"name\":\"refresh-cw\",\"inline\":true}))),null)),(__dilSafe(()=>(Object.keys(answers).length===4),false))?__dil.jsx(\"box\",{\"border\":true,\"radius\":\"md\",\"padding\":3,\"gap\":1,\"align\":\"center\"},__dil.jsx(\"title\",{\"size\":\"xl\",\"tabularNums\":true},__dilSafe(()=>(exercises.filter((e,i)=>answers[i]===e.best).length),null),__dilConstants[\"138\"]),__dil.jsx(\"text\",{\"size\":\"sm\",\"color\":\"secondary\"},__dilConstants[\"139\"])):null),__dil.jsx(\"title\",{\"size\":\"lg\"},__dilConstants[\"140\"]),__dil.jsx(\"text\",null,__dilConstants[\"141\"]),__dil.jsx(\"text\",null,__dil.jsx(\"bold\",null,__dilConstants[\"142\"])),__dil.jsx(\"text\",null,__dilConstants[\"143\"]),__dil.jsx(\"text\",null,__dilConstants[\"144\"],__dil.jsx(\"bold\",null,__dilConstants[\"145\"]),__dilConstants[\"146\"]),__dil.jsx(\"box\",{\"gap\":2},__dilSafe(()=>(__dil.jsx(\"button\",{\"block\":true,\"onClick\":()=>GenUI.issueNewTurn(\"6강으로 넘어가자. 프롬프트를 잘 작성한다는 것이 무엇인지, 목표·맥락·제약조건·출력형식·검증기준을 어떻게 설계하는지 비전공자 눈높이에서 실제 예시와 실험으로 가르쳐줘.\")},__dilConstants[\"147\"],__dil.jsx(\"icon\",{\"name\":\"arrow-right\",\"inline\":true}))),null),__dilSafe(()=>(__dil.jsx(\"button\",{\"block\":true,\"variant\":\"outline\",\"color\":\"secondary\",\"onClick\":()=>GenUI.issueNewTurn(\"1강부터 5강까지 배운 ChatGPT의 작동 원리, Thinking, 환각, 검색과 검증을 통합해서 내가 제대로 이해했는지 대화형 테스트를 진행해줘. 한 번에 한 문제씩 질문해줘.\")},__dilConstants[\"148\"])),null)));},{\"key\":\"body:11\"}));",
+ "constants": {
+  "0": "5강. ChatGPT를 제대로 활용하는 4가지 방법",
+  "1": "Know Your Unknowns · AI Thinking 원리 이해하기 · 실전 활용편",
+  "2": "지금까지 우리는 ChatGPT가 어떻게 답변을 생성하고, 논리적으로 추론하며, 왜 때로는 틀리는지 배웠습니다.",
+  "3": "이제 중요한 질문은 이것입니다.",
+  "4": "\"ChatGPT가 똑똑하다는 것은 알겠는데, 어떤 상황에서 어떤 기능을 사용해야 가장 정확하고 유용한 답을 얻을 수 있을까?\"",
+  "5": "5강의 목표는 ChatGPT에게 무조건 더 오래 생각하라고 시키는 것이 아니라, ",
+  "6": "문제의 종류에 맞게 Thinking, 웹 검색, 검증을 조합할 수 있는 판단력",
+  "7": "을 갖추는 것입니다.",
+  "8": "1. 네 가지 방법의 차이부터 이해하기",
+  "9": "① 일반 답변 (Instant)",
+  "10": "빠른 질문, 설명, 번역, 요약, 글쓰기에 적합합니다.",
+  "11": "② Thinking",
+  "12": "복잡한 조건, 논리적 추론, 여러 선택지의 비교에 적합합니다.",
+  "13": "③ 웹 검색 (Search)",
+  "14": "최신 정보, 실제 사건, 가격, 법규, 공식 발표 등 외부 정보가 필요할 때 활용합니다.",
+  "15": "④ 자료 검증 (Verification)",
+  "16": "AI가 제시한 주장이 실제 출처와 일치하는지 확인합니다.",
+  "17": "중요한 점은 이 네 가지가 서로 배타적인 선택지가 아니라는 것입니다.",
+  "18": "Thinking을 사용하면서 웹 검색도 할 수 있고, 검색으로 얻은 자료를 다시 검증할 수도 있습니다. 특히 ",
+  "19": "검증은 별도의 모델이라기보다 답변의 신뢰성을 확인하는 과정",
+  "20": "입니다. ",
+  "21": [
+   "turn738992search0",
+   "turn738992search1",
+   "turn738992search9"
+  ],
+  "22": "624eac0f-78cb-533b-95ff-98c4c916401a",
+  "23": "2. 어떤 기능을 선택해야 할까?",
+  "24": "복잡하게 외울 필요는 없습니다. 질문을 받았을 때 세 가지를 판단하면 됩니다.",
+  "25": "질문 1. 최신 정보가 필요한가?",
+  "26": "그렇다면 웹 검색을 고려합니다.",
+  "27": "질문 2. 여러 단계를 따져야 하는가?",
+  "28": "그렇다면 Thinking을 고려합니다.",
+  "29": "질문 3. 틀리면 피해가 큰가?",
+  "30": "그렇다면 검증 수준을 높입니다.",
+  "31": "실생활에서 적용하면",
+  "32": "질문",
+  "33": "권장 접근",
+  "34": "\"이 문장을 자연스럽게 고쳐줘.\"",
+  "35": "일반 답변",
+  "36": "\"조건 5개를 만족하는 여행 일정을 만들어줘.\"",
+  "37": "Thinking",
+  "38": "\"오늘 발표된 정책을 알려줘.\"",
+  "39": "웹 검색",
+  "40": "\"최신 세법을 적용해서 내 세금을 비교해 줘.\"",
+  "41": "웹 검색 + Thinking + 공식 자료 검증",
+  "42": "\"이 계약서에서 위험한 조항을 찾아줘.\"",
+  "43": "원문 자료 + Thinking + 전문가 확인",
+  "44": "단순하지만 중요한 원칙이 있습니다.",
+  "45": "문제가 어려우면 더 깊게 추론하고, 사실이 부족하면 자료를 찾고, 결과가 중요하면 검증해야 합니다.",
+  "46": "3. 실험 ① — 검색보다 Thinking이 중요한 문제",
+  "47": "문제",
+  "48": "회사에 세 가지 프로젝트가 있습니다.",
+  "49": "프로젝트 A: 이익 100만 원, 작업 4일",
+  "50": "프로젝트 B: 이익 80만 원, 작업 3일",
+  "51": "프로젝트 C: 이익 60만 원, 작업 2일",
+  "52": "작업 시간은 총 5일입니다. 프로젝트를 중간에 나눌 수 없다면, 어떤 선택이 이익을 가장 크게 만들까요?",
+  "53": "이 문제는 최신 뉴스나 검색 결과가 필요하지 않습니다. 필요한 사실은 이미 질문에 주어져 있습니다.",
+  "54": "핵심은 ",
+  "55": "조건을 정확히 계산하고 가능한 선택을 비교하는 것",
+  "56": "입니다.",
+  "57": "직접 풀어보세요.",
+  "58": "A 프로젝트만 진행한다.",
+  "59": "B와 C를 함께 진행한다.",
+  "60": "A와 C를 함께 진행한다.",
+  "61": "A만 선택하면 100만 원, B+C는 5일에 140만 원입니다. A+C는 6일이 필요하므로 불가능합니다. 따라서 최대 이익은 ",
+  "62": "B+C의 140만 원",
+  "63": "입니다.",
+  "64": "이런 유형에서는 Thinking이 특히 도움이 됩니다.",
+  "65": "다만 정확한 계산이 매우 중요하고 문제가 복잡하다면 계산 도구나 코드를 함께 사용하는 편이 더 신뢰할 만할 수 있습니다.",
+  "66": "4. 실험 ② — Thinking만으로 해결하기 어려운 문제",
+  "67": "이번에는 질문을 바꿔 보겠습니다.",
+  "68": "질문",
+  "69": "\"2026년 11월 현재, 서울에서 신청할 수 있는 청년 주거지원 정책을 비교하고 내 상황에 가장 유리한 것을 알려줘.\"",
+  "70": "이 문제에서는 생각을 오래 하는 것만으로 부족합니다.",
+  "71": "왜냐하면 신청 자격, 소득 요건, 모집 기간 같은 실제 정보가 필요하기 때문입니다.",
+  "72": "1",
+  "73": "웹 검색:",
+  "74": " 서울시와 관련 기관의 현재 공고를 확인합니다.",
+  "75": "2",
+  "76": "Thinking:",
+  "77": " 연령, 거주지, 소득 등 조건을 비교합니다.",
+  "78": "3",
+  "79": "검증:",
+  "80": " 최종적으로 공식 공고문에 신청 자격과 마감일이 맞게 나와 있는지 확인합니다.",
+  "81": "여기서 AI가 검색 결과를 사용했다 해도 모든 내용이 자동으로 사실이 되는 것은 아닙니다. 검색 결과 자체가 오래되었거나 잘못되었을 수 있습니다. ",
+  "82": "942d2c4a-6ecd-545a-a687-b8420b25b9e3",
+  "83": "5. 실험 ③ — 출처가 있으면 무조건 믿어도 될까?",
+  "84": "이것이 오늘 가장 중요한 실험입니다.",
+  "85": "가상의 자료와 AI 답변을 비교해 보세요.",
+  "86": "공식 공고문 — 가상 예시",
+  "87": "지원 대상: 만 19~34세\n\n    신청 기간: 2026년 6월 1일~6월 30일\n\n    소득 기준: 중위소득 120% 이하",
+  "88": "AI의 답변 — 가상 예시",
+  "89": "\"만 19~39세가 신청할 수 있으며, 신청은 7월 31일까지 가능합니다. 공식 공고문을 참고했습니다.\"",
+  "90": "Q. 이 AI 답변을 믿어도 될까요?",
+  "91": "공식 공고문을 언급했으니 믿을 수 있다.",
+  "92": "원문과 숫자가 다르므로 신뢰할 수 없다.",
+  "93": "AI가 자신 있게 말했으므로 일단 믿어본다.",
+  "94": "AI는 지원 연령을 34세에서 39세로, 신청 마감일을 6월 30일에서 7월 31일로 잘못 전달했습니다. 출처를 언급했더라도 그 출처가 실제 주장을 뒷받침하는지 확인해야 합니다.",
+  "95": "우리가 배워야 할 원칙은 이것입니다.",
+  "96": "출처가 있다는 사실보다, 그 출처가 해당 주장을 실제로 뒷받침하는지가 더 중요합니다.",
+  "97": "OpenAI도 중요한 정보에 대해서는 인용된 링크를 직접 열어 원문과 게시 날짜를 확인하도록 안내합니다. ",
+  "98": "965e8727-dd6e-5984-99ee-d31eb3b63259",
+  "99": "6. 출처를 검증하는 5가지 질문",
+  "100": "이제 AI 답변을 평가할 때 다음 항목을 사용해 보세요.",
+  "101": "AI 답변 검증 체크리스트",
+  "102": "/5",
+  "103": "다섯 항목을 점검했습니다. 이제 근거의 품질과 남은 불확실성을 종합적으로 판단할 차례입니다.",
+  "104": "체크리스트 초기화",
+  "105": "특히 의료, 법률, 금융, 안전과 관련된 결정에서는 단순한 검색 결과뿐 아니라 공식 기관의 최신 자료와 필요한 전문가의 판단도 중요합니다.",
+  "106": "7. 실전에서 ChatGPT에게 어떻게 요청할까?",
+  "107": "좋은 질문은 무조건 길 필요가 없습니다.",
+  "108": "다만 ",
+  "109": "내가 원하는 결과, 주어진 조건, 필요한 근거, 검증 기준",
+  "110": "이 드러나면 답변의 품질을 높이는 데 도움이 됩니다.",
+  "111": "아래에서 상황을 선택하면 바로 사용할 수 있는 질문 예시가 나타납니다.",
+  "112": "간단한 글쓰기·요약",
+  "113": "복잡한 판단·계획",
+  "114": "최신 사실·정책 확인",
+  "115": "중요한 결정·분석 보고서",
+  "116": "에 적합한 질문 예시",
+  "117": " 질문 복사",
+  "118": " 사용해 보기",
+  "119": "ChatGPT에서는 모델 선택 메뉴를 통해 빠른 응답과 더 깊은 추론 방식을 선택할 수 있으며, 웹 검색은 도구 메뉴에서 직접 선택하거나 필요에 따라 자동으로 활용될 수 있습니다. 실제 표시되는 메뉴와 옵션은 계정 및 설정에 따라 다를 수 있습니다. ",
+  "120": [
+   "turn738992search9",
+   "turn738992search1"
+  ],
+  "121": "f6f56486-f9e8-5487-bada-8d928fdfc15f",
+  "122": "여러 출처를 폭넓게 분석해야 하는 복잡한 조사라면 ",
+  "123": "심층 리서치(Deep Research)",
+  "124": " 도 고려할 수 있습니다. 빠른 사실 확인은 일반 검색에, 광범위한 자료 조사와 보고서 작성은 심층 리서치에 더 적합합니다. ",
+  "125": "4d343fcd-41df-5b74-81df-63c72367c41d",
+  "126": "8. 5강 최종 실전 테스트",
+  "127": "이번에는 실제 상황을 보고 어떤 조합을 선택할지 판단해 보겠습니다.",
+  "128": "문제 ",
+  "129": "/4",
+  "130": "상황별 기능 선택",
+  "131": "일반 답변",
+  "132": "Thinking",
+  "133": "웹 검색",
+  "134": "웹 검색 + Thinking + 검증",
+  "135": " 이전",
+  "136": "다음 문제 ",
+  "137": "다시 풀기 ",
+  "138": " / 4",
+  "139": "적합한 기능을 선택한 문제 수",
+  "140": "5강 핵심 결론",
+  "141": "오늘 배운 내용을 한 문장으로 정리해 보겠습니다.",
+  "142": "\"잘 생각하는 AI를 사용하는 것보다 중요한 것은, 언제 생각하고 언제 정보를 찾고 언제 검증해야 하는지 아는 것이다.\"",
+  "143": "이제 우리는 ChatGPT를 단순한 질문 답변 도구가 아니라, 문제의 성격에 따라 적합한 능력을 조합해서 사용하는 도구로 바라볼 수 있습니다.",
+  "144": "여기까지가 AI의 기본 원리와 활용법입니다. 다음 강의에서는 한 단계 더 나아가, ChatGPT에게 ",
+  "145": "좋은 질문을 설계하는 능력",
+  "146": "을 배워볼 수 있습니다.",
+  "147": "6강 · 원하는 답을 얻는 질문 설계법 ",
+  "148": "1~5강 종합 이해도 테스트"
+ },
+ "resolutions": {
+  "624eac0f-78cb-533b-95ff-98c4c916401a": {
+   "status": "resolved",
+   "state": {
+    "items": [
+     {
+      "url": "https://help.openai.com/ko-kr/articles/8313428-does-chatgpt-tell-the-truth?utm_source=chatgpt.com",
+      "ref_id": "turn738992search0",
+      "refs": [
+       {
+        "turn_index": 738992,
+        "ref_type": "search",
+        "ref_index": 0
+       }
+      ],
+      "source_label": "OpenAI Help Center",
+      "source_name": "OpenAI Help Center",
+      "title": "ChatGPT는 진실을 말하나요?",
+      "snippet": null,
+      "pub_timestamp": null,
+      "metadata_label": null
+     },
+     {
+      "url": "https://help.openai.com/ko-kr/articles/9237897-searching-the-web-with-chatgpt?utm_source=chatgpt.com",
+      "ref_id": "turn738992search1",
+      "refs": [
+       {
+        "turn_index": 738992,
+        "ref_type": "search",
+        "ref_index": 1
+       }
+      ],
+      "source_label": "OpenAI Help Center",
+      "source_name": "OpenAI Help Center",
+      "title": "ChatGPT로 웹 검색하기",
+      "snippet": null,
+      "pub_timestamp": null,
+      "metadata_label": null
+     },
+     {
+      "url": "https://help.openai.com/ko-kr/articles/6825453-chatgpt-release-notes?utm_source=chatgpt.com",
+      "ref_id": "turn738992search9",
+      "refs": [
+       {
+        "turn_index": 738992,
+        "ref_type": "search",
+        "ref_index": 9
+       }
+      ],
+      "source_label": "OpenAI Help Center",
+      "source_name": "OpenAI Help Center",
+      "title": "ChatGPT — 릴리스 노트",
+      "snippet": null,
+      "pub_timestamp": null,
+      "metadata_label": null
+     }
+    ],
+    "active_index": 0,
+    "sources_title": "Sources 3개"
+   },
+   "safe_urls": [
+    "https://help.openai.com/ko-kr/articles/8313428-does-chatgpt-tell-the-truth?utm_source=chatgpt.com",
+    "https://help.openai.com/ko-kr/articles/9237897-searching-the-web-with-chatgpt?utm_source=chatgpt.com",
+    "https://help.openai.com/ko-kr/articles/6825453-chatgpt-release-notes?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Cite"
+  },
+  "942d2c4a-6ecd-545a-a687-b8420b25b9e3": {
+   "status": "resolved",
+   "state": {
+    "items": [
+     {
+      "url": "https://help.openai.com/ko-kr/articles/9237897-searching-the-web-with-chatgpt?utm_source=chatgpt.com",
+      "ref_id": "turn738992search1",
+      "refs": [
+       {
+        "turn_index": 738992,
+        "ref_type": "search",
+        "ref_index": 1
+       }
+      ],
+      "source_label": "OpenAI Help Center",
+      "source_name": "OpenAI Help Center",
+      "title": "ChatGPT로 웹 검색하기",
+      "snippet": null,
+      "pub_timestamp": null,
+      "metadata_label": null
+     }
+    ],
+    "active_index": 0,
+    "sources_title": "Source 1개"
+   },
+   "safe_urls": [
+    "https://help.openai.com/ko-kr/articles/9237897-searching-the-web-with-chatgpt?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Cite"
+  },
+  "965e8727-dd6e-5984-99ee-d31eb3b63259": {
+   "status": "resolved",
+   "state": {
+    "items": [
+     {
+      "url": "https://help.openai.com/ko-kr/articles/8313428-does-chatgpt-tell-the-truth?utm_source=chatgpt.com",
+      "ref_id": "turn738992search0",
+      "refs": [
+       {
+        "turn_index": 738992,
+        "ref_type": "search",
+        "ref_index": 0
+       }
+      ],
+      "source_label": "OpenAI Help Center",
+      "source_name": "OpenAI Help Center",
+      "title": "ChatGPT는 진실을 말하나요?",
+      "snippet": null,
+      "pub_timestamp": null,
+      "metadata_label": null
+     }
+    ],
+    "active_index": 0,
+    "sources_title": "Source 1개"
+   },
+   "safe_urls": [
+    "https://help.openai.com/ko-kr/articles/8313428-does-chatgpt-tell-the-truth?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Cite"
+  },
+  "f6f56486-f9e8-5487-bada-8d928fdfc15f": {
+   "status": "resolved",
+   "state": {
+    "items": [
+     {
+      "url": "https://help.openai.com/ko-kr/articles/6825453-chatgpt-release-notes?utm_source=chatgpt.com",
+      "ref_id": "turn738992search9",
+      "refs": [
+       {
+        "turn_index": 738992,
+        "ref_type": "search",
+        "ref_index": 9
+       }
+      ],
+      "source_label": "OpenAI Help Center",
+      "source_name": "OpenAI Help Center",
+      "title": "ChatGPT — 릴리스 노트",
+      "snippet": null,
+      "pub_timestamp": null,
+      "metadata_label": null
+     },
+     {
+      "url": "https://help.openai.com/ko-kr/articles/9237897-searching-the-web-with-chatgpt?utm_source=chatgpt.com",
+      "ref_id": "turn738992search1",
+      "refs": [
+       {
+        "turn_index": 738992,
+        "ref_type": "search",
+        "ref_index": 1
+       }
+      ],
+      "source_label": "OpenAI Help Center",
+      "source_name": "OpenAI Help Center",
+      "title": "ChatGPT로 웹 검색하기",
+      "snippet": null,
+      "pub_timestamp": null,
+      "metadata_label": null
+     }
+    ],
+    "active_index": 0,
+    "sources_title": "Sources 2개"
+   },
+   "safe_urls": [
+    "https://help.openai.com/ko-kr/articles/6825453-chatgpt-release-notes?utm_source=chatgpt.com",
+    "https://help.openai.com/ko-kr/articles/9237897-searching-the-web-with-chatgpt?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Cite"
+  },
+  "4d343fcd-41df-5b74-81df-63c72367c41d": {
+   "status": "resolved",
+   "state": {
+    "items": [
+     {
+      "url": "https://help.openai.com/ko-kr/articles/10500283-deep-research-in-chatgpt?utm_source=chatgpt.com",
+      "ref_id": "turn738992search8",
+      "refs": [
+       {
+        "turn_index": 738992,
+        "ref_type": "search",
+        "ref_index": 8
+       }
+      ],
+      "source_label": "OpenAI Help Center",
+      "source_name": "OpenAI Help Center",
+      "title": "ChatGPT의 심층 리서치",
+      "snippet": null,
+      "pub_timestamp": null,
+      "metadata_label": null
+     }
+    ],
+    "active_index": 0,
+    "sources_title": "Source 1개"
+   },
+   "safe_urls": [
+    "https://help.openai.com/ko-kr/articles/10500283-deep-research-in-chatgpt?utm_source=chatgpt.com"
+   ],
+   "hide_widget_feedback": true,
+   "componentName": "Cite"
+  }
+ },
+ "bindings": {},
+ "widgets": []
+}
