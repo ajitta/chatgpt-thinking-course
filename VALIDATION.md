@@ -181,3 +181,10 @@
 - 후속(공개를 막지 않음): P2 고대비 모드의 구간 선택 상태와 SVG 글자, P2 슬라이더 결과 낭독, P3 다섯 건(`blog/STATUS.md` 다음에 할 일 2).
 - 범위: 실제 휴대폰 기기, iOS Safari, Firefox, 실제 화면낭독기와 Windows 고대비 테마는 확인하지 않았습니다. 운영 서버(GitHub Pages)는 공개 뒤 확인합니다.
 
+## 웹 강의 공개 (2026-11-12)
+
+- PASS: `ajitta/github-pages-lessons-1`을 `main`에 fast-forward로 병합해 푸시했고(`f1c763b..dc58fe2`), GitHub Pages가 `dc58fe2`로 빌드됐습니다. 되돌릴 지점은 태그 `pre-pages-merge`입니다.
+- PASS: 과정 홈과 1~20강 주소 21개가 모두 HTTP 200입니다. 3강 제목, 과정 홈 제목이 맞고, 옛 `lesson01.js`는 404이며, 공개된 `lesson-data.js`에 `gettyimages` 주소가 없습니다.
+- PASS (ego-browser, 운영 서버): 과정 홈과 1·3·10·17·20강을 360px와 1280px에서 열어 가로 넘침 0, 스크립트 오류 0, 3강 원문 이미지 2장 로드와 Getty 안내를 확인했습니다.
+- 범위: 실제 휴대폰 기기와 다른 브라우저는 확인하지 않았습니다. 네이버 1강 글의 실습 링크는 이제 과정 홈으로 열리며, 네이버 20편 일괄 재발행 때 `lessons/01/`로 바꿉니다.
+
