@@ -53,9 +53,12 @@ const CORRECTIONS = {
   }
 };
 
-// Original images whose source page is on Getty Images are left out for their licence terms
-// (user decision 2026-11-12). Their addresses never reach the generated data; the page shows a site note instead.
-const OMITTED_IMAGE_SOURCES = [{ host: /(^|\.)gettyimages\.[a-z.]+$/, name: "Getty Images" }];
+// Original images whose source host is listed here are left out: their addresses never reach the generated
+// data and the page shows a site note instead. Empty since 2026-11-12: the two Getty Images photos (lessons 2
+// and 3) were left out before going public, then restored the same day at the user's decision, since they load
+// from the user's own shared conversation like the other original images. Example entry:
+//   { host: /(^|\.)gettyimages\.[a-z.]+$/, name: "Getty Images" }
+const OMITTED_IMAGE_SOURCES = [];
 
 function omitImages(resolutions) {
   const out = JSON.parse(JSON.stringify(resolutions || {}));
