@@ -1,52 +1,58 @@
 # 네이버 블로그 작업 현황 (새 세션 시작점)
 
-마지막 갱신: 2026-11-11. 새 세션은 이 문서, [`PLAYBOOK.md`](PLAYBOOK.md), [`lessons-plan.json`](lessons-plan.json) 순서로 읽고 시작합니다.
+마지막 갱신: 2026-11-12. 새 세션은 이 문서, [`PLAYBOOK.md`](PLAYBOOK.md), [`lessons-plan.json`](lessons-plan.json) 순서로 읽고 시작합니다.
 
 ## 지금 상태
 
-| 강의 | 상태 | 글 |
+| 강의 | 상태 | 카테고리 |
 |---|---|---|
-| 1강 | 발행(매거진판, 굵게 오류 수정 후 재발행) | https://blog.naver.com/ajitta/224472328521 |
-| 2강 | 발행 | https://blog.naver.com/ajitta/224473420017 |
-| 3~20강 | 미작성 | `lessons-plan.json`에 강의별 원문 경로, 카테고리, 원문 도식 목록 |
+| 1~4강 | 발행 | `ChatGPT Thinking` 아래 AI 기본원리(카테고리 번호 7) |
+| 5~12강 | 발행 | `ChatGPT Thinking` 아래 AI 활용과 업무 시스템(카테고리 번호 8) |
+| 13~20강 | 발행 | `ChatGPT Thinking` 아래 사람의 사고와 불확실한 판단(카테고리 번호 9) |
+| 21~30강 | 미작성 | `lessons-plan.json`에 아직 항목 없음 |
+
+웹 강의 1~20강(과정 홈 `https://ajitta.github.io/chatgpt-thinking-course/`, 강의 `.../lessons/NN/`)은 코드·내용 리뷰까지 반영했고, `main`에 병합해 푸시하기 전까지 공개되지 않습니다(다음에 할 일 1의 4단계).
+
+글 주소는 [`blog/README.md`](README.md)의 표, 루트 [`README.md`](../README.md)의 '네이버 글' 칸, `lessons-plan.json`의 `logNo`에 있습니다. 2026-11-11에 한 일:
+
+- 2강 글 끝의 GitHub 링크를 지우고 재발행했습니다.
+- 3~20강을 발행했습니다. 기본 원고는 공유 대화 원본이고, 원고마다 맨 위 주석에 핵심·마무리 문장의 행 번호가 있습니다.
+- impeccable 평가(critique, 2강 발행본 기준 21/32점)를 받아 휴대폰 길이 규칙을 정했습니다. 1·2·3강 도식 PNG는 휴대폰에서 읽히는 크기로 다시 만들고, 1·2강은 그 PNG로 재발행했습니다. 3강은 새 PNG로 처음 발행했습니다.
+- 5강은 마무리 문장이, 12강은 마무리 문장과 소제목 하나가 발행 후 360px에서 줄이 늘어(마무리 세 줄, 소제목 두 줄) 고친 뒤 재발행했습니다.
 
 ## 다음에 할 일
 
-1. **2강 발행본의 GitHub 링크**: 발행본 끝에 "2강 원문 전체 읽기"(GitHub) 링크가 남아 있습니다. 원고에서는 지웠습니다. 발행본에서 지울지(재발행) 사용자 결정 대기.
-2. **3강**: `naver-lesson` 스킬(또는 "3강 네이버 글 만들어")로 시작. 3강 원문 도식 `sources/conversation/assets/svg-04-lesson-03.svg`(고양이 삼단논법)는 완성본이라 그대로 쓸 수 있습니다.
-3. **5강, 13강 전에**: 네이버 블로그 관리에서 `ChatGPT Thinking` 아래 카테고리 "AI 활용과 업무 시스템"(5~12강), "사람의 사고와 불확실한 판단"(13~20강)을 만들고 카테고리 번호를 `lessons-plan.json`의 `categoryNo`에 적습니다.
-4. **웹 강의(1~20강)**: 만들었고 아직 공개 전입니다. 병합, 공개 확인, 네이버 1강 글 수정, 글마다 강의 링크 넣기는 아래 '웹 강의 이어서 할 일'을 따릅니다. GitHub(github.com) 링크는 계속 달지 않습니다(`lint_manuscript.py`가 막음).
-
-## 웹 강의 이어서 할 일 (2026-11-11 기준)
-
-1~20강 웹 강의와 코드·내용 리뷰 반영은 브랜치 `ajitta/github-pages-lessons-1`에 커밋해 푸시했습니다. `main`에는 아직 병합하지 않았으므로 사이트는 공개 전입니다. 주소는 과정 홈 `https://ajitta.github.io/chatgpt-thinking-course/`, 강의 `.../lessons/NN/`(NN은 01~20)입니다.
-
-1. **병합**: 브랜치를 `main`에 병합합니다. 그동안 원래 작업 폴더(`main`)에서 네이버 3~6강 작업이 따로 진행됐으므로 `blog/STATUS.md`, `blog/PLAYBOOK.md`, `blog/lessons-plan.json`, `blog/README.md`, `blog/tools/lint_manuscript.py`, `.claude/skills/naver-lesson/SKILL.md`에서 충돌이 날 수 있습니다. 이 브랜치가 이 파일들에서 바꾼 것은 github.io 링크 규칙, 1강 링크 설명, 2강 발행 사실, 이 절뿐이니 양쪽 내용을 합칩니다.
-2. **다시 빌드**: 병합 뒤 `node site/build.mjs`(20줄 출력)와 `node --check docs/assets/runtime.js`를 실행하고, `git status`에 생성 파일 차이가 없는지 봅니다.
-3. **공개 확인**: `main`을 푸시해 GitHub Pages가 빌드되면 과정 홈과 1~20강이 열리는지, 실습이 동작하는지, 2·3강 원문 이미지가 보이는지 실제 휴대폰과 PC에서 확인하고 `VALIDATION.md`에 적습니다.
-4. **네이버 1강 글 수정 (발행물이라 승인 필요)**: 공개한 날, 발행된 1강 글(https://blog.naver.com/ajitta/224472328521)의 "빈칸 문제와 조각 생성 시연은 1강 학습 페이지에서 직접 해 볼 수 있습니다."를 "빈칸 문제와 학습 확인 문제는 1강 학습 페이지에서 직접 풀어 볼 수 있습니다."로, 실습 링크를 `https://ajitta.github.io/chatgpt-thinking-course/lessons/01/`로 바꿉니다. 원고 `blog/lesson-01-summary.html`, `blog/naver-summary-01.txt`도 같이 고칩니다. 조각 생성 시연은 지운 옛 1강 페이지에만 있었습니다. 발행 전 편집기 캡처, 발행 후 360/412px 확인을 합니다.
-5. **글마다 강의 링크**: 공개 뒤 발행된 글(2강부터) 끝에 해당 강의 주소 한 줄을 넣습니다(`PLAYBOOK.md`, `lessons-plan.json`의 `decisions.closing_link`). 새 글은 처음부터 넣습니다. 강의마다 따로 승인을 받습니다.
-6. **사용자 결정 대기**:
-   - 3강 '직접 실험해 보기' 판정 수정을 유지할지. 원문 그대로 두려면 `site/build.mjs`의 `CORRECTIONS`를 지우고 다시 빌드합니다.
-   - 16강 GitHub 인용(scikit-learn 문서)을 링크할지. 링크하려면 `docs/assets/runtime.js`의 github.com 예외를 지웁니다.
-   - 2·3강 원문 이미지 4장 중 Getty Images 출처 2장(믹싱 콘솔, 사과)을 계속 핫링크로 쓸지.
-7. **나중에**: 21~30강 웹 강의는 `AGENTS.md`의 'Extending the site (lessons 21-30)' 절차를 따릅니다. 확인하지 못한 것은 실제 휴대폰 기기, 화면 낭독기, Safari·Firefox입니다(`VALIDATION.md` 범위).
+1. **웹 강의 공개와 네이버 20편 일괄 재발행**(2026-11-12 사용자 결정). 순서와 승인 지점:
+   1. (2026-11-12 완료) 브랜치 `ajitta/github-pages-lessons-1`에 `main`을 합쳐 기록 충돌 9개 파일을 정리했고, `node site/build.mjs`(20줄 출력)와 `node --check docs/assets/runtime.js`를 통과했으며 생성 파일 차이는 없었습니다. 원고 lint와 원본 스냅샷 대조도 `main`과 같았습니다(공개 영향 없음).
+   2. 공개 전 결정(사용자가 추천안 승인): 2·3강 원문 이미지 4장(`images.openai.com` 핫링크) 중 Getty Images 출처 2장(2강 믹싱 콘솔, 3강 사과)은 빌드에서 빼고 점선 안내를 남깁니다. 3강 '직접 실험해 보기' 판정 수정(`site/build.mjs`의 `CORRECTIONS`)은 유지합니다. 16강 본문 인용은 github.com에 있는 scikit-learn 문서 원본 파일이라 링크하지 않습니다(같은 강의에 공식 문서 `scikit-learn.org` 링크가 따로 있음).
+   3. 공개 전 로컬 확인: `python -m http.server -d docs 8000`으로 과정 홈과 1~20강을 휴대폰·PC 너비로 확인합니다(실습 동작, 원문 이미지, 이전·다음 이동).
+   4. `main`에 병합하고 푸시하면 GitHub Pages가 공개됩니다(사용자 승인 필요). 되돌릴 지점은 태그 `pre-pages-merge`입니다. 과정 홈과 1~20강 주소 21개가 열리는지, 휴대폰에서 실습이 동작하는지 확인해 `VALIDATION.md`에 적습니다.
+   5. 네이버 원고 20편 수정: "다음 강의는" 문단 바로 아래에 다음 글 링크 한 줄(예: "다음 글 · 4강 ChatGPT는 왜 자신 있게 틀린 답을 할까?", 20강은 21강 발행 전까지 없음), 글 끝 출처 줄 근처 묶음에 웹 강의 링크 `https://ajitta.github.io/chatgpt-thinking-course/lessons/NN/`와 이전 글 링크(2강부터), 소제목 다음 빈 줄 없애기(h2 다음 첫 본문 문단에 `data-tight`). 1강은 "빈칸 문제와 조각 생성 시연은 1강 학습 페이지에서 직접 해 볼 수 있습니다."를 "빈칸 문제와 학습 확인 문제는 1강 학습 페이지에서 직접 풀어 볼 수 있습니다."로, 실습 링크를 `lessons/01/`로 바꿉니다(조각 생성 시연은 지운 옛 1강 페이지에만 있었음). 1·2강 원고는 휴대폰 길이 규칙에 맞춰 이미 고쳤고(1강 마무리 문장 '는' 덜어 냄, 2강 리드·본문 두 문단 나눔과 마무리 문장 교체), 발행본에는 이 재발행 때 반영됩니다. 1강은 실습 링크(`lessons/01/`)가 웹 강의 링크를 겸합니다. 한 편을 먼저 편집기에 채워 캡처를 보여 드리고 승인받은 뒤 그 한 편을 재발행하고 `checkLive` `ok: true`를 확인합니다.
+   6. 나머지 19편을 일괄 재발행합니다(사용자 승인 한 번). 강의마다 `buildDraft` `ok: true`, 발행 후 `checkLive` `ok: true`, 새 링크가 모두 열리는지 확인하고, 실패하면 멈춥니다.
+   - 링크는 강의 순서를 따르므로 카테고리가 바뀌는 4→5강, 12→13강도 이어집니다(네이버 기본 목록은 카테고리 안 발행 순서). 21강 이후를 발행할 때는 바로 앞 글에 다음 글 링크를 넣어 재발행합니다.
+2. **21~30강**: 사용자가 원하면 먼저 `lessons-plan.json`에 21~30강 항목과 카테고리(4부, 5부)를 정합니다. 카테고리 이름은 사용자에게 묻습니다. 웹 강의는 `AGENTS.md`의 'Extending the site (lessons 21-30)' 절차를 따릅니다.
+3. **정한 것**(2026-11-12): 끝 썸네일은 지금처럼 글 끝에 둡니다(휴대폰에서 전체 폭으로 보이는 것은 플랫폼 제약). 긴 강의는 나누지 않습니다(강의 하나 = 네이버 글 하나 = 웹 강의 페이지 하나).
+4. **남은 질문**: 핵심 인용구의 기울임을 끌 수 있는지 편집기에서 확인하지 않았습니다.
+5. **확인 못 한 것**: 네이버 모바일 앱 화면, 발행본 도식의 휴대폰 화면 캡처. 웹 강의는 실제 휴대폰 기기, 화면 낭독기, Safari·Firefox를 확인하지 않았습니다(`VALIDATION.md`).
 
 ## 강의 하나를 만드는 흐름 (요약)
 
-원고 작성과 승인 → `python blog/tools/lint_manuscript.py N` → `python blog/tools/thumbnail.py N "줄1" "줄2" "줄3" --pretendard "C:/Users/ajitta/AppData/Local/Microsoft/Windows/Fonts" --out blog/assets/thumb-lesson-0N.png` → ego-browser로 `PostWriteForm.naver?blogId=ajitta` 열고 `buildDraft` (`ok: true` 필수) → 캡처 보여 주고 승인 → `publish(page, { category, categoryNo, topic })` → 360px/412px 발행본 확인 → 기록. 자세한 규칙은 `PLAYBOOK.md`.
+원고 작성과 승인 → `python blog/tools/lint_manuscript.py N`(ERROR 0, 휴대폰 길이 WARN은 고침. 마무리 문장 폭 경고만 발행 후 줄 수로 판단) → `python blog/tools/summary_text.py N` → `python blog/tools/thumbnail.py N "줄1" "줄2" "줄3" --pretendard "C:/Users/ajitta/AppData/Local/Microsoft/Windows/Fonts" --out blog/assets/thumb-lesson-NN.png` → ego-browser로 `PostWriteForm.naver?blogId=ajitta` 열고 `buildDraft`(`ok: true` 필수) → `publish(page, { category, categoryNo, topic })` → 다른 페이지에서 `checkLive`(360/412px, `ok: true`) → 기록. 자세한 규칙은 `PLAYBOOK.md`.
 
 ## 사용자와 합의한 작업 방식
 
-- 글: 매거진형. 보고서·숙제 말투 금지(표지 없이 문장으로), 원문에 있는 사실만, 핵심 문장은 원문 문장 그대로 맨 앞 따옴표 인용, 글 제목에 ChatGPT.
-- 디자인: 마루부리(리드·소제목·마무리), 나눔고딕 본문 양끝 정렬, 소제목 19px 한 줄, 예문은 버티컬 라인 인용구(굵게), 구분선, 썸네일은 글 끝 작게 + 대표 이미지.
+- 글: 매거진형. 보고서·숙제 말투 금지(표지 없이 문장으로), 원문에 있는 사실만, 핵심 문장은 원문 문장 그대로 맨 앞 따옴표 인용, 글 제목에 ChatGPT. 기본 원고는 공유 대화 원본.
+- 디자인: 마루부리(리드·소제목·마무리), 나눔고딕 본문 19px 양끝 정렬, 소제목 한 줄, 예문은 버티컬 라인 인용구(굵게), 구분선, 썸네일은 글 끝 + 대표 이미지. 휴대폰 길이: 본문 문단 160자, 리드 130자, 예문 60자, 마무리 문장 두 줄 이하.
+- 이미지: 원문 도식만 씁니다. 대화 원본의 사진은 원 출처와 이용 조건을 확인할 수 있을 때만 씁니다.
 - 결정은 사용자에게 묻고, 추천안을 함께 제시합니다. "너의 추천대로"는 제시한 추천안 승인입니다.
-- 발행은 강의마다 따로 승인을 받은 뒤에만 합니다. 발행 전 편집기 캡처, 발행 후 휴대폰 너비 캡처로 확인합니다.
+- 발행은 강의마다 승인을 받은 뒤에만 합니다. 발행 전 편집기 캡처, 발행 후 휴대폰 너비 확인을 합니다. 예외는 두 번입니다. 3~20강 발행(2026-11-11, "20강 전체를 발행해")과 1~20강 일괄 재발행(2026-11-12 결정, 첫 한 편 승인 뒤 나머지 19편 한 번 승인)이며, 둘 다 `buildDraft` `ok: true`와 발행 후 `checkLive` `ok: true`를 조건으로 합니다.
 - 커밋·푸시는 사용자가 말할 때 합니다.
 
 ## 환경 메모
 
-- ego-browser 창이 최소화되면 스크린샷이 실패합니다(편집은 됨). 사용자에게 창 복원을 부탁합니다.
-- 자동 모드 안전 장치가 네이버 발행을 한 번 막은 적이 있습니다. 사용자가 "너가 발행해"처럼 직접 지시하면 진행됐습니다.
+- ego-browser 창이 최소화되거나 다른 탭이 앞에 있으면 스크린샷이 시간 초과로 실패합니다(편집과 검사는 됨). 캡처가 필요하면 사용자에게 창 복원을 부탁합니다.
+- 사용자가 ego-browser 창을 직접 조작하면 작업 공간 제어권이 사용자에게 넘어가 명령이 멈춥니다. 사용자에게 물은 뒤 `takeOverTaskSpace`로 이어 갑니다.
+- 뷰포트 설정(`Emulation.setDeviceMetricsOverride`)은 실행마다 사라지므로 매번 다시 겁니다.
+- 휴대폰(m.blog)에서는 편집기 19px이 20px로 그려집니다. 소제목 폭은 20px 기준 316px 이하여야 한 줄입니다(lint가 이 기준).
 - ChatGPT 공유 링크는 로그인해야 열립니다(로그인은 사용자가 직접).
 - 마루부리 글꼴은 `blog/tools/fonts/`(저장소에 올리지 않음).

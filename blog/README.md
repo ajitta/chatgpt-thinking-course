@@ -2,9 +2,9 @@
 
 `lesson-01.txt`부터 `lesson-30.txt`까지 강의 하나당 파일 하나입니다. 첫 줄을 글 제목으로 쓰고 나머지를 본문에 복사하세요. 문단과 표의 모양은 네이버 편집기에서 확인해 주세요. 표는 일반 텍스트에서 셀 순서를 잃지 않도록 행마다 `|`로 구분했습니다.
 
-이 파일들은 원문을 블로그용으로 정적으로 변환했습니다. 슬라이더나 자동 채점이 본문에 실행되는 것은 아닙니다. 1강 파일에는 1강 웹 강의 링크가 들어 있습니다.
+이 파일들은 원문을 블로그용으로 정적으로 변환했습니다. 슬라이더나 자동 채점이 본문에 실행되는 것은 아닙니다. 1강 파일에는 1강 웹 강의 링크가 들어 있습니다. 현재 게시본은 1~20강의 매거진판 요약 글(`lesson-XX-summary.html`)이며, 이 전체 복사본은 1강 첫 게시본 외에는 게시하지 않았습니다. 21~30강은 아직 발행하지 않았습니다.
 
-2026-11-11에 [1강을 네이버 블로그에 공개](https://blog.naver.com/ajitta/224472328521)했습니다. 처음에는 전체 본문을 정적으로 옮겼고, 사용자 피드백에 따라 아래 요약 형식으로 수정했습니다. 같은 날 2강도 공개했습니다. 3–30강은 게시하지 않았습니다.
+2026-11-11에 [1강을 네이버 블로그에 공개](https://blog.naver.com/ajitta/224472328521)했습니다. 처음에는 전체 본문을 정적으로 옮겼고, 사용자 피드백에 따라 아래 요약 형식으로 수정했습니다.
 
 1강 게시본을 **강의 핵심·요약 + 1강 학습 페이지 직접 링크**(지금 주소는 과정 홈이며, 웹 강의 공개 뒤 `lessons/01/`로 바꿀 예정) 형식으로 수정했습니다. 해당 게시용 요약은 `lesson-01-summary.html`이며, JavaScript를 실행하는 임베드 코드가 아니라 편집기에 서식 있는 글로 붙여넣기 위한 원고입니다. 일반 텍스트 원고는 `naver-summary-01.txt`입니다. `lesson-01.txt`는 앞서 만든 전체 강의의 정적 복사본으로 구분해 보관합니다.
 
@@ -26,4 +26,29 @@
 
 ## 2강 (2026-11-11 발행)
 
-[2강 글](https://blog.naver.com/ajitta/224473420017), 원고 `lesson-02-summary.html`, 텍스트판 `naver-summary-02.txt`, 썸네일 `assets/thumb-lesson-02.png`, 의미 지도 `assets/lesson-02-meaning-map.png`. 글 끝 링크는 GitHub의 2강 원문입니다.
+[2강 글](https://blog.naver.com/ajitta/224473420017), 원고 `lesson-02-summary.html`, 텍스트판 `naver-summary-02.txt`, 썸네일 `assets/thumb-lesson-02.png`, 의미 지도 `assets/lesson-02-meaning-map.png`. 글 끝의 GitHub 원문 링크는 2026-11-11에 지웠습니다.
+
+## 3~20강 (2026-11-11 발행)
+
+원고는 `lesson-XX-summary.html`, 텍스트판은 `naver-summary-XX.txt`(`tools/summary_text.py`로 만듦), 썸네일은 `assets/thumb-lesson-XX.png`입니다. 기본 원고는 공유 대화 원본이고, 휴대폰 길이 규칙(본문 문단 160자 이하, 리드 130자 이하, 예문 60자 이하, 마무리 문장 두 줄 이하)을 지켰습니다. 3강에는 원문 도식 `assets/lesson-03-syllogism.png`가 있고, 1·2강 도식 PNG도 같은 날 휴대폰에서 읽히는 크기로 바꿔 재발행했습니다.
+
+| 강의 | 글 | 카테고리 |
+|---|---|---|
+| 3강 | [ChatGPT는 정말 이해하고 생각하는 걸까?](https://blog.naver.com/ajitta/224473514940) | AI 기본원리 |
+| 4강 | [ChatGPT는 왜 자신 있게 틀린 답을 할까?](https://blog.naver.com/ajitta/224473520673) | AI 기본원리 |
+| 5강 | [ChatGPT를 제대로 활용하는 4가지 방법](https://blog.naver.com/ajitta/224473523925) | AI 활용과 업무 시스템 |
+| 6강 | [ChatGPT로 원하는 답을 얻는 프롬프트 설계법](https://blog.naver.com/ajitta/224473527926) | AI 활용과 업무 시스템 |
+| 7강 | [ChatGPT 같은 AI에게 일을 잘 위임하는 방법](https://blog.naver.com/ajitta/224473531236) | AI 활용과 업무 시스템 |
+| 8강 | [ChatGPT 같은 AI 에이전트는 어떻게 스스로 일을 수행할까?](https://blog.naver.com/ajitta/224473534348) | AI 활용과 업무 시스템 |
+| 9강 | [ChatGPT 같은 AI 여러 명이 팀을 이루면 무슨 일이 일어날까?](https://blog.naver.com/ajitta/224473537658) | AI 활용과 업무 시스템 |
+| 10강 | [ChatGPT 같은 AI로 나만의 업무 시스템을 어떻게 설계할까?](https://blog.naver.com/ajitta/224473540524) | AI 활용과 업무 시스템 |
+| 11강 | [ChatGPT 같은 AI 업무 시스템의 성과·비용·오류 관리](https://blog.naver.com/ajitta/224473543348) | AI 활용과 업무 시스템 |
+| 12강 | [ChatGPT 같은 AI 업무 시스템을 안전하고 안정적으로 운영하는 방법](https://blog.naver.com/ajitta/224473546876) | AI 활용과 업무 시스템 |
+| 13강 | [ChatGPT 시대, 사람의 역할은 어떻게 달라질까?](https://blog.naver.com/ajitta/224473559218) | 사람의 사고와 불확실한 판단 |
+| 14강 | [ChatGPT를 활용하면서도 내 사고력을 키우는 방법](https://blog.naver.com/ajitta/224473562643) | 사람의 사고와 불확실한 판단 |
+| 15강 | [ChatGPT 시대의 증거 기반 판단과 불확실성 다루기](https://blog.naver.com/ajitta/224473566023) | 사람의 사고와 불확실한 판단 |
+| 16강 | [ChatGPT 같은 AI의 확신은 얼마나 믿을 수 있을까?](https://blog.naver.com/ajitta/224473568746) | 사람의 사고와 불확실한 판단 |
+| 17강 | [ChatGPT 같은 AI 시스템의 실패를 미리 찾아내는 프리모텀과 레드팀](https://blog.naver.com/ajitta/224473571355) | 사람의 사고와 불확실한 판단 |
+| 18강 | [ChatGPT 시대, 예측할 수 없는 위험과 회복탄력성](https://blog.naver.com/ajitta/224473574549) | 사람의 사고와 불확실한 판단 |
+| 19강 | [ChatGPT 시대, 불확실할수록 작게 결정하고 빠르게 배우는 방법](https://blog.naver.com/ajitta/224473577726) | 사람의 사고와 불확실한 판단 |
+| 20강 | [ChatGPT와 함께 만드는 나만의 AI 의사결정 운영체계](https://blog.naver.com/ajitta/224473580570) | 사람의 사고와 불확실한 판단 |

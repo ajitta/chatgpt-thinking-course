@@ -1,0 +1,59 @@
+<!-- 네이버 11강 원고 (매거진형). 편집기 적용 규칙은 blog/PLAYBOOK.md, 형식 기준은 lesson-01-summary.html.
+     title: ChatGPT 같은 AI 업무 시스템의 성과·비용·오류 관리
+     핵심 문장 출처: sources/conversation/chatgpt-thinking-공유대화-원본.md 6096행, "## 10. 11강의 핵심 결론"에서 "가장 중요한 원칙은 다음과 같습니다." 다음 문장(그대로, 굵게 표시만 뺌).
+     마무리 문장 출처: sources/conversation/chatgpt-thinking-공유대화-원본.md 6023행, "## 8. 실전 테스트: AI 시스템을 확대해도 될까?"에서 "이 실험에서 꼭 배워야 할 것은 다음과 같습니다." 다음 문장. 앞의 "AI 시스템의"에서 "시스템의"와 "정확도 하나가 아니라"만 덜어 냄(단어 삭제만, 360px 화면 두 줄).
+-->
+<p style="font-size:15px;color:#42715a;">AI 원리 노트 · ChatGPT Thinking 11강</p>
+<blockquote data-quote="mark" data-font="maru"><p>좋은 AI 업무 시스템은 단순히 자동으로 일하는 시스템이 아니라, 성과를 측정하고, 오류를 발견하고, 스스로의 한계를 드러내며, 사람의 감독 아래 계속 개선할 수 있는 시스템입니다.</p></blockquote>
+<p data-font="maru" style="font-size:19px;color:#222222;">10강에서는 고객 문의를 분석하는 AI 시스템을 설계했습니다. 이제 그 시스템이 실제로 작동한다고 가정해 보겠습니다.</p>
+<p data-font="maru" style="font-size:19px;color:#222222;">AI가 매일 열심히 일하고 보고서를 만들어도, 그 시스템이 정말 우리에게 이익을 주고 있는지는 어떻게 알 수 있을까요? 11강은 계산 과정을 배울 수 있도록 만든 가상 사례로 성과와 비용, 오류를 따져 봅니다.</p>
+<hr>
+<h2 data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">작업량과 성과는 다릅니다</h2>
+<p style="font-size:19px;color:#222222;">KPI는 우리말로 ‘핵심 성과 지표’, 곧 우리가 잘하고 있는지 보여 주는 숫자입니다. 헬스장에서 체중과 운동 시간, 체지방률을 재듯이 AI 업무 시스템에도 성과를 잴 기준이 필요합니다. 다만 숫자를 아무거나 많이 잰다고 도움이 되지는 않습니다.</p>
+<blockquote data-quote="line" data-font="maru"><p>AI가 보고서 100개를 만들었습니다. 담당자의 작업 시간이 50시간 줄었습니다.</p></blockquote>
+<p style="font-size:19px;color:#222222;">앞 문장은 얼마나 많이 일했는지 보여 주는 ‘활동 지표’이고, 뒤 문장은 어떤 가치가 생겼는지 보여 주는 ‘성과 지표’입니다. 보고서 100개가 모두 틀렸거나 읽히지 않았다면 큰 의미가 없습니다.</p>
+<p style="font-size:19px;color:#222222;">그래서 KPI를 정할 때는 최소한 효율성과 품질, 성과를 함께 봐야 합니다. 속도만 빠른 AI도, 정확하지만 비용이 너무 큰 AI도, 보고서만 만들고 실제 문제 해결에는 쓰이지 않는 AI도 개선이 필요할 수 있습니다.</p>
+<hr>
+<h2 data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">평균만 보면 큰 오류를 놓칩니다</h2>
+<p style="font-size:19px;color:#222222;">앞서 설계한 AI를 사람이 정답을 확인한 문의 200건으로 시험해, 184건을 올바르게 분류하고 16건을 잘못 분류했다고 가정합니다. 정확도는 92%입니다. 이 정도로 충분한지는 업무의 위험도와 합격 기준에 따라 다릅니다.</p>
+<p style="font-size:19px;color:#222222;">잘못 분류한 16건 가운데 2건이 환불 요청을 놓쳐 고객에게 중요한 피해를 줄 수 있는 오류라면, 전체 정확도가 92%여도 이 심각한 오류는 따로 관리해야 합니다.</p>
+<p style="font-size:19px;color:#222222;">이 결과는 예시 목표인 정확도 95% 이상과 심각한 오류 0건에 모두 못 미치므로, 무인 자동 처리를 넓히기 전에 오류 유형과 원인부터 분석해야 합니다.</p>
+<p style="font-size:19px;color:#222222;">시스템 A는 정확도 97%에 심각한 오류 3건, 시스템 B는 정확도 95%에 심각한 오류 0건이라고 해 봅시다. 정확도만 비교하면 A가 낫습니다.</p>
+<p style="font-size:19px;color:#222222;">그러나 심각한 오류가 환불 요청 누락이나 고객 개인정보 유출로 이어질 수 있다면 이야기가 달라집니다. 오류가 얼마나 자주 발생하는지뿐 아니라, 그 오류가 어떤 피해를 만드는지 측정해야 합니다.</p>
+<p style="font-size:19px;color:#222222;">개인정보가 허가되지 않은 외부 대상에게 전송되거나 승인 없이 중요한 데이터가 삭제되는 치명적 오류가 생기면 실행을 막고 사고에 대응해야 합니다. AI의 평균 성능이 좋아도 이런 오류를 막는 장치가 없다면 실제 업무에서는 위험할 수 있습니다.</p>
+<p style="font-size:19px;color:#222222;">그래서 시스템의 위험도에 따라 자동 처리 범위를 정해야 합니다. 예를 들어 고객 문의 분류는 자동으로 진행하되, 실제 환불 결정이나 개인정보를 포함한 외부 발송은 승인받도록 설계할 수 있습니다.</p>
+<hr>
+<h2 data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">아낀 시간이 곧 돈은 아닙니다</h2>
+<p style="font-size:19px;color:#222222;">AI를 쓰면 돈이 얼마나 절약될까요? 한 달에 문의 1,000건을 처리하는데, 건당 5분 걸리던 일이 AI 도입 뒤 사람의 검토와 처리를 포함해 2분으로 줄었다고 가정합니다. 한 달에 50시간이 줄고, 시간당 인건비를 25,000원으로 잡으면 그 가치는 월 125만 원입니다.</p>
+<p style="font-size:19px;color:#222222;">하지만 회사 통장에 125만 원이 들어온다는 뜻은 아닙니다. 직원의 근무 시간이나 외주 비용이 실제로 줄거나, 아낀 시간을 다른 가치 있는 일에 써야 경제적 효과가 생깁니다.</p>
+<p style="font-size:19px;color:#222222;">아낀 시간의 가치 125만 원에서 모델·API 사용료, 업무 연결 도구, 유지관리, 추가 품질 감사를 합친 가상의 월 운영 비용 55만 원을 빼면 순편익은 70만 원입니다.</p>
+<p style="font-size:19px;color:#222222;">순편익을 운영 비용으로 나눈 투자수익률(ROI)은 약 127.3%입니다. 다만 이 값은 초기 구축비를 제외한 반복 운영 기준의 추정치이고, 품질 저하나 실제 피해 비용은 아직 반영하지 않았습니다.</p>
+<p style="font-size:19px;color:#222222;">같은 AI라도 업무량이 충분하지 않으면 비용 절감 효과가 없을 수 있습니다. 처음 시스템을 구축하는 데 120만 원이 더 들었다면 첫 달 순편익은 마이너스 50만 원입니다. 같은 편익이 이어진다고 가정하면 두 번째 달에 누적 손익이 플러스로 돌아섭니다.</p>
+<hr>
+<h2 data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">로그가 있어야 원인을 찾습니다</h2>
+<p style="font-size:19px;color:#222222;">AI가 문의 하나를 잘못 분류했을 때 ‘AI가 틀렸습니다’라고만 적으면 문제가 해결되지 않습니다. 왜 틀렸는지 알려면 작업 과정을 추적할 수 있는 기록이 있어야 하는데, 이 기록을 ‘실행 로그(Execution Log)’라고 합니다.</p>
+<p style="font-size:19px;color:#222222;">가상의 실행 로그를 보면 AI는 문의 100건을 읽고 분류한 뒤 C047번 문의에서 검증에 실패했고, 보고서 자동 배포는 보류됐습니다. C047번은 이런 문의였습니다.</p>
+<blockquote data-quote="line" data-font="maru"><p>배송이 늦어서 환불을 요청합니다.</p></blockquote>
+<p style="font-size:19px;color:#222222;">AI는 이를 배송 문제로만 분류했지만, 미리 정한 분류 기준에서는 환불 요청도 따로 표시해야 했습니다. 로그가 있으면 어느 단계에서 실패했는지 추적할 수 있고, 고칠 방향도 구체적으로 잡힙니다.</p>
+<p style="font-size:19px;color:#222222;">이런 복합 문의에서 일부 유형이 빠졌다면 먼저 분류 지침이 한 가지 유형만 허용한다는 원인 가설을 세웁니다. 그다음 대표 유형과 추가 유형을 따로 기록하도록 분류 구조를 고치고, 복합 문의가 들어간 시험 데이터로 다시 평가합니다.</p>
+<p style="font-size:19px;color:#222222;">이런 과정이 단순한 프롬프트 수정보다 훨씬 체계적인 개선 방법입니다.</p>
+<p style="font-size:19px;color:#222222;">로그에는 실행 ID, 입력 자료의 버전과 식별자, 모델·프롬프트 버전, 도구 호출과 결과, 처리 시간과 토큰 사용량, 오류 유형, 승인과 완료 상태 같은 항목을 남깁니다.</p>
+<p style="font-size:19px;color:#222222;">다만 로그 자체에도 민감한 정보가 담길 수 있어서, 고객의 이름이나 전화번호, 문의 원문을 무조건 저장해서는 안 됩니다. 필요한 항목만 기록하고 접근 권한과 보관 기간을 관리해야 합니다.</p>
+<hr>
+<h2 data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">고친 뒤에는 다시 확인합니다</h2>
+<p style="font-size:19px;color:#222222;">여기서 Know Your Unknowns의 원리가 다시 등장합니다. 처음에는 우리도 AI도 어떤 오류가 생길지 모두 알 수 없고, 실제로 써 보면 몰랐던 문제가 드러납니다.</p>
+<p style="font-size:19px;color:#222222;">좋은 시스템은 그 문제를 되풀이해 겪지 않고 발견한 내용을 다음 버전에 반영합니다. 측정하고, 원인을 분석하고, 고친 뒤, 수정 전후 성능을 비교해 다시 검증합니다.</p>
+<p style="font-size:19px;color:#222222;">가상 실험에서는 분류 기준을 명확히 하고, 복합 문의 처리를 개선하고, 오류 사례를 반영하면서 정확도가 92%에서 96%까지 올랐다고 가정합니다. 실제 운영에서는 매번 이렇게 좋아진다는 보장이 없고, 고친 뒤 오히려 떨어질 수도 있습니다.</p>
+<p style="font-size:19px;color:#222222;">수정 과정에서 시험 정답이 모델에 노출되면 정확도가 실제 성능보다 높아 보일 수 있으니, 수정에 쓰는 사례와 최종 성능을 평가하는 사례는 따로 두는 것이 좋습니다.</p>
+<p style="font-size:19px;color:#222222;">정확도가 올라도 심각한 오류가 사라졌는지, 비용이 늘거나 처리 시간이 길어지지 않았는지는 함께 봐야 합니다. 4주 동안 시험 운영한 가상 결과에서 정확도와 절감 시간, 순편익은 모두 미리 정한 기준을 넘었지만, 0건이어야 할 심각한 오류가 1건 나왔습니다.</p>
+<p style="font-size:19px;color:#222222;">이럴 때는 원인을 분석하고 통제를 보완해 다시 검증할 때까지 자동 확대를 보류하는 것이 적절합니다. 사람의 검토 아래 제한적으로 계속 쓰는 것은 따로 판단할 수 있습니다.</p>
+<hr>
+<p data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">AI 확대 여부는 품질, 비용, 위험, 실제 성과를 종합해서 결정해야 합니다.</p>
+<p style="font-size:19px;color:#222222;">KPI는 AI의 활동량보다 실제로 달성한 성과를 재고, ROI는 아낀 시간의 가치와 함께 운영·검토·유지 비용을 따집니다. 오류는 빈도와 심각도를 나눠 보고 로그로 실패 원인을 추적하며, 고친 뒤에는 독립적인 평가로 확인합니다.</p>
+<p style="font-size:19px;color:#222222;">측정하고 고치는 방법을 갖췄다면, 이제 이 AI 업무 시스템을 어떻게 안전하고 안정적으로 운영할지가 남습니다. 다음 강의는 여기서 시작합니다.</p>
+<p style="font-size:15px;color:#666666;">공개 대화의 11강을 블로그용으로 다시 편집했습니다. 원문 강의가 참고한 글은 아래 네 편입니다.</p>
+<p data-tight style="font-size:15px;color:#666666;"><a href="https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/">OpenAI 에이전트 구축 실무 가이드</a></p>
+<p data-tight style="font-size:15px;color:#666666;"><a href="https://developers.openai.com/api/docs/guides/agent-evals">OpenAI 에이전트 평가 방법</a></p>
+<p data-tight style="font-size:15px;color:#666666;"><a href="https://openai.github.io/openai-agents-python/tracing/">OpenAI Agents SDK 실행 기록과 추적</a></p>
+<p data-tight style="font-size:15px;color:#666666;"><a href="https://openai.github.io/openai-agents-python/usage/">OpenAI Agents SDK 토큰 사용량 측정</a></p>
+<p><img src="assets/thumb-lesson-11.png" data-rep data-small alt="ChatGPT Thinking 원리 이해하기 11강 썸네일"></p>

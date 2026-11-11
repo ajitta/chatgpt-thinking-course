@@ -50,6 +50,11 @@ export async function publish(page, { category, categoryNo, topic = "IT·컴퓨�
   if (!st.vis.includes(visibility)) throw new Error(`visibility is not ${visibility}`);
   if (clearTags && st.tags) throw new Error("tags remain");
   await page.evaluate(() => document.querySelector("button[class*=confirm_btn]").click());
-  await page.waitForURL(/PostView|logNo=/, { timeout: 30000 });
-  return page.url();
+  // The update form's own URL already has logNo=, so wait until the page leaves the *Form.naver editor.
+  for (let k = 0; k < 60; k++) {
+    await page.waitForTimeout(500);
+    const u = await page.url().catch(() => "");
+    if (u && !/Form\.naver/.test(u)) return u;
+  }
+  throw new Error("still on the editor 30s after confirming publish");
 }
