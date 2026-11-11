@@ -8,7 +8,7 @@ argument-hint: "<lesson number>"
 
 Follow `blog/PLAYBOOK.md` exactly; it holds the rules and commands. This file is the loop and the approval gates.
 
-1. Read `blog/PLAYBOOK.md`, `blog/lessons-plan.json` (this lesson's entry and `decisions_pending`), the lesson's `lessons/*/lesson-XX.md`, and `blog/lesson-01-summary.html` as the format reference. Also read that lesson's section of `sources/conversation/chatgpt-thinking-공유대화-원본.md` and any diagram listed in the plan entry.
+1. Read `blog/PLAYBOOK.md`, `blog/lessons-plan.json` (this lesson's entry and `decisions`), the lesson's `lessons/*/lesson-XX.md`, and `blog/lesson-01-summary.html` as the format reference. Also read that lesson's section of `sources/conversation/chatgpt-thinking-공유대화-원본.md` and any diagram listed in the plan entry.
 2. If a pending decision affects this lesson (link target, category, title, third-party images), ask before writing.
 3. Load the `antislop` and `antislop-copywriting` skills, then write `blog/lesson-XX-summary.html` and propose the blog title, key sentence (with its source location) and thumbnail line breaks. Show them; wait for approval.
 4. Run `python blog/tools/lint_manuscript.py XX` until it has no ERROR; regenerate `blog/naver-summary-XX.txt`; build the thumbnail with `blog/tools/thumbnail.py`.

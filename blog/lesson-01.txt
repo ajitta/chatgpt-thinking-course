@@ -285,6 +285,6 @@ ChatGPT의 발전 과정을 한 문장씩 정리
 이 글은 아래 공개 대화의 강의 본문을 블로그용 정적 텍스트로 옮긴 것입니다. 이미지와 대화형 동작은 포함하지 않으며, 실습의 현재 표시 상태만 보존했습니다. 참고 자료의 사실관계와 모든 외부 링크를 새로 검증한 판본은 아닙니다.
 https://chatgpt.com/share/6af33303-9c00-83e8-a5b8-bb134c40db5c
 
-1강 대화형 실습
+1강 웹 강의
 빈칸 선택과 이해도 퀴즈를 직접 풀어 보세요.
-https://ajitta.github.io/chatgpt-thinking-course/
+https://ajitta.github.io/chatgpt-thinking-course/lessons/01/

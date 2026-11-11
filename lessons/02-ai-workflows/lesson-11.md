@@ -1,6 +1,8 @@
 # 11강. AI 업무 시스템의 성과·비용·오류 관리
 
 > **공개 원문 기반 정적 편집본.** 강의 설명·사례·선택지는 공개 대화에서 가져왔습니다. 대화형 요소와 이미지는 아래 안내처럼 정적으로 옮겼으며, 새로 쓴 강의나 원문의 완전한 복제본은 아닙니다. [편집·출처 안내](../../PROVENANCE.md) · [읽은 시점의 원문 텍스트](../../sources/lesson-11.txt)
+
+[11강 웹 강의 열기](https://ajitta.github.io/chatgpt-thinking-course/lessons/11/)
 > 11강은 중간에 중단된 도입부 대신 뒤에 나온 독립된 완결본을 선택했습니다.
 
 Know Your Unknowns · ChatGPT Thinking 원리 이해하기 · AI 시스템 운영 실전편

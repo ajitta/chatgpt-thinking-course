@@ -316,7 +316,7 @@
   }
  ],
  "decisions": {
-  "closing_link": "GitHub(github.com) 링크는 지금 달지 않는다. GitHub Pages(github.io) 강의 페이지를 모두 만든 뒤 각 글에 학습 페이지 링크를 한꺼번에 넣는다. (2026-11-11 결정) 1강의 github.io 실습 링크는 유지.",
+  "closing_link": "GitHub(github.com) 링크는 달지 않는다. 1~20강 웹 강의(https://ajitta.github.io/chatgpt-thinking-course/lessons/NN/)가 공개된 뒤 각 글 끝에 해당 강의 링크를 한꺼번에 넣고, 공개 전에는 링크 없이 둔다. 1강 글의 실습 링크(지금은 과정 홈)는 공개 뒤 lessons/01/로 바꾸고 조각 생성 시연 문장도 함께 고친다. (2026-11-11 결정, 웹 강의 제작 후 갱신)",
   "categories": "ChatGPT Thinking 아래에 부별 카테고리: 1~4강 AI 기본원리(있음), 5~12강 AI 활용과 업무 시스템, 13~20강 사람의 사고와 불확실한 판단. 각 부의 첫 강의를 발행할 때 만든다.",
   "titles": "글 제목에 ChatGPT를 넣는다. 강의마다 제목 시안을 제안하고 사용자 승인을 받는다.",
   "conversation": "공유 대화 원본은 sources/conversation/ (GitHub Pages 공개 폴더 밖). 원문 도식만 쓰고 제3자 이미지는 쓰지 않는다.",

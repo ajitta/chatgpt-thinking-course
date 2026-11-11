@@ -178,7 +178,6 @@ strong { font-weight: 700; }
 .ta-c { text-align: center; } .ta-e { text-align: end; }
 .num { font-variant-numeric: tabular-nums; }
 .pre { white-space: pre-wrap; }
-.clamp { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
 
 .u-title { margin: 0; font-weight: 750; letter-spacing: -0.02em; line-height: 1.5; text-wrap: balance; }
 .u-title.t-md { font-size: 18px; }
@@ -188,6 +187,15 @@ strong { font-weight: 700; }
 .u-title.num { letter-spacing: 0; }
 
 .u-caption { margin: 0; font-size: 14.5px; line-height: 1.7; color: var(--muted); }
+/* Site notes: what the site says in place of something it left out. A dashed edge keeps them apart from the original text. */
+.u-sitenote { display: block; margin: 0; padding: 10px 14px; border: 1px dashed var(--rule-strong); border-radius: 5px; font-size: 14.5px; line-height: 1.7; color: var(--muted); text-align: left; }
+.lesson > .u-sitenote { margin-top: 20px; }
+/* Inside a framed or tinted original box the note keeps only a dashed rule above it, not a second frame. */
+:is(.bd, .bg-1, .bg-2, .bg-3, .bg-accent, .bg-danger, .bg-warning) .u-sitenote { border: 0; border-top: 1px dashed var(--rule-strong); border-radius: 0; padding: 10px 0 0; }
+.u-row:has(> .u-sitenote) { flex-wrap: wrap; }
+.u-row > .u-sitenote { flex: 1 1 100%; }
+.u-copied { display: block; flex: 1 1 100%; margin-top: 6px; font-size: 14px; line-height: 1.6; color: var(--success); }
+.u-copied.failed { color: var(--danger); }
 .u-label { margin: 0; font-size: 16px; font-weight: 650; }
 .u-entity { font-weight: 650; }
 .u-hr { border: 0; border-top: 1px solid var(--rule); margin: 4px 0; width: 100%; }
@@ -322,15 +330,15 @@ ul.u-list.steps > li::before { content: ""; width: 12px; height: 12px; left: 10p
 .ch-bar { fill: var(--accent); }
 .ch-line { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; }
 .ch-dot { fill: var(--accent); stroke: var(--bg-1); stroke-width: 2; }
-.ch-line.s1 { stroke: var(--warning); stroke-dasharray: 7 5; }
-.ch-dot.s1 { fill: var(--warning); }
+.ch-line.s1 { stroke: var(--muted); stroke-dasharray: 7 5; }
+.ch-dot.s1 { fill: var(--muted); }
 .ch-value.s1 { font-weight: 600; }
-.ch-value.s1 { fill: var(--warning); }
+.ch-value.s1 { fill: var(--muted); }
 .ch-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0 0 4px; font-size: 14px; color: var(--muted); }
 .ch-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .ch-legend svg { width: 22px; height: 4px; flex: none; }
 .ch-legend svg line { stroke: var(--accent); stroke-width: 3; }
-.ch-legend .s1 svg line { stroke: var(--warning); stroke-dasharray: 6 4; }
+.ch-legend .s1 svg line { stroke: var(--muted); stroke-dasharray: 6 4; }
 .u-chart figcaption { margin-top: 6px; }
 
 /* ---------- Pager and colophon (lesson): same grid as .layout, content in the reading column ---------- */
@@ -401,7 +409,8 @@ ul.u-list.steps > li::before { content: ""; width: 12px; height: 12px; left: 10p
   .rail { position: static; max-height: none; overflow: visible; margin-bottom: 24px; padding: 0; }
   .rail details { padding: 10px 0; }
   .rail summary span { display: inline; font-weight: 400; color: var(--muted); font-size: 13px; margin-left: auto; padding-top: 2px; }
-  .rail-part { display: none; }
+  .rail-part { margin-bottom: 8px; }
+  .rail-part a { min-height: 44px; display: inline-flex; align-items: center; }
   .rail summary { min-height: 44px; align-items: center; }
   .rail summary::after { margin-top: 0; }
   .rail details[open] > summary::after { margin-top: 4px; }

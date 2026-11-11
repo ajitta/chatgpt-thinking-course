@@ -4,7 +4,7 @@ Guidance for coding agents working in this repository.
 
 ## What this repo is
 
-A Korean-language, 30-lesson course ("Know Your Unknowns · ChatGPT Thinking 원리 이해하기") for non-specialists, collected from a public ChatGPT conversation and republished as static files. It is a content repo: no package manager, build step, or test suite. Prose, README, and commit-adjacent docs are written in Korean; keep new user-facing text in Korean.
+A Korean-language, 30-lesson course ("Know Your Unknowns · ChatGPT Thinking 원리 이해하기") for non-specialists, collected from a public ChatGPT conversation and republished as static files. It is a content repo with one build step and no package manager or test suite: `node site/build.mjs` regenerates the lesson site in `docs/` from `sources/conversation/ui/` (plain Node, no dependencies). Prose, README, and commit-adjacent docs are written in Korean; keep new user-facing text in Korean.
 
 The central constraint is **provenance**. Every lesson is an edit of captured original text, not newly written content. Read `PROVENANCE.md` before changing lesson content.
 
@@ -33,7 +33,7 @@ Lessons are grouped into five parts (`01-ai-fundamentals` … `05-creativity-and
 - Lesson Markdown starts with a provenance blockquote linking `PROVENANCE.md` and the matching `sources/` file, and ends with `---` followed by repo navigation (`[전체 목차](../../README.md) · [이전/다음: N강](...)`).
 - Interactive elements from the original are rendered statically using bracket markers: `[정적 실습: …]`, `[직접 적기…]`, `[원문 이미지 생략: …]`, `[원문 도표의 문자: …]`. Don't present these as working controls.
 - Lesson 10 and 11 use the later, complete versions from the conversation (see `PROVENANCE.md`). Don't merge versions.
-- Don't download or redistribute external images. `docs/assets/lesson-01-attention.svg` is the original SVG decoded from the source DOM; keep it unmodified.
+- Don't download or redistribute external images. `docs/assets/lesson-01-attention.svg` is the original SVG decoded from the source DOM, kept as an archive (no page uses it now); keep it unmodified.
 - The Naver posts are editorial adaptations, distinct from the static transcription. Label new adaptations the same way. The web lessons are not adaptations: they render the original lesson UI unchanged except for the site rules below.
 
 ## The course site (`docs/`)
@@ -41,9 +41,19 @@ Lessons are grouped into five parts (`01-ai-fundamentals` … `05-creativity-and
 Plain HTML/CSS/vanilla JS served by GitHub Pages from `docs/` (`.nojekyll`), at https://ajitta.github.io/chatgpt-thinking-course/ (home) and `/lessons/01/` … `/lessons/20/`. It goes live when `docs/` reaches `main`.
 
 - `node site/build.mjs` writes each lesson's `lesson-data.js` (the original program and its data), renders the initial HTML with `docs/assets/runtime.js`, and wraps it in the shared shell (masthead with N / 20, left rail with the lesson contents and the course list, prev/next pager, source note). In the browser the same runtime re-renders after every answer, slider move, or keystroke and morphs the DOM so focus stays put.
-- Site rules applied to the original UI (keep them; they are recorded in `PROVENANCE.md`): buttons that call `GenUI.issueNewTurn` ("continue in ChatGPT") are dropped; the original's blues/greys map to the one green accent and grey-green; `utm_*`/`trk` parameters are stripped from links; images are hotlinked from their original URLs with a "원문 이미지" caption; lesson 10 starts at its complete-version title.
+- Site rules applied to the original UI (keep them; they are recorded in `PROVENANCE.md`): buttons that call `GenUI.issueNewTurn` (they send a new request to ChatGPT) are dropped and a dashed site note (`.u-sitenote`) names them in their place; the original's blues/greys map to the one green accent and grey-green (`COLORS` in `runtime.js`); a second chart series is muted, never a status colour; `maxLines` is not applied, so prompts show in full; `utm_*`/`trk` parameters are stripped from links and github.com sources are named but not linked; images are hotlinked from their original URLs with a "원문 이미지 · 출처" caption; lesson 10 starts at its complete-version title (the build fails if it is not found).
+- Per-lesson corrections to an original program go in `CORRECTIONS` in `site/build.mjs`: an exact string replacement in the program plus a `note` that appears in that lesson's source note. Record each one in `PROVENANCE.md`. The only one so far is lesson 3's inverted quiz verdict.
+- Every lesson page's source note lists how the page differs from the original (charts redrawn, formulas simplified, corrections, removed buttons, hotlinked images); `site/build.mjs` builds it from what the page contains. Link-card descriptions are the lesson's opening key question (an original sentence), with `DESCRIPTIONS` overrides.
 - `PRODUCT.md` constraints: no stored answers or progress (no localStorage), no github.com links on the site, no external fonts/libraries/tracking.
 - Per `docs/DESIGN.md`: paper ground, dark ink, one green accent, system fonts, keyboard-operable controls, one column on narrow screens.
+
+## Extending the site (lessons 21-30)
+
+1. Get the shared-conversation data again (the share link's conversation JSON, read in a logged-in browser; it holds `linear_conversation` messages with `metadata.model_dil_v2`). Keep it outside the repository.
+2. Add lessons 21-30 to `LESSONS` in `site/extract_lessons.py` (the `.md` message numbers are 070, 073, ... 097; the message ids are `source_message_id` in `sources/manifest.json`) and run `python site/extract_lessons.py <share.json>`. It refuses a message whose text does not match the `.md` source.
+3. In `site/build.mjs` set `LAST`, add parts 4-5 to `PARTS` (21-28 '실행·학습·장기 성장', 29-30 '창의성과 실제 가치 만들기', as in README), and replace the literal '1~20강' strings in `build.mjs` and `site/home.mjs`.
+4. Add any new colour literals to `COLORS`/`BACKGROUNDS` in `docs/assets/runtime.js` and any new icon names to `site/vendor/lucide-icons.json`.
+5. Rebuild, drive every control in a browser, and update README (web column), PRODUCT.md (scope), docs/DESIGN.md, PROVENANCE.md and VALIDATION.md.
 
 ## Checks
 

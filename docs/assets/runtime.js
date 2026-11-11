@@ -186,10 +186,42 @@ export class Lesson {
     return node == null || node === false || node === true ? [] : [node];
   }
 
+  // Returns the handler id for a data-* attribute, or null when there is no callback.
   handler(fn) {
-    if (typeof fn !== "function") return "";
+    if (typeof fn !== "function") return null;
     this.handlers.push(fn);
     return String(this.handlers.length - 1);
+  }
+
+  // A site note left where the original's "send to ChatGPT" buttons were.
+  sentNote(sent, items, ctx) {
+    const labels = sent.map(b => squeeze(textOf(b))).filter(Boolean);
+    const quoted = labels.map(l => `‘${l}’`).join(", ");
+    const copies = items.some(n => isType(n, "button") && /GenUI\.copy/.test(String(n.props.onClick)));
+    let text;
+    if (copies) {
+      // The request the button appended: a string literal in its handler, or a constant it refers to.
+      const asks = sent.flatMap(b => {
+        const src = String(b.props.onClick);
+        const literals = [...src.matchAll(/"((?:[^"\\]|\\.)*)"/g)].map(m => { try { return JSON.parse(`"${m[1]}"`); } catch { return ""; } });
+        const consts = [...src.matchAll(/__dilConstants\["(\d+)"\]/g)].map(m => this.data.constants[m[1]]).filter(v => typeof v === "string");
+        // In a template literal the request is the text after the reader's own content.
+        const templates = [...src.matchAll(/`((?:[^`\\]|\\.)*)`/g)].map(m => m[1].split(/\$\{[^}]*\}/).pop().replace(/\\n/g, " "));
+        return templates.concat(literals, consts);
+      }).map(s => s.trim()).filter(s => /[가-힣]/.test(s) && s.length > 15);
+      text = asks.length
+        ? `원문의 ${quoted} 버튼은 이 내용 뒤에 다음 요청을 붙여 ChatGPT에 보냈습니다. “${asks[0]}” 이 사이트에서는 내용을 복사한 뒤 이 요청을 덧붙여 ChatGPT 등에 붙여 넣어 쓰세요.`
+        : `원문의 ${quoted} 버튼은 이 내용을 ChatGPT에 바로 보냈습니다. 이 사이트에서는 복사해서 ChatGPT 등에 붙여 넣어 쓰세요.`;
+    } else {
+      const n = this.data.lesson;
+      const count = labels.length > 1 ? `버튼 ${labels.length}개(${quoted})가` : `버튼(${quoted})이`;
+      text = `원문에는 이 자리에 ChatGPT에 새 요청을 보내는 ${count} 있었습니다. 이 사이트에서는 뺐습니다.`;
+      const nextLabel = labels.find(l => new RegExp(`^${n + 1}강\\s*·`).test(l));
+      if (nextLabel && n < 20) text += ` ${n + 1}강은 이 페이지 맨 아래의 다음 강의 링크로 이어집니다.`;
+      if (nextLabel && n >= 20) text += ` 원문 대화는 ${n + 1}강으로 이어지지만, 이 사이트에는 20강까지 옮겼습니다.`;
+    }
+    const tag = ctx.phrasing ? "span" : "p";
+    return `<${tag} class="u-sitenote">${esc(text)}</${tag}>`;
   }
 
   list(children, ctx) {
@@ -197,7 +229,15 @@ export class Lesson {
     let out = "";
     let labelId = null;
     let near = ctx.near || "";
+    // The original's buttons that open a new ChatGPT turn are left out; one site note takes their place.
+    const sends = n => isType(n, "button") && typeof n.props.onClick === "function" && /GenUI\.issueNewTurn/.test(String(n.props.onClick));
+    const sent = items.filter(sends);
+    let noted = false;
     items.forEach((node, i) => {
+      if (sends(node)) {
+        if (!noted) { out += this.sentNote(sent, items, ctx); noted = true; }
+        return;
+      }
       const c = { ...ctx, path: ctx.path + "." + i, labelId, prev: items[i - 1], next: items[i + 1], siblings: items, index: i, near };
       const outer = this.lastLabelId;
       this.lastLabelId = null;
@@ -247,9 +287,13 @@ export class Lesson {
     return items.map(it => {
       const url = cleanUrl(it.url);
       if (!url) return "";
-      let label = it.source_label || it.title || "출처";
-      if (seen.has(label) && it.title) label = it.title.length > 28 ? it.title.slice(0, 27) + "…" : it.title;
-      seen.add(label);
+      const host = new URL(url).hostname.replace(/^www\./, "");
+      // One chip per site; a bare "DOI" or a long page title reads better as the publisher or the site.
+      if (seen.has(host)) return "";
+      seen.add(host);
+      let label = it.source_label || it.source_name || it.title || host;
+      if (/^doi$/i.test(label)) label = it.source_name || it.attribution || host;
+      if (label.length > 24) label = it.source_name && it.source_name.length <= 24 ? it.source_name : host;
       // The site opens no github.com pages (user decision); such a source is named but not linked.
       if (/^https:\/\/(www\.)?github\.com\//.test(url)) return ` <span class="u-cite" title="${esc(it.title || label)}">${esc(label)}</span>`;
       return ` <a class="u-cite" href="${esc(url)}" title="${esc(it.title || label)}" rel="noopener">${esc(label)}</a>`;
@@ -276,9 +320,11 @@ export class Lesson {
     const size = img.thumbnail_size || img.content_size || {};
     const crop = img.thumbnail_crop_info;
     const pos = crop ? `object-position:${(crop.center_x_percent * 100).toFixed(1)}% ${(crop.center_y_percent * 100).toFixed(1)}%` : "";
-    return `<figure class="u-image"><div class="u-image-frame" style="aspect-ratio:${esc(ratio)}">` +
+    const missing = this.failedImages && this.failedImages.has(src) ? " is-missing" : "";
+    // The caption names the source site; the source page's own title stays in the link's title.
+    return `<figure class="u-image${missing}"><div class="u-image-frame" style="aspect-ratio:${esc(ratio)}">` +
       `<img src="${esc(src)}" alt=""${size.width ? ` width="${size.width}" height="${size.height}"` : ""}${pos ? ` style="${pos}"` : ""} loading="lazy" decoding="async" referrerpolicy="no-referrer"></div>` +
-      `<figcaption>원문 이미지 · ${esc(img.title || "")}${page ? ` · <a href="${esc(page)}" rel="noopener">${esc(host || "출처")}</a>` : ""}</figcaption></figure>`;
+      `<figcaption>원문 이미지${page ? ` · 출처: <a href="${esc(page)}" title="${esc(img.title || "")}" rel="noopener">${esc(host || "원래 페이지")}</a>` : ""}</figcaption></figure>`;
   }
 
   svgNode(type, props, children, ctx) {
@@ -339,7 +385,7 @@ function textClasses(p, cls) {
   if (p.textAlign === "end") cls.push("ta-e");
   if (p.tabularNums) cls.push("num");
   if (p.preserveWhitespace) cls.push("pre");
-  if (p.maxLines) cls.push("clamp");
+  // maxLines is not applied: the original showed the full prompt once sent, and the site has no send step.
   return cls;
 }
 
@@ -350,6 +396,9 @@ function nameFrom(ctx) {
   if (!t || t.length > 200) t = ctx.near || "";
   return t && t.length <= 200 ? t : "";
 }
+
+// data-* hook for a handler id; nothing when the control has no callback.
+const on = (name, h) => (h == null ? "" : ` data-${name}="${h}"`);
 
 const isBadgeRow = n => isType(n, "row") && flatten(n.children).length > 0 && flatten(n.children).every(c => isType(c, "badge"));
 
@@ -376,7 +425,6 @@ const ELEMENTS = {
     const cls = textClasses(p, ["u-text"]);
     const style = [];
     if (p.width) style.push(`width:${p.width};flex:none`);
-    if (p.maxLines) style.push(`-webkit-line-clamp:${Number(p.maxLines)}`);
     const st = style.length ? ` style="${esc(style.join(";"))}"` : "";
     const body = this.inner(children, { ...ctx, phrasing: true, pre: ctx.pre || Boolean(p.preserveWhitespace) });
     if (!body.trim() && !p.width) return "";
@@ -505,7 +553,7 @@ const ELEMENTS = {
         `<span>${this.inner(r.children, { ...ctx, phrasing: true })}</span></label>`;
     }).join("");
     const label = nameFrom(ctx);
-    return `<div class="u-choices" role="radiogroup"${label ? ` aria-label="${esc(label)}"` : ""} data-change="${h}">${items}</div>`;
+    return `<div class="u-choices" role="radiogroup"${label ? ` aria-label="${esc(label)}"` : ""}${on("change", h)}>${items}</div>`;
   },
 
   "segmented-control"(p, children, ctx) {
@@ -518,7 +566,7 @@ const ELEMENTS = {
       return `<label class="u-seg-item"><input type="radio" name="${name}" value="${esc(v)}"${String(p.value) === v ? " checked" : ""}><span>${esc(label)}</span></label>`;
     }).join("");
     const label = nameFrom(ctx);
-    return `<div class="u-seg" role="radiogroup"${label ? ` aria-label="${esc(label)}"` : ""} data-change="${h}">${items}</div>`;
+    return `<div class="u-seg" role="radiogroup"${label ? ` aria-label="${esc(label)}"` : ""}${on("change", h)}>${items}</div>`;
   },
 
   slider(p, children, ctx) {
@@ -539,7 +587,7 @@ const ELEMENTS = {
     }
     const marks = Array.isArray(p.marks) && p.marks.length
       ? `<div class="u-marks" aria-hidden="true">${p.marks.map(m => `<span>${esc(typeof m === "object" ? (m.label ?? m.value) : m)}</span>`).join("")}</div>` : "";
-    return `<div class="u-slider"><input type="range" min="${esc(p.min ?? 0)}" max="${esc(p.max ?? 100)}" step="${esc(p.step ?? 1)}" value="${esc(p.value ?? 0)}"${name}${valuetext ? ` aria-valuetext="${esc(valuetext)}"` : ""} data-input="${h}" data-kind="number">${marks}</div>`;
+    return `<div class="u-slider"><input type="range" min="${esc(p.min ?? 0)}" max="${esc(p.max ?? 100)}" step="${esc(p.step ?? 1)}" value="${esc(p.value ?? 0)}"${name}${valuetext ? ` aria-valuetext="${esc(valuetext)}"` : ""}${on("input", h)} data-kind="number">${marks}</div>`;
   },
 
   textarea(p, children, ctx) {
@@ -547,25 +595,25 @@ const ELEMENTS = {
     const t = nameFrom(ctx);
     const name = ctx.labelId ? ` aria-labelledby="${ctx.labelId}"` : t ? ` aria-label="${esc(t)}"` : p.placeholder ? ` aria-label="${esc(p.placeholder)}"` : "";
     // The newline after the start tag is dropped by the HTML parser, so a value that begins with one survives.
-    return `<textarea class="u-field" rows="${esc(p.rows || 3)}"${p.placeholder ? ` placeholder="${esc(p.placeholder)}"` : ""}${name} data-input="${h}">\n${esc(p.value ?? "")}</textarea>`;
+    return `<textarea class="u-field" rows="${esc(p.rows || 3)}"${p.placeholder ? ` placeholder="${esc(p.placeholder)}"` : ""}${name}${on("input", h)}>\n${esc(p.value ?? "")}</textarea>`;
   },
 
   input(p, children, ctx) {
     const h = this.handler(p.onChange);
     const t = nameFrom(ctx);
     const name = ctx.labelId ? ` aria-labelledby="${ctx.labelId}"` : t ? ` aria-label="${esc(t)}"` : p.placeholder ? ` aria-label="${esc(p.placeholder)}"` : "";
-    return `<input class="u-field" type="text" value="${esc(p.value ?? "")}"${p.placeholder ? ` placeholder="${esc(p.placeholder)}"` : ""}${name} data-input="${h}">`;
+    return `<input class="u-field" type="text" value="${esc(p.value ?? "")}"${p.placeholder ? ` placeholder="${esc(p.placeholder)}"` : ""}${name}${on("input", h)}>`;
   },
 
   checkbox(p, children, ctx) {
     const h = this.handler(p.onChange);
     const done = p.lineThrough && p.checked ? " done" : "";
-    return `<label class="u-check${done}"><input type="checkbox"${p.checked ? " checked" : ""} data-check="${h}">` +
+    return `<label class="u-check${done}"><input type="checkbox"${p.checked ? " checked" : ""}${on("check", h)}>` +
       `<span>${this.inner(children, { ...ctx, phrasing: true })}</span></label>`;
   },
 
   button(p, children, ctx) {
-    // The original's "continue in ChatGPT" buttons open a new chat turn; the site leaves them out.
+    // Buttons that open a new ChatGPT turn are replaced by a site note in list().
     if (typeof p.onClick === "function" && /GenUI\.issueNewTurn/.test(String(p.onClick))) return "";
     const h = this.handler(p.onClick);
     const cls = ["u-btn"];
@@ -573,7 +621,7 @@ const ELEMENTS = {
     if (p.color === "secondary") cls.push("quiet");
     if (p.block) cls.push("block");
     if (p.size === "sm") cls.push("small");
-    return `<button type="button" class="${cls.join(" ")}"${p.disabled ? " disabled" : ""} data-click="${h}">${this.inner(children, { ...ctx, phrasing: true })}</button>`;
+    return `<button type="button" class="${cls.join(" ")}"${p.disabled ? " disabled" : ""}${on("click", h)}>${this.inner(children, { ...ctx, phrasing: true })}</button>`;
   },
 
   pressable(p, children, ctx) {
@@ -582,7 +630,7 @@ const ELEMENTS = {
     const st = boxStyle(p, cls);
     // In lesson 7 a pressable reveals the detail that follows it in the same box.
     const expanded = ctx.next != null;
-    return `<button type="button" class="${cls.join(" ")}"${st} aria-expanded="${expanded}" data-click="${h}">${this.inner(children, { ...ctx, phrasing: true })}</button>`;
+    return `<button type="button" class="${cls.join(" ")}"${st} aria-expanded="${expanded}"${on("click", h)}>${this.inner(children, { ...ctx, phrasing: true })}</button>`;
   },
 
   math(p) {
@@ -601,10 +649,11 @@ const ELEMENTS = {
       if (isType(n, "text")) { const t = squeeze(textOf(n)); if (t) words.push(t); return; }
       if (n && typeof n === "object" && n.children) flatten(n.children).forEach(collect);
     };
-    flatten(children).map(n => this.resolve(n, ctx.path)).flat().forEach(collect);
+    const items = flatten(children).map((n, i) => this.resolve(n, ctx.path + ".s" + i)).flat();
+    items.forEach(collect);
     const role = words.length ? ` role="img" aria-label="${esc(words.join(", "))}"` : ` aria-hidden="true" focusable="false"`;
     return `<div class="u-figure"><svg xmlns="http://www.w3.org/2000/svg"${attrs}${role}>` +
-      `${this.inner(children, { ...ctx, svg: true })}</svg></div>`;
+      `${this.list(items, { ...ctx, top: false, svg: true, path: ctx.path + ".s" })}</svg></div>`;
   },
 
   __chatgptClientDefinedWidget(p) {
@@ -637,7 +686,31 @@ export function renderChart(c, index = 0, width = 640) {
   const series = c.series || [];
   const W = Math.max(280, Math.round(width || 640));
   const narrow = W < 480;
-  const H = narrow ? 250 : 300, L = narrow ? 50 : 60, R = 14, T = 22, B = 40;
+  const L = narrow ? 50 : 60, R = 14, T = 22;
+  // Category labels: one line when they fit the band, two lines split at a space when they don't,
+  // and every other label when even half a label is too wide.
+  const FS = 13.5;
+  const textW = s => [...String(s)].reduce((w, ch) => w + (/[ᄀ-ᇿ㄰-㆏가-힣一-鿿]/.test(ch) ? FS : FS * 0.58), 0);
+  const band = (W - L - R) / Math.max(1, data.length);
+  const split = s => {
+    const words = String(s).split(" ");
+    if (words.length < 2) return [String(s)];
+    let best = [String(s)], worst = Infinity;
+    for (let k = 1; k < words.length; k++) {
+      const a = words.slice(0, k).join(" "), b = words.slice(k).join(" ");
+      const w = Math.max(textW(a), textW(b));
+      if (w < worst) { worst = w; best = [a, b]; }
+    }
+    return best;
+  };
+  const labels = data.map(d => String(d[c.xKey] ?? ""));
+  const fits = ls => ls.every(l => textW(l) <= band - 6);
+  let lines = labels.map(l => [l]);
+  if (!fits(labels)) lines = labels.map(split);
+  const twoLines = lines.some(l => l.length > 1);
+  const thin = !lines.every(l => fits(l));
+  const B = twoLines ? 58 : 40;
+  const H = (narrow ? 250 : 300) + (twoLines ? 18 : 0);
   const values = data.flatMap(d => series.map(s => Number(d[s.dataKey]))).filter(Number.isFinite);
   const axis = (c.axes || []).find(a => a.dimension === "y");
   let min = c.yAxisMin ?? (axis && axis.domain ? axis.domain[0] : Math.min(0, ...values));
@@ -654,8 +727,10 @@ export function renderChart(c, index = 0, width = 640) {
     svg += `<line x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}" class="ch-grid"/>`;
     svg += `<text x="${L - 8}" y="${y(t) + 4}" text-anchor="end" class="ch-tick">${esc(fmt(t) + suffix)}</text>`;
   }
-  data.forEach((d, i) => {
-    svg += `<text x="${x(i)}" y="${H - B + 22}" text-anchor="middle" class="ch-label">${esc(d[c.xKey])}</text>`;
+  lines.forEach((ls, i) => {
+    if (thin && i % 2 === 1 && i !== lines.length - 1) return;
+    const tspans = ls.map((l, k) => `<tspan x="${x(i)}" dy="${k ? 16 : 0}">${esc(l)}</tspan>`).join("");
+    svg += `<text x="${x(i)}" y="${H - B + 22}" text-anchor="middle" class="ch-label">${tspans}</text>`;
   });
   if (c.chartType === "bar") {
     const s = series[0];
@@ -703,14 +778,28 @@ export function mount(root, data, options = {}) {
     status.textContent = "";
     setTimeout(() => { status.textContent = text; }, 40);
   };
+  let lastControl = null;
+  // After a copy, the result is said next to the button for a few seconds and to assistive tech.
+  const copied = ok => {
+    const msg = ok ? "복사했습니다. ChatGPT 등 원하는 곳에 붙여 넣으세요." : "복사하지 못했습니다. 내용을 직접 선택해 복사해 주세요.";
+    say(msg);
+    const btn = lastControl;
+    if (!btn || !btn.isConnected) return;
+    const note = document.createElement("span");
+    note.className = "u-copied" + (ok ? "" : " failed");
+    note.setAttribute("aria-hidden", "true");
+    note.textContent = msg;
+    btn.insertAdjacentElement("afterend", note);
+    setTimeout(() => note.remove(), 4000);
+  };
   const lesson = new Lesson(data, {
     assets: options.assets,
     onCopy(text) {
-      const done = () => say("복사했습니다. ChatGPT 등 원하는 곳에 붙여 넣으세요.");
-      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, () => fallbackCopy(text, done));
-      else fallbackCopy(text, done);
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(() => copied(true), () => copied(fallbackCopy(text)));
+      else copied(fallbackCopy(text));
     }
   });
+  lesson.failedImages = new Set();
 
   const blockOf = el => { let b = el; while (b && b.parentNode !== root) b = b.parentNode; return b; };
   const focusable = "button:not([disabled]), input:not([disabled]), textarea:not([disabled]), a[href]";
@@ -733,7 +822,8 @@ export function mount(root, data, options = {}) {
       (target || root).focus({ preventScroll: true });
     }
   };
-  lesson.invalidate = () => { if (!queued) { queued = true; queueMicrotask(paintNow); } };
+  // Repaint once per frame, so fast typing or a slider drag renders the page only once per frame.
+  lesson.invalidate = () => { if (!queued) { queued = true; requestAnimationFrame(paintNow); } };
   paintNow();
 
   // Charts are drawn at their shown width so their labels stay readable on phones.
@@ -754,26 +844,36 @@ export function mount(root, data, options = {}) {
 
   // Announce what a choice or button reveals in its block (feedback, results), once.
   const linesOf = el => new Set((el ? el.innerText : "").split("\n").map(s => s.trim()).filter(Boolean));
-  let sliderTimer = 0;
+  // For sliders the "before" state is taken when a burst of moves starts, so feedback that
+  // appears midway through a drag is still announced; each slider has its own timer.
+  const pending = new Map();
   const act = (el, fn, delay) => {
     const block = blockOf(el);
     const index = [...root.children].indexOf(block);
-    const before = linesOf(block);
+    const held = delay && pending.get(el);
+    const before = held ? held.before : linesOf(block);
     fn();
     const report = () => {
+      pending.delete(el);
       const now = block && block.isConnected ? block : root.children[index];
-      const fresh = [...linesOf(now)].filter(s => !before.has(s));
+      const fresh = [...linesOf(now)].filter(s => !before.has(s) && !/^복사(했습니다|하지 못했습니다)/.test(s));
       const text = fresh.join(" ");
       if (text) say(text.length > 300 ? text.slice(0, 298) + "…" : text);
     };
-    if (delay) { clearTimeout(sliderTimer); sliderTimer = setTimeout(report, delay); }
-    else setTimeout(report, 0);
+    if (delay) {
+      if (held) clearTimeout(held.timer);
+      pending.set(el, { before, timer: setTimeout(report, delay) });
+    } else setTimeout(report, 32);
   };
 
-  const call = (id, value) => { const fn = lesson.handlers[Number(id)]; if (fn) fn(value); };
+  const call = (id, value) => {
+    if (id == null || id === "") return;
+    const fn = lesson.handlers[Number(id)];
+    if (fn) fn(value);
+  };
   root.addEventListener("click", e => {
     const el = e.target.closest("[data-click]");
-    if (el && root.contains(el) && !el.disabled) act(el, () => call(el.dataset.click));
+    if (el && root.contains(el) && !el.disabled) { lastControl = el; act(el, () => call(el.dataset.click)); }
   });
   root.addEventListener("change", e => {
     const t = e.target;
@@ -789,10 +889,15 @@ export function mount(root, data, options = {}) {
     else call(t.dataset.input, value);
   });
   // An original image that fails to load leaves its caption and source link, with a note.
-  root.addEventListener("error", e => {
-    const img = e.target;
-    if (img.tagName === "IMG") img.closest(".u-image")?.classList.add("is-missing");
-  }, true);
+  // The failure is kept in the lesson's state so later repaints keep it, including failures
+  // that happened before this module ran.
+  const markFailed = img => {
+    if (!img.closest(".u-image")) return;
+    lesson.failedImages.add(img.getAttribute("src"));
+    img.closest(".u-image").classList.add("is-missing");
+  };
+  root.addEventListener("error", e => { if (e.target.tagName === "IMG") markFailed(e.target); }, true);
+  root.querySelectorAll(".u-image img").forEach(img => { if (img.complete && img.naturalWidth === 0 && img.getAttribute("src")) markFailed(img); });
   return lesson;
 }
 
@@ -817,15 +922,20 @@ export function railSpy(rail, root) {
   root.querySelectorAll("h2[id]").forEach(h => io.observe(h));
 }
 
-function fallbackCopy(text, done) {
+// Copies through a hidden textarea; returns whether the browser reported success and gives focus back.
+function fallbackCopy(text) {
+  const back = document.activeElement;
   const ta = document.createElement("textarea");
   ta.value = text;
   ta.setAttribute("readonly", "");
   ta.style.cssText = "position:fixed;opacity:0;top:0;left:0";
   document.body.appendChild(ta);
   ta.select();
-  try { document.execCommand("copy"); done(); } catch {}
+  let ok = false;
+  try { ok = document.execCommand("copy"); } catch { ok = false; }
   ta.remove();
+  if (back && back.focus) back.focus({ preventScroll: true });
+  return ok;
 }
 
 // Patch the live DOM to match a freshly rendered tree, keeping nodes (and focus) where it can.
@@ -861,7 +971,8 @@ function morphChildren(from, to) {
 }
 
 function morphElement(x, y) {
-  for (const { name } of [...x.attributes]) if (!y.hasAttribute(name)) x.removeAttribute(name);
+  // A textarea's inline style is the reader's own resize; keep it.
+  for (const { name } of [...x.attributes]) if (!y.hasAttribute(name) && !(name === "style" && x.nodeName === "TEXTAREA")) x.removeAttribute(name);
   for (const { name, value } of [...y.attributes]) if (x.getAttribute(name) !== value) x.setAttribute(name, value);
   if (x.nodeName === "INPUT") {
     if (x.type === "radio" || x.type === "checkbox") x.checked = y.hasAttribute("checked");

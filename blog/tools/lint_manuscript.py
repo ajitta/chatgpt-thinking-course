@@ -72,7 +72,7 @@ def main(n):
             errors.append(f"link must wrap its whole paragraph: {text_of(p)[:40]}")
 
     if "github.com" in body:
-        errors.append("GitHub links are on hold until the github.io lesson pages exist (lessons-plan.json decisions)")
+        errors.append("no github.com links: link the github.io lesson page (.../chatgpt-thinking-course/lessons/NN/) once the site is live (lessons-plan.json decisions)")
 
     for label in REPORT_LABELS:
         if label in plain:

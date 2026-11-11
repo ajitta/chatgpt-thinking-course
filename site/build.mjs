@@ -49,9 +49,27 @@ const CORRECTIONS = {
     // The "직접 실험해 보기" verdict is inverted against the lesson's own explanation:
     // problem A's conclusion is necessarily true, yet answering "그렇다" was marked wrong.
     replace: [['(choice==="yes")===(!isValid)', '(choice==="yes")===isValid']],
-    note: " 3강 ‘직접 실험해 보기’는 원문에서 정답 판정이 바로 아래 해설과 반대로 되어 있어(문제 A에서 ‘그렇다’를 고르면 오답으로 표시), 판정만 해설에 맞게 바로잡았습니다."
+    note: "다만 ‘직접 실험해 보기’는 원문의 정답 판정이 바로 아래 해설과 반대여서(문제 A에서 ‘그렇다’를 고르면 오답으로 표시), 판정만 해설에 맞게 바로잡았습니다."
   }
 };
+
+// Link-card descriptions are original sentences: the lesson's opening key question,
+// or for lesson 10 (which opens without one) two sentences from its first section.
+const DESCRIPTIONS = {
+  10: "지금까지 배운 것은 개별 AI의 능력이었습니다. 핵심은 AI가 좋은 답변을 만드는 것에서 끝나지 않고, 실제 업무 목표를 달성했는지 확인하는 것입니다."
+};
+
+function keyQuestion(html) {
+  const afterH1 = html.slice(html.indexOf("</h1>"));
+  const h2 = afterH1.indexOf("<h2");
+  const opening = h2 > 0 ? afterH1.slice(0, h2) : afterH1.slice(0, 6000);
+  const blocks = [...opening.matchAll(/<(p|blockquote)[^>]*>([\s\S]*?)<\/\1>/g)].map(m => ({ tag: m[1], strong: m[2].includes("<strong>"), text: strip(m[2]) }));
+  const asks = blocks.filter(b => b.text.includes("?") && b.text.length > 15);
+  const pick = asks.find(b => b.tag === "blockquote" || b.strong) || asks[0];
+  return pick ? pick.text.replace(/^["“]|["”]$/g, "") : null;
+}
+
+const ORDINALS = ["첫", "두", "세", "네", "다섯", "여섯", "일곱", "여덟", "아홉", "열"];
 
 async function loadLesson(n) {
   const rec = JSON.parse(fs.readFileSync(path.join(ROOT, "sources", "conversation", "ui", `lesson-${pad(n)}.json`), "utf8"));
@@ -78,10 +96,11 @@ async function loadLesson(n) {
   const lesson = new Lesson(mod.data, { assets: "../../assets/" });
   const { html, toc } = lesson.render();
   const h1 = strip((html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [])[1] || "");
+  if (!new RegExp(`^${n}강\\.`).test(h1)) throw new Error(`lesson ${n}: page title is "${h1}"`);
+  if (rec.start_at_title && h1 !== rec.start_at_title) throw new Error(`lesson ${n}: start_at_title "${rec.start_at_title}" not found; got "${h1}"`);
   const title = h1.replace(/^\d+강\.\s*/, "");
-  const paras = [...html.matchAll(/<p>([\s\S]*?)<\/p>/g)].map(m => strip(m[1])).filter(t => t.length > 12);
-  let description = paras.slice(0, 2).join(" ");
-  if (description.length > 150) description = description.slice(0, 148).replace(/\s+\S*$/, "") + "…";
+  const description = DESCRIPTIONS[n] || keyQuestion(html);
+  if (!description) throw new Error(`lesson ${n}: no key question for the description`);
   return { n, title, fullTitle: h1, html, toc, description, rec };
 }
 
@@ -118,7 +137,7 @@ function courseList(current) {
       const cur = i === current ? ` aria-current="page"` : "";
       items.push(`<li><a href="../${pad(i)}/"${cur}><span class="no">${i}강</span> ${esc(LESSONS[i - 1].title)}</a></li>`);
     }
-    return `<li class="part"><p>${esc(p.name)} <span>${p.from}–${p.to}강</span></p><ol>${items.join("")}</ol></li>`;
+    return `<li class="part"><p>${esc(p.name)} <span>${p.from}~${p.to}강</span></p><ol>${items.join("")}</ol></li>`;
   }).join("");
 }
 
@@ -129,19 +148,24 @@ function lessonPage(L) {
   const next = L.n < LAST ? LESSONS[L.n] : null;
   const part = partOf(L.n);
   const url = `${SITE}lessons/${pad(L.n)}/`;
-  const image = L.n === 1 ? { src: "assets/og-lesson01.png", w: 1200, h: 720, alt: "1강 표지: 다음 말 예측에서 논리적 추론까지" } : null;
   const toc = L.toc.map(t => `<li><a href="#${t.id}">${esc(t.text)}</a></li>`).join("");
   const pager = `<nav class="pager" aria-label="이전 강의와 다음 강의"><div class="pager-row">
-  ${prev ? `<a class="pager-link prev" href="../${pad(prev.n)}/" rel="prev">${icon("chevron-left", "i-lg")}<span class="ttl"><span class="sr-only">이전 강의: </span><span class="no">${prev.n}강</span> ${esc(prev.title)}</span></a>` : `<a class="pager-link prev" href="../../">${icon("chevron-left", "i-lg")}<span class="ttl">1–20강 목차</span></a>`}
-  ${next ? `<a class="pager-link next" href="../${pad(next.n)}/" rel="next"><span class="ttl"><span class="sr-only">다음 강의: </span><span class="no">${next.n}강</span> ${esc(next.title)}</span>${icon("chevron-right", "i-lg")}</a>` : `<a class="pager-link next" href="../../"><span class="ttl">1–20강 목차로 돌아가기</span>${icon("chevron-right", "i-lg")}</a>`}
+  ${prev ? `<a class="pager-link prev" href="../${pad(prev.n)}/" rel="prev">${icon("chevron-left", "i-lg")}<span class="ttl"><span class="sr-only">이전 강의: </span><span class="no">${prev.n}강</span> ${esc(prev.title)}</span></a>` : `<a class="pager-link prev" href="../../">${icon("chevron-left", "i-lg")}<span class="ttl">1~20강 목차</span></a>`}
+  ${next ? `<a class="pager-link next" href="../${pad(next.n)}/" rel="next"><span class="ttl"><span class="sr-only">다음 강의: </span><span class="no">${next.n}강</span> ${esc(next.title)}</span>${icon("chevron-right", "i-lg")}</a>` : `<a class="pager-link next" href="../../"><span class="ttl">1~20강 목차</span>${icon("chevron-right", "i-lg")}</a>`}
 </div></nav>`;
-  const versionNote = L.rec.start_at_title
-    ? " 10강은 대화 중에 끊겼다가 다시 나온 완결본을 옮겼습니다." : "";
-  const imageNote = /class="u-image"/.test(L.html) ? " 원문 이미지는 원래 주소에서 불러옵니다." : "";
-  const correctionNote = (CORRECTIONS[L.n] && CORRECTIONS[L.n].note) || "";
-  const marks = Object.values(L.rec.constants).some(v => typeof v === "string" && /\*\*[^*\n]+\*\*/.test(v));
-  const markNote = marks ? " 원문 문장 안에 기호로 남아 있던 굵게 표시(**)는 굵은 글씨로 보여 줍니다." : "";
-  return `${head({ title: `${L.n}강 · ${L.title} | ${COURSE}`, description: L.description, url, depth: 2, image })}
+  // Source note: what was carried over, then every way this page differs from the original.
+  const notes = [];
+  if (L.n === 10) notes.push("10강은 처음 답변이 6절에서 끊겨, 뒤의 답변에 다시 나온 완결본을 ‘10강. 나만의 AI 업무 시스템 설계하기’ 제목부터 옮겼습니다.");
+  if (L.n === 11) notes.push("11강은 대화에서 도입부가 먼저 잘못 나온 뒤 따로 나온 완결본을 옮겼습니다.");
+  if (CORRECTIONS[L.n]) notes.push(CORRECTIONS[L.n].note);
+  if (/class="u-chart"/.test(L.html)) notes.push("차트는 원문 차트의 값으로 이 사이트가 다시 그렸습니다.");
+  if (/class="u-math"/.test(L.html)) notes.push("수식은 원문 수식을 분수와 기호로 간단히 바꿔 보여 줍니다.");
+  const marked = Object.values(L.rec.constants).find(v => typeof v === "string" && /\*\*[^*\n]+\*\*/.test(v));
+  if (marked) notes.push(`원문의 한 문장(‘${marked.replace(/\*\*/g, "")}’)에는 굵게 쓰라는 기호(**)가 글자 그대로 들어 있어, 기호 대신 굵은 글씨로 보여 줍니다.`);
+  if (/<span class="u-cite"/.test(L.html)) notes.push("GitHub에 있는 출처는 링크 없이 이름만 적었습니다.");
+  if (/class="u-image/.test(L.html)) notes.push("원문 이미지는 내려받지 않고 원래 주소(OpenAI 이미지 서버)에서 바로 불러오므로, 나중에 보이지 않을 수 있습니다.");
+  notes.push("원문에서 ChatGPT에 새 요청을 보내던 버튼(다음 강의, 복습, 실습 시작 등)은 이 사이트에서 빼고, 그 자리에 점선 안내를 남겼습니다.");
+  return `${head({ title: `${L.n}강 · ${L.title} | ${COURSE}`, description: L.description, url, depth: 2 })}
 ${prev ? `<link rel="prev" href="../${pad(prev.n)}/">` : ""}${next ? `<link rel="next" href="../${pad(next.n)}/">` : ""}
 <script type="module">
 import { mount, railSpy } from "../../assets/runtime.js";
@@ -163,14 +187,14 @@ railSpy(document.querySelector(".rail-toc"), root);
 </header>
 <div class="layout">
   <aside class="rail">
-    <p class="rail-part"><a href="../../#part-${PARTS.indexOf(part) + 1}">${esc(part.name)}</a><span>${part.from}–${part.to}강 중 ${L.n - part.from + 1}번째</span></p>
+    <p class="rail-part"><a href="../../#part-${PARTS.indexOf(part) + 1}">${esc(part.name)}</a><span>${part.from}~${part.to}강 · ${part.to - part.from + 1}개 강의 중 ${ORDINALS[L.n - part.from]} 번째</span></p>
     <details class="rail-toc" open>
       <summary>${L.n}강 차례</summary>
       <ol>${toc}</ol>
     </details>
     <script>if (matchMedia("(max-width: 860px)").matches) document.currentScript.previousElementSibling.open = false;</script>
     <details class="rail-course">
-      <summary>전체 강의 <span>${part.name}</span></summary>
+      <summary>1~20강 목차</summary>
       <ol class="course-list">${courseList(L.n)}</ol>
     </details>
   </aside>
@@ -180,8 +204,9 @@ ${L.html}
 </div>
 ${pager}
 <footer class="colophon"><div class="colophon-body">
-  <p>이 페이지는 <a href="${SHARE}" rel="noopener">공개 ChatGPT 대화</a>의 ${L.n}강 답변을 옮긴 것입니다. 문장과 실습의 정답·피드백·계산식은 원문 그대로이고, 배치와 색만 이 사이트에 맞췄습니다.${versionNote}${correctionNote}${markNote} 원문에 있던 ‘ChatGPT에서 이어 묻기’ 버튼은 이 사이트에서 뺐습니다.${imageNote}</p>
-  <p>실습에 고르거나 적은 내용은 이 화면 안에서만 쓰이며 저장하거나 전송하지 않습니다.</p>
+  <p>이 페이지는 <a href="${SHARE}" rel="noopener">ChatGPT 공유 대화</a>의 ${L.n}강 답변을 옮긴 것입니다. 문장과 실습의 정답·피드백·계산식은 원문을 따랐고, 화면 배치와 색은 이 사이트에 맞췄습니다. ${notes.join(" ")}</p>
+  <p>강의는 ChatGPT가 대화 속에서 쓴 답변입니다. OpenAI의 공식 강의가 아니며, 강의에 나온 인용과 수치는 이 사이트에서 따로 확인하지 않았습니다.</p>
+  <p>실습에 고르거나 적은 내용은 이 화면 안에서만 쓰이며 저장하거나 전송하지 않습니다. 새로 고치면 지워지니, 남기고 싶은 내용은 복사해 두세요.</p>
 </div></footer>
 <p id="live-status" class="sr-only" role="status" aria-live="polite"></p>
 </body>

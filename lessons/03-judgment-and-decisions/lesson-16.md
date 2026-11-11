@@ -2,6 +2,8 @@
 
 > **공개 원문 기반 정적 편집본.** 강의 설명·사례·선택지는 공개 대화에서 가져왔습니다. 대화형 요소와 이미지는 아래 안내처럼 정적으로 옮겼으며, 새로 쓴 강의나 원문의 완전한 복제본은 아닙니다. [편집·출처 안내](../../PROVENANCE.md) · [읽은 시점의 원문 텍스트](../../sources/lesson-16.txt)
 
+[16강 웹 강의 열기](https://ajitta.github.io/chatgpt-thinking-course/lessons/16/)
+
 Know Your Unknowns · ChatGPT Thinking 원리 이해하기 · 캘리브레이션·인지 편향·집단사고
 
 15강에서는 확률적 사고와 가설 검증, 반증을 배웠습니다.
