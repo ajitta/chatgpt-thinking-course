@@ -110,3 +110,7 @@
 이미지: 3~20강 구간의 이미지 검색 사진은 3강의 3장뿐이며(대화 전체로는 2강 믹싱 콘솔 사진을 더해 4장), 세 장 모두 쓰지 않았습니다. 공유 페이지 뷰어에서도 `images.openai.com` 프록시 주소만 보이고 원 출처와 이용 조건이 나오지 않습니다. 출처는 공유 페이지의 이미지 열기 버튼 이름으로만 알 수 있었습니다. 사과 사진("apples")은 출처를 확인할 수 없고, 나머지 둘은 개인 블로그 글("Custom CUDA Kernels for Proving over M31 — Victor Amaya")과 Medium 기사("Understanding, the Chinese Room Argument, and Semantics | by Walid Saba")의 그림입니다. 3강 도식 `blog/assets/lesson-03-syllogism.png`는 `sources/conversation/assets/svg-04-lesson-03.svg`의 JSX식 속성을 표준 SVG 속성으로만 바꾼 `blog/assets/lesson-03-syllogism.svg`를 렌더링한 것입니다. 9강 `svg-05`는 상자 사이 연결선 틀이라 쓰지 않았습니다. 썸네일은 시리즈 공통 타이포그래피 이미지입니다.
 
 도식 PNG 렌더링: impeccable 평가에서 1200×650 캔버스의 도식 글자가 휴대폰(320px 표시)에서 5~9px로 줄어드는 문제가 나와, 1·2·3강 도식 PNG를 다시 렌더링했습니다. 원본 SVG의 좌표·이름·색은 그대로 두고 캔버스를 도식에 맞게 잘라 확대했으며, 그림 속 제목과 설명 줄은 빼고 본문 캡션에 맡겼습니다. `docs/assets/lesson-01-attention.svg`와 `blog/assets/lesson-02-meaning-map.svg`는 바꾸지 않았습니다.
+
+## 네이버 1·2강 원고의 휴대폰 길이 수정 (2026-11-12, 발행 전)
+
+사용자 결정에 따라 1·2강 원고도 3~20강과 같은 휴대폰 길이 규칙에 맞췄습니다. 2강은 리드와 본문 두 문단을 문장 경계에서 나눴고 문장은 바꾸지 않았습니다. 마무리 문장은 두 문장을 이어 다듬은 이전 문장 대신 대화 원본 851행의 첫 문장("Thinking은 마법처럼 새로운 뇌가 생기는 것이 아닙니다.", 앞의 '즉,'만 덜어 냄)을 썼습니다. 1강 마무리 문장은 원문 7단계의 구분 표를 한 문장으로 다듬은 것이며, '맞는지는'의 '는'만 덜어 냈습니다. 발행본에는 GitHub 페이지 병합 뒤 일괄 재발행 때 반영합니다.
