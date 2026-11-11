@@ -16,6 +16,6 @@
 
 `lesson-01-summary.html`은 편집 원고입니다. 네이버에서 동일하게 보이려면 이미지는 사진으로 첨부하고 마지막 요약 문장은 네이버 인용구 서식을 적용해야 합니다. HTML의 여백과 레이아웃이 그대로 유지된다고 보장하지 않습니다. 본문 전체를 이미지로 바꾸지는 않았습니다.
 
-## 실습 보완 원고 (미게시)
+## 실습 보완판 (2026-11-11 발행)
 
-`lesson-01-summary.html`과 `naver-summary-01.txt`에 두 선택형 문제(정답은 아래쪽에 배치), 웹 실습을 녹화한 GIF 두 장(`assets/lesson-01-quiz.gif`, `assets/lesson-01-token-demo.gif`), 각 실습으로 바로 가는 링크(`#practice`, `#token-demo`, `#check`)를 추가했습니다. 네이버에 반영할 때 GIF는 사진으로 첨부하고, 정답 앞의 빈 줄은 줄이지 마세요. 공개된 글은 아직 이전 판입니다.
+`lesson-01-summary.html`과 `naver-summary-01.txt`에 두 선택형 문제(정답은 아래쪽에 배치), 웹 실습을 녹화한 GIF 두 장(`assets/lesson-01-quiz.gif`, `assets/lesson-01-token-demo.gif`), 각 실습으로 바로 가는 링크(`#practice`, `#token-demo`, `#check`)를 추가했습니다. 2026-11-11에 공개된 1강 글에 반영했습니다. GIF는 사진으로 첨부했고, 네이버가 MP4 영상으로 변환해 자동 재생합니다.

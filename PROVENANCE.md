@@ -54,4 +54,4 @@
 - `blog/assets/lesson-01-quiz.gif`와 `blog/assets/lesson-01-token-demo.gif`는 1강 웹 페이지의 실습 화면을 브라우저에서 조작하며 캡처한 녹화 이미지입니다. 원문 이미지가 아닙니다.
 - 링크 미리보기용 `docs/assets/og-lesson01.png`는 새로 만든 네이버 표지(`blog/assets/lesson-01-cover.png`)의 복사본입니다.
 
-이 원고는 저장소에만 반영했으며, 공개된 네이버 글은 아직 수정하지 않았습니다.
+이 원고는 2026-11-11에 공개된 네이버 1강 글에 반영했습니다.
