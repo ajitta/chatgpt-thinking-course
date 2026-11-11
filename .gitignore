@@ -3,3 +3,6 @@ __pycache__/
 .DS_Store
 Thumbs.db
 blog/tools/fonts/
+# impeccable skill install (local tool files; the project skill .claude/skills/naver-lesson stays tracked)
+.claude/agents/
+.claude/skills/impeccable/
