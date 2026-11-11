@@ -6,6 +6,7 @@
      인용 줄이기(60자 규칙): 가상 답변(1289행)은 첫 문장만 그대로 둠(빠진 문장: '이 책은 최근 독자들에게 큰 인기를 얻고 있습니다.'). 추천 질문(1569행, 87자)은 세 문장을 모두 그대로 두되 첫 문장과 둘째·셋째 문장을 버티컬 라인 인용구 두 개로 나눔(29자, 57자). 뒤 문단의 '출처가 제시되어도'가 둘째 문장의 검색·근거 요청을 받기 때문.
      참고 링크: 대화 1621행 참고 자료의 Link 두 개(제목 '언어 모델이 환각을 일으키는 이유(2025)', 'Does ChatGPT tell the truth?'). 대화 기록에는 주소가 turn976802search1·search0 자리표시자로만 남아 있어, 실제 주소는 같은 답변의 정적 편집본 lesson-04.md 260행에서 utm_source만 빼고 씀.
      다음 강의 이름: 4강 답변 1617행 버튼 '5강 · ChatGPT를 제대로 활용하는 방법'(기준 범위 1258~1638행 안의 이름). 5강 본문 제목(1639행, '4가지 방법')은 범위 밖이라 쓰지 않음.
+     2026-11-12: 다음 글·이전 글·웹 강의 링크를 넣고, 소제목 다음 첫 문단을 data-tight로 붙임(blog/STATUS.md 다음에 할 일 1의 5단계).
 -->
 <p style="font-size:15px;color:#42715a;">AI 원리 노트 · ChatGPT Thinking 4강</p>
 <blockquote data-quote="mark" data-font="maru"><p>AI가 논리적으로 정교한 답변을 만들었다고 해서 그것이 곧 현실의 진실이라는 뜻은 아닙니다.</p></blockquote>
@@ -22,12 +23,12 @@
 <p style="font-size:19px;color:#222222;">이는 능력이 부족하다는 뜻이 아니라, 불확실성을 제대로 다루는 행동입니다. 말을 잘하는 능력과 사실을 정확히 아는 능력은 다릅니다.</p>
 <hr>
 <h2 data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">예측은 자연스러움을 묻습니다</h2>
-<p style="font-size:19px;color:#222222;">1강에서 배운 ‘다음 토큰 예측’으로 돌아가 봅시다. ChatGPT의 기본 작동 과정은 입력된 문맥을 바탕으로 다음에 올 내용을 생성하는 것입니다. 그러나 문맥에 자연스럽게 이어지는 문장이라고 해서 현실에서도 참인 것은 아닙니다.</p>
+<p data-tight style="font-size:19px;color:#222222;">1강에서 배운 ‘다음 토큰 예측’으로 돌아가 봅시다. ChatGPT의 기본 작동 과정은 입력된 문맥을 바탕으로 다음에 올 내용을 생성하는 것입니다. 그러나 문맥에 자연스럽게 이어지는 문장이라고 해서 현실에서도 참인 것은 아닙니다.</p>
 <p style="font-size:19px;color:#222222;">언어 예측은 ‘어떤 표현이 지금 문맥에 자연스럽게 이어질까?’를 묻고, 사실 검증은 ‘이 내용이 실제 증거와 일치할까?’를 묻습니다. 학습된 지식을 활용해 답을 만드는 과정이 언제나 외부 자료를 조회하거나 검증하는 과정은 아닙니다.</p>
 <p style="font-size:19px;color:#222222;">그렇다고 ChatGPT가 그저 아무 단어나 연결한다는 뜻은 아닙니다. 실제로는 정교한 내부 계산과 추론을 합니다. 문제는 그 계산이 현실의 정답과 항상 일치한다는 보장이 없다는 데 있습니다.</p>
 <hr>
 <h2 data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">추측이 유리한 시험이 있습니다</h2>
-<p style="font-size:19px;color:#222222;">그렇다면 AI는 왜 모르면 모른다고 하지 않을까요? 2025년 9월 OpenAI가 발표한 연구 ‘언어 모델이 환각을 일으키는 이유’에서는 일부 학습·평가 방식이 불확실성을 인정하기보다 추측하도록 유도할 수 있다고 설명했습니다.</p>
+<p data-tight style="font-size:19px;color:#222222;">그렇다면 AI는 왜 모르면 모른다고 하지 않을까요? 2025년 9월 OpenAI가 발표한 연구 ‘언어 모델이 환각을 일으키는 이유’에서는 일부 학습·평가 방식이 불확실성을 인정하기보다 추측하도록 유도할 수 있다고 설명했습니다.</p>
 <p style="font-size:19px;color:#222222;">객관식 시험으로 생각하면 쉽게 이해할 수 있습니다. 정답을 쓰면 1점, 틀리거나 빈칸으로 제출하면 0점이라고 가정해 봅시다. 모르더라도 답을 추측하면 맞힐 가능성이 조금이라도 있으니 평균 점수가 올라갈 수 있습니다. 그러나 틀린 답을 자신 있게 말하는 위험도 생깁니다.</p>
 <p style="font-size:19px;color:#222222;">이것이 AI 환각의 한 가지 중요한 원인입니다. 정답만 보상하고 모른다는 답변을 인정하지 않는 평가 방식에서는 추측이 유리해질 수 있습니다.</p>
 <p style="font-size:19px;color:#222222;">물론 모든 환각을 이 이유 하나로 설명할 수는 없습니다. 학습 자료의 한계, 부족한 맥락, 잘못된 정보, 그리고 복잡한 추론 과정의 오류도 영향을 줍니다.</p>
@@ -48,7 +49,7 @@
 <p style="font-size:19px;color:#222222;">추론 강화 모델에서 환각이 크게 줄어든 사례가 있지만, 환각 자체는 여전히 남아 있습니다. 더 오래 생각하는 것과 더 정확한 증거를 확보하는 것은 서로 다른 일입니다.</p>
 <hr>
 <h2 data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">확인된 사실과 추정을 나눕니다</h2>
-<p style="font-size:19px;color:#222222;">펭귄 예시처럼 결론이 전제에서 올바르게 나왔더라도, 그 전제와 답변 내용이 신뢰할 만한 외부 자료와 일치하는지는 따로 따져야 합니다.</p>
+<p data-tight style="font-size:19px;color:#222222;">펭귄 예시처럼 결론이 전제에서 올바르게 나왔더라도, 그 전제와 답변 내용이 신뢰할 만한 외부 자료와 일치하는지는 따로 따져야 합니다.</p>
 <p style="font-size:19px;color:#222222;">푸른섬 도서관 질문처럼 확인할 수 없는 내용이라면, 모르는 것을 모른다고 말하고 추정과 확인된 사실을 구별하는 답이 믿을 만합니다. 실제로 중요한 질문을 할 때는 다음과 같이 요청해 보세요.</p>
 <blockquote data-quote="line" data-font="maru"><p>이 질문에 답할 때 확인된 사실과 추정을 구분해 줘.</p></blockquote>
 <blockquote data-quote="line" data-font="maru"><p>최신 정보가 필요하면 검색하고, 핵심 주장의 근거를 알려줘. 검증할 수 없는 부분은 모른다고 말해 줘.</p></blockquote>
@@ -57,6 +58,9 @@
 <p data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">답변이 얼마나 유창한가보다 무엇을 근거로 답했는가를 확인해야 합니다.</p>
 <p style="font-size:19px;color:#222222;">ChatGPT의 신뢰성은 좋은 추론과 정확한 정보, 그리고 검증에 함께 달려 있습니다. 추론이 뛰어난 모델도 정보가 없거나 전제가 틀리면 잘못된 답을 생성할 수 있습니다.</p>
 <p style="font-size:19px;color:#222222;">여기까지 배웠다면 이제 이론을 실전으로 옮길 차례입니다. 다음 강의 ‘ChatGPT를 제대로 활용하는 방법’에서 이어 갑니다.</p>
+<p data-tight style="font-size:16px;color:#216044;font-weight:bold;"><a href="https://blog.naver.com/ajitta/224473523925">다음 글 · 5강 ChatGPT를 제대로 활용하는 4가지 방법</a></p>
+<p style="font-size:19px;color:#216044;font-weight:bold;"><a href="https://ajitta.github.io/chatgpt-thinking-course/lessons/04/">4강 웹 강의에서 실습하기</a></p>
+<p data-tight style="font-size:16px;color:#216044;"><a href="https://blog.naver.com/ajitta/224473514940">이전 글 · 3강 ChatGPT는 정말 이해하고 생각하는 걸까?</a></p>
 <p style="font-size:15px;color:#666666;">공개 대화의 4강을 블로그용으로 다시 편집했습니다. 원문 강의가 참고한 글은 아래 두 편입니다.</p>
 <p data-tight style="font-size:15px;color:#666666;"><a href="https://openai.com/ko-KR/index/why-language-models-hallucinate/">OpenAI 환각 원인 연구</a></p>
 <p data-tight style="font-size:15px;color:#666666;"><a href="https://help.openai.com/en/articles/8313428-does-chatgpt-tell-the-truth">ChatGPT 정확성에 관한 OpenAI 도움말</a></p>

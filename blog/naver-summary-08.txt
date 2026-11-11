@@ -114,6 +114,12 @@ AI가 다음 행동을 스스로 판단할 수 있어도, 그 행동을 실행�
 
 다음 강의는 여러 AI가 협력하는 멀티 에이전트 시스템을 다룹니다. AI가 팀을 이루면 무슨 일이 일어날까요?
 
+다음 글 · 9강 ChatGPT 같은 AI 여러 명이 팀을 이루면 무슨 일이 일어날까? (https://blog.naver.com/ajitta/224473537658)
+
+8강 웹 강의에서 실습하기 (https://ajitta.github.io/chatgpt-thinking-course/lessons/08/)
+
+이전 글 · 7강 ChatGPT 같은 AI에게 일을 잘 위임하는 방법 (https://blog.naver.com/ajitta/224473531236)
+
 공개 대화의 8강을 블로그용으로 다시 편집했습니다. 원문 강의가 참고한 글은 아래 세 편입니다.
 
 OpenAI 개발자용 에이전트 구축 안내 (https://developers.openai.com/tracks/building-agents)

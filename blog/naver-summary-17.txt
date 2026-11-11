@@ -98,6 +98,12 @@ Google의 SRE 신뢰성 가이드는 이런 연쇄 장애를 막으려면 최대
 
 완벽한 무오류를 보장할 수는 없지만, 위험을 발견하고 통제하는 능력은 키울 수 있습니다. 다음 강의인 18강은 예측할 수 없는 위험과 회복탄력성을 다룹니다.
 
+다음 글 · 18강 ChatGPT 시대, 예측할 수 없는 위험과 회복탄력성 (https://blog.naver.com/ajitta/224473574549)
+
+17강 웹 강의에서 실습하기 (https://ajitta.github.io/chatgpt-thinking-course/lessons/17/)
+
+이전 글 · 16강 ChatGPT 같은 AI의 확신은 얼마나 믿을 수 있을까? (https://blog.naver.com/ajitta/224473568746)
+
 공개 대화의 17강을 블로그용으로 다시 편집했습니다. 원문 강의가 참고한 글은 아래 다섯 편입니다.
 
 하버드 비즈니스 리뷰의 프리모텀 글 (https://hbr.org/2007/09/performing-a-project-premortem)

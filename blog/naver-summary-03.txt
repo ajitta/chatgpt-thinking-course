@@ -104,6 +104,12 @@ ChatGPT는 단순히 문장을 통째로 암기해서 답하는 시스템이 아
 
 그런데 AI가 문맥을 이해하고 논리적 추론도 할 수 있다면, 왜 때때로 존재하지 않는 정보를 진짜처럼 말할까요? 4강에서는 환각(Hallucination), 확신과 정확성의 차이, Thinking으로도 막을 수 없는 오류를 살펴볼 수 있습니다.
 
+다음 글 · 4강 ChatGPT는 왜 자신 있게 틀린 답을 할까? (https://blog.naver.com/ajitta/224473520673)
+
+3강 웹 강의에서 실습하기 (https://ajitta.github.io/chatgpt-thinking-course/lessons/03/)
+
+이전 글 · 2강 ChatGPT는 어떻게 숫자로 의미를 표현할까? (https://blog.naver.com/ajitta/224473420017)
+
 공개 대화의 3강을 블로그용으로 다시 편집했습니다. 원문 강의가 참고한 글은 아래 세 편입니다.
 
 OpenAI 추론 모델 연구 (https://openai.com/index/learning-to-reason-with-llms/)

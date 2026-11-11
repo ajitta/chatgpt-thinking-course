@@ -3,6 +3,7 @@
      핵심 문장 출처: sources/conversation/chatgpt-thinking-공유대화-원본.md 11692행, "10. 19강의 핵심 결론"에서 "오늘의 핵심 문장은 이것입니다." 다음 인용문(그대로, 바깥 따옴표만 뺌).
      마무리 문장 출처: sources/conversation/chatgpt-thinking-공유대화-원본.md 11646행, "10. 19강의 핵심 결론"에서 "오늘 배운 내용을 하나의 원칙으로 정리할 수 있습니다." 다음 원칙 문장(그대로).
      20강 예고 문장 출처: 같은 파일 11720행, 20강 시작 전 ChatGPT 안내([066])의 첫 두 문장을 한 문장으로 줄임.
+     2026-11-12: 다음 글·이전 글·웹 강의 링크를 넣고, 소제목 다음 첫 문단을 data-tight로 붙임(blog/STATUS.md 다음에 할 일 1의 5단계).
 -->
 <p style="font-size:15px;color:#42715a;">AI 원리 노트 · ChatGPT Thinking 19강</p>
 <blockquote data-quote="mark" data-font="maru"><p>미래를 정확히 맞힐 수 없다면, 틀렸을 때 수정할 수 있도록 결정하자.</p></blockquote>
@@ -10,7 +11,7 @@
 <p data-font="maru" style="font-size:19px;color:#222222;">미래를 정확히 예측할 수 없다면, 처음부터 큰 결정을 내리는 대신 조금씩 실행하며 배우는 편이 낫지 않을까요? 19강은 고객 문의 분석 AI를 도입하는 사례로 이 질문을 따라갑니다. 사례 속 금액과 확률은 모두 원리를 설명하려고 만든 가상 수치입니다.</p>
 <hr>
 <h2 data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">되돌릴 수 있는지부터 봅니다</h2>
-<p style="font-size:19px;color:#222222;">회사의 내부 보고서 제목을 바꾸는 결정과 고객 10만 명의 개인정보를 외부 서비스에 이전하는 결정은 잘못되었을 때의 결과가 다릅니다.</p>
+<p data-tight style="font-size:19px;color:#222222;">회사의 내부 보고서 제목을 바꾸는 결정과 고객 10만 명의 개인정보를 외부 서비스에 이전하는 결정은 잘못되었을 때의 결과가 다릅니다.</p>
 <p style="font-size:19px;color:#222222;">보고서 제목은 마음에 들지 않으면 다시 바꾸면 됩니다. 하지만 개인정보가 잘못 전달되었다면, 나중에 접근을 막더라도 이미 일어난 노출 자체를 완전히 되돌릴 수는 없습니다. 이 차이가 바로 ‘가역성’입니다.</p>
 <p style="font-size:19px;color:#222222;">아마존의 주주서한은 이를 ‘양방향 문’과 ‘일방향 문’에 빗댑니다. 다시 돌아올 수 있는 양방향 문은 비교적 빨리 결정해도 되지만, 잘못 지나가면 되돌리기 어려운 일방향 문은 더 신중하게 검토해야 한다는 뜻입니다.</p>
 <p style="font-size:19px;color:#222222;">실제 결정은 그 중간에 있는 경우가 많습니다. AI가 고객에게 잘못된 안내 이메일을 보냈다면 정정 메일은 보낼 수 있어도, 고객이 이미 읽은 내용을 없앨 수는 없습니다. 그래서 업무 시스템을 설계할 때는 이렇게 묻는 편이 좋습니다.</p>
@@ -19,7 +20,7 @@
 <p style="font-size:19px;color:#222222;">되돌리기 쉬운 결정은 빠르게 시험하고, 되돌리기 어려운 결정에는 더 강한 증거와 승인 절차를 마련해야 합니다. 다만 가역적이라고 해서 개인정보나 안전 문제를 일으킬 수 있는 실험을 무단으로 진행해도 된다는 뜻은 아닙니다.</p>
 <hr>
 <h2 data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">단계마다 다시 선택합니다</h2>
-<p style="font-size:19px;color:#222222;">고객 문의 분석 AI를 모든 업무에 한꺼번에 적용한다고 해 보겠습니다. 이 AI가 복합 문의를 제대로 분류하는지, 개인정보를 안전하게 처리하는지, 장애가 나면 어떻게 복구할지는 아직 충분히 검증되지 않았습니다.</p>
+<p data-tight style="font-size:19px;color:#222222;">고객 문의 분석 AI를 모든 업무에 한꺼번에 적용한다고 해 보겠습니다. 이 AI가 복합 문의를 제대로 분류하는지, 개인정보를 안전하게 처리하는지, 장애가 나면 어떻게 복구할지는 아직 충분히 검증되지 않았습니다.</p>
 <p style="font-size:19px;color:#222222;">이 상태로 모든 고객 문의를 자동 처리하게 하면 문제가 생겼을 때 피해 범위가 클 수 있습니다.</p>
 <p style="font-size:19px;color:#222222;">대신 도입을 단계로 나눌 수 있습니다. 처음에는 실제 고객에게 아무 행동도 하지 않고, 정답이 알려진 시험 문의로 정확도와 보안 규칙을 확인합니다. 다음에는 권한이 허용된 실제 문의 일부를 AI가 분류하되, 결과는 담당자만 보고 고객에게 자동으로 보내지 않습니다.</p>
 <p style="font-size:19px;color:#222222;">그다음 검증된 저위험 문의에만 일부 자동 처리를 허용해 오류와 고객 반응을 지켜보고, 미리 정한 품질·보안·성과 기준을 충족할 때만 범위를 넓힙니다. 운영 중에도 데이터와 모델이 달라질 수 있으니 정기적으로 시험하고, 필요하면 자동화 범위를 줄입니다.</p>
@@ -38,7 +39,7 @@
 <p style="font-size:19px;color:#222222;">선택권에는 가치가 있지만 그것을 확보하는 데에도 비용이 들고, 그 가치는 불확실성, 시험의 정보력, 추가 투자 비용, 기다리는 비용에 따라 달라집니다. 이 숫자들은 실제 성공 확률을 알아낸 결과가 아니어서, 가정이 틀리면 기대 순편익도 달라집니다.</p>
 <hr>
 <h2 data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">작은 실험에도 기준이 필요합니다</h2>
-<p style="font-size:19px;color:#222222;">고객 문의 10건을 AI가 모두 정확하게 분류했다고 해서 AI의 정확도가 100%라고 말할 수는 없습니다. 그 10건이 지나치게 쉬운 사례였을 수도 있고, 실제 업무에서 생기는 다양한 문제를 대표하지 못할 수도 있습니다.</p>
+<p data-tight style="font-size:19px;color:#222222;">고객 문의 10건을 AI가 모두 정확하게 분류했다고 해서 AI의 정확도가 100%라고 말할 수는 없습니다. 그 10건이 지나치게 쉬운 사례였을 수도 있고, 실제 업무에서 생기는 다양한 문제를 대표하지 못할 수도 있습니다.</p>
 <p style="font-size:19px;color:#222222;">그래서 좋은 실험에는 시험 범위와 비교 대상, 품질·안전 기준, 중단 조건 같은 요소가 필요합니다. Microsoft Research의 온라인 실험 설계 가이드도 좋은 실험의 출발점으로 검증 가능한 가설, 주요 성과 지표, 사용자 만족도와 안전을 지키는 보조 지표를 강조합니다.</p>
 <p style="font-size:19px;color:#222222;">안전 기준을 따로 두는 이유가 있습니다. AI를 도입한 뒤 업무 처리 시간이 절반으로 줄었다면 매우 좋은 성과입니다. 하지만 그사이 고객의 환불 요청을 누락하는 심각한 오류가 생겼다면, 빨라졌다는 것만으로 자동화를 넓힐 수는 없습니다.</p>
 <p style="font-size:19px;color:#222222;">그래서 올리고 싶은 성과 지표와 별도로 절대로 크게 나빠져서는 안 되는 지표를 두고, 이를 ‘가드레일 지표’라고 부릅니다.</p>
@@ -57,6 +58,9 @@
 <p data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">작게 결정하고, 실제로 확인하고, 다음 선택을 남겨 두자.</p>
 <p style="font-size:19px;color:#222222;">목적 없이 결정을 미루는 것은 판단을 회피하는 것일 수 있습니다. 하지만 시험할 가설, 사용할 예산, 검토할 시점, 확대와 중단 조건을 정해 두고 결정을 나누면 불확실성을 관리하는 적극적인 전략이 됩니다.</p>
 <p style="font-size:19px;color:#222222;">한 번의 선택으로 모든 가능성을 닫지 않는 것은 18강에서 본 예상하지 못한 충격에 대비하는 방법이기도 합니다. 20강은 ‘AI로 반복 업무를 자동화할지’라는 현실적인 사례를 놓고, 앞선 19개 강의를 하나의 개인용 의사결정 운영체계로 완성합니다.</p>
+<p data-tight style="font-size:16px;color:#216044;font-weight:bold;"><a href="https://blog.naver.com/ajitta/224473580570">다음 글 · 20강 ChatGPT와 함께 만드는 나만의 AI 의사결정 운영체계</a></p>
+<p style="font-size:19px;color:#216044;font-weight:bold;"><a href="https://ajitta.github.io/chatgpt-thinking-course/lessons/19/">19강 웹 강의에서 실습하기</a></p>
+<p data-tight style="font-size:16px;color:#216044;"><a href="https://blog.naver.com/ajitta/224473574549">이전 글 · 18강 ChatGPT 시대, 예측할 수 없는 위험과 회복탄력성</a></p>
 <p style="font-size:15px;color:#666666;">공개 대화의 19강을 블로그용으로 다시 편집했습니다. 원문 강의가 참고한 글은 아래 다섯 편입니다.</p>
 <p data-tight style="font-size:15px;color:#666666;"><a href="https://aws.amazon.com/executive-insights/content/how-amazon-defines-and-operationalizes-a-day-1-culture/">Amazon의 일방향·양방향 결정</a></p>
 <p data-tight style="font-size:15px;color:#666666;"><a href="https://hbr.org/2004/03/a-real-world-way-to-manage-real-options">하버드 비즈니스 리뷰의 단계적 투자와 실물옵션</a></p>

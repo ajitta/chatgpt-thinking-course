@@ -104,6 +104,12 @@ AI 시스템은 잘 만들어 놓았다고 영원히 잘 작동하는 것이 아
 
 이번 강의에서 정답을 확인하고 중요한 실행을 승인하는 일은 사람의 몫이었습니다. 다음 13강은 AI 시대에 바로 그 사람의 역할이 어떻게 달라질지 살펴봅니다.
 
+다음 글 · 13강 ChatGPT 시대, 사람의 역할은 어떻게 달라질까? (https://blog.naver.com/ajitta/224473559218)
+
+12강 웹 강의에서 실습하기 (https://ajitta.github.io/chatgpt-thinking-course/lessons/12/)
+
+이전 글 · 11강 ChatGPT 같은 AI 업무 시스템의 성과·비용·오류 관리 (https://blog.naver.com/ajitta/224473543348)
+
 공개 대화의 12강을 블로그용으로 다시 편집했습니다. 원문 강의가 참고한 글은 아래 다섯 편입니다.
 
 NIST 운영 중 AI 감시 연구 (https://www.nist.gov/publications/challenges-monitoring-deployed-ai-systems-center-ai-standards-and-innovation)

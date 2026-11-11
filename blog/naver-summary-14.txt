@@ -92,6 +92,12 @@ AI가 나 대신 얼마나 잘하는지보다, AI와 함께 일하면서 내가 
 
 다음 15강에서는 AI 시대에 증거를 바탕으로 판단하고 불확실성을 다루는 법을 살펴봅니다.
 
+다음 글 · 15강 ChatGPT 시대의 증거 기반 판단과 불확실성 다루기 (https://blog.naver.com/ajitta/224473566023)
+
+14강 웹 강의에서 실습하기 (https://ajitta.github.io/chatgpt-thinking-course/lessons/14/)
+
+이전 글 · 13강 ChatGPT 시대, 사람의 역할은 어떻게 달라질까? (https://blog.naver.com/ajitta/224473559218)
+
 공개 대화의 14강을 블로그용으로 다시 편집했습니다. 원문 강의가 참고한 글은 아래 네 편입니다.
 
 Microsoft 생성형 AI와 비판적 사고 연구 (https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/)

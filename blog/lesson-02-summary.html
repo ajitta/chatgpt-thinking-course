@@ -3,6 +3,7 @@
      핵심 문장 출처: lessons/01-ai-fundamentals/lesson-02.md "오늘의 핵심 결론" 첫 문장(그대로).
      마무리 문장 출처: sources/conversation/chatgpt-thinking-공유대화-원본.md 851행 첫 문장(앞의 '즉,'만 덜어 냄). 2026-11-11 휴대폰 길이 규칙에 맞춰, 두 문장을 이어 다듬은 이전 마무리 문장(876px, 360px에서 세 줄)을 바꿈. 뒷문장의 뜻은 다음 문단 'Thinking은 이 기본 계산을 활용해 추론 과정을 더 거치게 합니다'가 이어 받음.
      같은 날 리드와 본문 두 문단을 문장 경계에서 나눔(문장은 그대로).
+     2026-11-12: 다음 글·이전 글·웹 강의 링크를 넣고, 소제목 다음 첫 문단을 data-tight로 붙임(blog/STATUS.md 다음에 할 일 1의 5단계).
 -->
 <p style="font-size:15px;color:#42715a;">AI 원리 노트 · ChatGPT Thinking 2강</p>
 <blockquote data-quote="mark" data-font="maru"><p>ChatGPT는 개념을 사람처럼 머릿속에 그림이나 사전 항목으로 저장하는 것이 아니라, 수많은 숫자의 상호작용을 통해 정보를 표현하고 처리합니다.</p></blockquote>
@@ -10,13 +11,13 @@
 <p data-font="maru" style="font-size:19px;color:#222222;">그 숫자로 어떻게 ‘사과’, ‘사랑’, ‘정의’ 같은 개념을 다룰까요? 2강은 파라미터, 벡터, 어텐션으로 이 질문을 풉니다.</p>
 <hr>
 <h2 data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">파라미터는 조절 손잡이입니다</h2>
-<p style="font-size:19px;color:#222222;">음악을 만드는 믹싱 콘솔에는 음량, 저음, 고음을 바꾸는 손잡이가 많습니다. 손잡이를 조금씩 돌리면 같은 악기의 소리도 달라집니다. ChatGPT의 파라미터도 비슷합니다. 모델 내부의 계산에 영향을 주는 숫자들이고, 학습하면서 조정됩니다.</p>
+<p data-tight style="font-size:19px;color:#222222;">음악을 만드는 믹싱 콘솔에는 음량, 저음, 고음을 바꾸는 손잡이가 많습니다. 손잡이를 조금씩 돌리면 같은 악기의 소리도 달라집니다. ChatGPT의 파라미터도 비슷합니다. 모델 내부의 계산에 영향을 주는 숫자들이고, 학습하면서 조정됩니다.</p>
 <blockquote data-quote="line" data-font="maru"><p>고양이는 물고기를 ____.</p></blockquote>
 <p style="font-size:19px;color:#222222;">처음에는 ‘운전한다’나 ‘건축한다’ 같은 엉뚱한 예측을 할 수 있습니다. 예측하고, 정답과의 차이로 오류를 계산하고, 숫자를 조금씩 고치는 일을 많은 데이터로 되풀이하면 점차 언어와 세상의 관계에 맞는 예측을 하게 됩니다.</p>
 <p style="font-size:19px;color:#222222;">파라미터 하나가 ‘고양이’라는 개념 하나를 저장하지는 않습니다. 수많은 숫자가 함께 복잡한 관계를 표현합니다. 수많은 손잡이의 조합으로 음악 한 곡이 만들어지는 것과 비슷합니다. 또 평소 대화할 때는 질문마다 파라미터를 다시 훈련하지 않고, 이미 학습한 숫자로 입력을 처리합니다.</p>
 <hr>
 <h2 data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">벡터는 의미의 좌표입니다</h2>
-<p style="font-size:19px;color:#222222;">서울과 부산은 지도 위에서 서로 다른 좌표를 갖고, 컴퓨터는 그 좌표로 두 곳의 관계를 계산할 수 있습니다. AI는 비슷한 생각을 단어의 의미에 씁니다.</p>
+<p data-tight style="font-size:19px;color:#222222;">서울과 부산은 지도 위에서 서로 다른 좌표를 갖고, 컴퓨터는 그 좌표로 두 곳의 관계를 계산할 수 있습니다. AI는 비슷한 생각을 단어의 의미에 씁니다.</p>
 <p><img src="assets/lesson-02-meaning-map.png" alt="원본 도식: 가상의 의미 지도"></p>
 <p style="font-size:15px;color:#666666;">2강 공개 대화에 실린 원본 도식입니다. 직관을 위한 가상의 2차원 지도로, 실제 AI의 벡터 공간이나 측정값을 나타내지 않습니다.</p>
 <p style="font-size:19px;color:#222222;">이 지도에서 ‘사과’, ‘배(과일)’, ‘바나나’는 서로 가깝고 ‘자동차’, ‘배(선박)’, ‘자전거’도 비슷한 영역에 모여 있습니다. 이렇게 여러 숫자를 묶어 하나의 위치나 특징을 나타낸 것이 벡터이고, 토큰을 벡터로 바꾼 표현을 임베딩이라고 부릅니다.</p>
@@ -37,12 +38,15 @@
 <p style="font-size:19px;color:#222222;">실제로는 어텐션과 다른 계산이 여러 층에서 되풀이되고, 파라미터는 이 과정 전체의 계산에 쓰입니다. 트랜스포머는 어텐션 말고도 다른 신경망 연산을 함께 씁니다. 어텐션 하나가 모든 의미나 추론을 해결하지는 않습니다.</p>
 <hr>
 <h2 data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">도서관처럼 꺼내 쓰지 않습니다</h2>
-<p style="font-size:19px;color:#222222;">일반적인 데이터베이스는 정보를 항목별로 저장하고, 저장된 항목을 검색합니다. 항목을 직접 확인할 수 있고, 내용을 고치려면 데이터를 바꾸면 됩니다.</p>
+<p data-tight style="font-size:19px;color:#222222;">일반적인 데이터베이스는 정보를 항목별로 저장하고, 저장된 항목을 검색합니다. 항목을 직접 확인할 수 있고, 내용을 고치려면 데이터를 바꾸면 됩니다.</p>
 <p style="font-size:19px;color:#222222;">ChatGPT의 학습된 모델에서는 많은 관계가 파라미터에 흩어져 반영되고, 답은 학습된 계산을 거쳐 만들어집니다. 특정 지식이 어느 숫자에 있는지 떼어 내기 어렵고, 학습된 능력을 바꾸려면 별도의 학습이 필요합니다.</p>
 <p style="font-size:19px;color:#222222;">그렇다고 학습 자료를 전혀 기억하지 않는다는 뜻은 아닙니다. 일부 내용을 기억하거나 재현하기도 합니다. 다만 모델이 어떤 사실과 관련된 표현을 학습했더라도, 답을 만들 때 정확한 원문이나 검증된 기록을 조회한다고 보장할 수는 없습니다. AI가 틀릴 수 있는 이유가 여기서 이어집니다.</p>
 <hr>
 <p data-font="maru" data-align="center" style="font-size:21px;color:#203b30;font-weight:bold;">Thinking은 마법처럼 새로운 뇌가 생기는 것이 아닙니다.</p>
 <p style="font-size:19px;color:#222222;">파라미터는 학습된 계산 능력의 기반이고, 벡터는 문제와 중간 정보를 다루는 숫자 표현이며, 어텐션은 정보 사이의 관계를 계산합니다. Thinking은 이 기본 계산을 활용해 추론 과정을 더 거치게 합니다.</p>
 <p style="font-size:19px;color:#222222;">남는 질문이 있습니다. 숫자로 의미를 다룰 수 있다는 것은, 정말 그 의미를 이해한다는 뜻일까요? 다음 강의는 이 질문에서 시작합니다.</p>
+<p data-tight style="font-size:16px;color:#216044;font-weight:bold;"><a href="https://blog.naver.com/ajitta/224473514940">다음 글 · 3강 ChatGPT는 정말 이해하고 생각하는 걸까?</a></p>
+<p style="font-size:19px;color:#216044;font-weight:bold;"><a href="https://ajitta.github.io/chatgpt-thinking-course/lessons/02/">2강 웹 강의에서 실습하기</a></p>
+<p data-tight style="font-size:16px;color:#216044;"><a href="https://blog.naver.com/ajitta/224472328521">이전 글 · 1강 ChatGPT는 다음 단어만 맞히는데, 어떻게 추론까지 할까?</a></p>
 <p style="font-size:15px;color:#666666;">공개 대화의 2강을 블로그용으로 다시 편집했습니다.</p>
 <p><img src="assets/thumb-lesson-02.png" data-rep data-small alt="ChatGPT Thinking 원리 이해하기 2강 썸네일"></p>

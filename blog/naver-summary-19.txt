@@ -106,6 +106,12 @@ AI를 활용해 내린 결정이 3개월 뒤 실패했을 때 흔히 하는 생�
 
 한 번의 선택으로 모든 가능성을 닫지 않는 것은 18강에서 본 예상하지 못한 충격에 대비하는 방법이기도 합니다. 20강은 ‘AI로 반복 업무를 자동화할지’라는 현실적인 사례를 놓고, 앞선 19개 강의를 하나의 개인용 의사결정 운영체계로 완성합니다.
 
+다음 글 · 20강 ChatGPT와 함께 만드는 나만의 AI 의사결정 운영체계 (https://blog.naver.com/ajitta/224473580570)
+
+19강 웹 강의에서 실습하기 (https://ajitta.github.io/chatgpt-thinking-course/lessons/19/)
+
+이전 글 · 18강 ChatGPT 시대, 예측할 수 없는 위험과 회복탄력성 (https://blog.naver.com/ajitta/224473574549)
+
 공개 대화의 19강을 블로그용으로 다시 편집했습니다. 원문 강의가 참고한 글은 아래 다섯 편입니다.
 
 Amazon의 일방향·양방향 결정 (https://aws.amazon.com/executive-insights/content/how-amazon-defines-and-operationalizes-a-day-1-culture/)

@@ -100,6 +100,12 @@ ChatGPT의 신뢰성은 좋은 추론과 정확한 정보, 그리고 검증에 �
 
 여기까지 배웠다면 이제 이론을 실전으로 옮길 차례입니다. 다음 강의 ‘ChatGPT를 제대로 활용하는 방법’에서 이어 갑니다.
 
+다음 글 · 5강 ChatGPT를 제대로 활용하는 4가지 방법 (https://blog.naver.com/ajitta/224473523925)
+
+4강 웹 강의에서 실습하기 (https://ajitta.github.io/chatgpt-thinking-course/lessons/04/)
+
+이전 글 · 3강 ChatGPT는 정말 이해하고 생각하는 걸까? (https://blog.naver.com/ajitta/224473514940)
+
 공개 대화의 4강을 블로그용으로 다시 편집했습니다. 원문 강의가 참고한 글은 아래 두 편입니다.
 
 OpenAI 환각 원인 연구 (https://openai.com/ko-KR/index/why-language-models-hallucinate/)

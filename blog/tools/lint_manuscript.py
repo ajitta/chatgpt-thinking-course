@@ -58,7 +58,12 @@ def main(n):
     else:
         warns.append(f"font missing, heading widths not checked: {FONT}")
 
-    for num in sorted(set(re.findall(r"\d+(?:\.\d+)?", plain))):
+    # Link paragraphs (web lesson, previous/next post, references) name other lessons; their numbers are not claims.
+    def is_link_para(p):
+        a = re.search(r"<a [^>]*>(.*?)</a>", p, flags=re.S)
+        return bool(a) and text_of(re.sub(r"</?a[^>]*>", "", p)) == text_of(a.group(1))
+    prose = text_of(re.sub(r"<p[^>]*>(.*?)</p>", lambda m: "" if is_link_para(m.group(1)) else m.group(0), body, flags=re.S))
+    for num in sorted(set(re.findall(r"\d+(?:\.\d+)?", prose))):
         if num not in source_text and num not in {str(n), f"{n:02d}"}:
             warns.append(f"number not found in the lesson source: {num}")
 
@@ -77,7 +82,7 @@ def main(n):
         errors.append("no github.com links: link the github.io lesson page (.../chatgpt-thinking-course/lessons/NN/) once the site is live (lessons-plan.json decisions)")
 
     # Phone reading length (impeccable critique 2026-11-11): about 20 characters per line at 360px.
-    lead_done = False
+    lead_done = False   # only the first MaruBuri paragraph is the lead; a split-off second piece is checked as body (PARA_MAX)
     for tag, attrs, inner in re.findall(r"<(p|blockquote)([^>]*)>(.*?)</\1>", body, flags=re.S):
         t = text_of(inner)
         if not t or "<img" in inner or "42715a" in attrs or "font-size:15px" in attrs or "<a " in inner:

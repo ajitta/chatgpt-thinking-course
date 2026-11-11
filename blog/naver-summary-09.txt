@@ -102,6 +102,12 @@ AI끼리 협력해도 오류는 발생하고, 공유된 잘못된 정보는 팀 
 
 여러 AI에게 일을 나누는 법까지 왔습니다. 10강에서는 나만의 AI 업무 시스템을 설계합니다.
 
+다음 글 · 10강 ChatGPT 같은 AI로 나만의 업무 시스템을 어떻게 설계할까? (https://blog.naver.com/ajitta/224473540524)
+
+9강 웹 강의에서 실습하기 (https://ajitta.github.io/chatgpt-thinking-course/lessons/09/)
+
+이전 글 · 8강 ChatGPT 같은 AI 에이전트는 어떻게 스스로 일을 수행할까? (https://blog.naver.com/ajitta/224473534348)
+
 공개 대화의 9강을 블로그용으로 다시 편집했습니다. 원문 강의가 참고한 글은 아래 세 편입니다.
 
 OpenAI Agents SDK 오케스트레이션 문서 (https://openai.github.io/openai-agents-python/ko/multi_agent/)

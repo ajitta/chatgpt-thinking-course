@@ -118,6 +118,12 @@ AI가 어디까지 발전할지는 확정되어 있지 않지만, 근거를 검�
 
 그렇다면 AI를 활용하면서도 인간의 사고력은 어떻게 키울 수 있을까요? 다음 강의는 이 질문을 다룹니다.
 
+다음 글 · 14강 ChatGPT를 활용하면서도 내 사고력을 키우는 방법 (https://blog.naver.com/ajitta/224473562643)
+
+13강 웹 강의에서 실습하기 (https://ajitta.github.io/chatgpt-thinking-course/lessons/13/)
+
+이전 글 · 12강 ChatGPT 같은 AI 업무 시스템을 안전하고 안정적으로 운영하는 방법 (https://blog.naver.com/ajitta/224473546876)
+
 공개 대화의 13강을 블로그용으로 다시 편집했습니다. 원문 강의가 참고한 글은 아래 다섯 편입니다.
 
 OpenAI 에이전트 구축 실무 가이드 (https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/)

@@ -28,7 +28,7 @@ export function parseManuscript(src) {
     const img = inner.match(/<img[^>]*src="([^"]+)"([^>]*)>/);
     if (img) { blocks.push({ type: "img", src: img[1], rep: /data-rep/.test(img[0]), small: /data-small/.test(img[0]) }); continue; }
     const style = (attrs.match(/style="([^"]*)"/) || [, ""])[1];
-    const href = (inner.match(/<a href="([^"]+)"/) || [])[1];
+    const href = (inner.match(/<a\b[^>]*?\bhref="([^"]+)"/) || [])[1]?.replace(/&amp;/g, "&");
     blocks.push({ type: "text", tag, style, inner, text: strip(inner), maru: /data-font="maru"/.test(attrs), center: /data-align="center"/.test(attrs), tight: /data-tight/.test(attrs), heading: tag === "h2", bold: /font-weight:bold/.test(style) || tag === "h2", href });
   }
   return { title, blocks };
@@ -189,5 +189,23 @@ export async function verify(page, blocks, title) {
   const gotTitle = await page.evaluate(() => document.querySelector(".se-documentTitle").innerText.trim());
   const rep = await page.evaluate(() => [...document.querySelectorAll(".se-component.se-image")].filter(c => c.querySelector("button.se-set-rep-image-button")?.className.includes("se-is-")).map(c => c.querySelector("img").src.split("/").pop().split("?")[0]));
   const style = await styleReport(page, blocks);
-  return { titleOk: gotTitle === title, lines: got.length, diff, style, representative: rep, ok: gotTitle === title && !diff.length && !style.length && rep.length === 1 && rep[0].includes("thumb-lesson") };
+  // Each link must cover its whole paragraph and point where the manuscript says (a wrapped line once got only its last line linked).
+  const links = await page.evaluate((want) => {
+    const ps = [...document.querySelectorAll(".se-component.se-text p.se-text-paragraph")];
+    const clean = (s) => s.replace(/​/g, "").trim();
+    return want.map(w => {
+      const p = ps.find(p => clean(p.innerText) === w.text);
+      if (!p) return { text: w.text.slice(0, 30), issue: "not found" };
+      // The editor marks links as span.se-link[data-href]; the published page uses <a href>.
+      const as = [...p.querySelectorAll("a, .se-link")].filter(a => !a.parentElement.closest("a, .se-link"));
+      const linked = clean(as.map(a => a.innerText).join(""));
+      const hrefs = [...new Set(as.map(a => a.getAttribute("href") || a.dataset.href))];
+      if (linked !== w.text) return { text: w.text.slice(0, 30), issue: "link covers only part of the paragraph" };
+      if (hrefs.length !== 1 || hrefs[0] !== w.href) return { text: w.text.slice(0, 30), issue: "href " + hrefs.join(",") };
+      return null;
+    }).filter(Boolean).concat(
+      // a link anywhere else (selection ran past a paragraph, or a leftover link) is a problem too
+      ps.filter(p => p.querySelector("a, .se-link") && !want.some(w => clean(p.innerText) === w.text)).map(p => ({ text: clean(p.innerText).slice(0, 30), issue: "unexpected link" })));
+  }, blocks.filter(b => b.type === "text" && b.href).map(b => ({ text: b.text, href: b.href })));
+  return { titleOk: gotTitle === title, lines: got.length, diff, style, links, representative: rep, ok: gotTitle === title && !diff.length && !style.length && !links.length && rep.length === 1 && rep[0].includes("thumb-lesson") };
 }

@@ -9,7 +9,6 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DOCS = path.join(ROOT, "docs");
 const SITE = "https://ajitta.github.io/chatgpt-thinking-course/";
-const SHARE = "https://chatgpt.com/share/6af33303-9c00-83e8-a5b8-bb134c40db5c";
 const COURSE = "ChatGPT Thinking 원리 이해하기";
 const BRAND = "Know Your Unknowns";
 const LAST = 20;
@@ -49,7 +48,7 @@ const CORRECTIONS = {
     // The "직접 실험해 보기" verdict is inverted against the lesson's own explanation:
     // problem A's conclusion is necessarily true, yet answering "그렇다" was marked wrong.
     replace: [['(choice==="yes")===(!isValid)', '(choice==="yes")===isValid']],
-    note: "다만 ‘직접 실험해 보기’는 원문의 정답 판정이 바로 아래 해설과 반대여서(문제 A에서 ‘그렇다’를 고르면 오답으로 표시), 판정만 해설에 맞게 바로잡았습니다."
+    note: "‘직접 실험해 보기’는 원문의 정답 판정이 바로 아래 해설과 반대여서(문제 A에서 ‘그렇다’를 고르면 오답으로 표시), 판정만 해설에 맞게 바로잡았습니다."
   }
 };
 
@@ -101,10 +100,12 @@ async function loadLesson(n) {
     code = code.split(from).join(to);
   }
   const { resolutions, count: omittedImages } = omitImages(rec.resolutions);
+  // The subtitle under each lesson title ends with ' · 비전공자 과정' in lessons 1-4; the site drops that label (user decision 2026-11-12).
+  const constants = Object.fromEntries(Object.entries(rec.constants).map(([k, v]) => [k, typeof v === "string" ? v.replace(/\s*·\s*비전공자 과정$/, "") : v]));
   const data = {
     lesson: rec.lesson,
     start_at_title: rec.start_at_title,
-    constants: rec.constants,
+    constants,
     resolutions,
     bindings: rec.bindings,
     widgets: rec.widgets
@@ -177,18 +178,10 @@ function lessonPage(L) {
   ${next ? `<a class="pager-link next" href="../${pad(next.n)}/" rel="next"><span class="ttl"><span class="sr-only">다음 강의: </span><span class="no">${next.n}강</span> ${esc(next.title)}</span>${icon("chevron-right", "i-lg")}</a>` : `<a class="pager-link next" href="../../"><span class="ttl">1~20강 목차</span>${icon("chevron-right", "i-lg")}</a>`}
 </div></nav>`;
   // Source note: what was carried over, then every way this page differs from the original.
+  // Footer: only differences that change what the reader sees or does (the full list is in PROVENANCE.md).
+  // The site does not mention where the lessons were collected (user decision 2026-11-12).
   const notes = [];
-  if (L.n === 10) notes.push("10강은 처음 답변이 6절에서 끊겨, 뒤의 답변에 다시 나온 완결본을 ‘10강. 나만의 AI 업무 시스템 설계하기’ 제목부터 옮겼습니다.");
-  if (L.n === 11) notes.push("11강은 대화에서 도입부가 먼저 잘못 나온 뒤 따로 나온 완결본을 옮겼습니다.");
   if (CORRECTIONS[L.n]) notes.push(CORRECTIONS[L.n].note);
-  if (/class="u-chart"/.test(L.html)) notes.push("차트는 원문 차트의 값으로 이 사이트가 다시 그렸습니다.");
-  if (/class="u-math"/.test(L.html)) notes.push("수식은 원문 수식을 분수와 기호로 간단히 바꿔 보여 줍니다.");
-  const marked = Object.values(L.rec.constants).find(v => typeof v === "string" && /\*\*[^*\n]+\*\*/.test(v));
-  if (marked) notes.push(`원문의 한 문장(‘${marked.replace(/\*\*/g, "")}’)에는 굵게 쓰라는 기호(**)가 글자 그대로 들어 있어, 기호 대신 굵은 글씨로 보여 줍니다.`);
-  if (/<span class="u-cite"/.test(L.html)) notes.push("GitHub에 있는 출처는 링크 없이 이름만 적었습니다.");
-  if (/class="u-image/.test(L.html)) notes.push("원문 이미지는 내려받지 않고 원래 주소(OpenAI 이미지 서버)에서 바로 불러오므로, 나중에 보이지 않을 수 있습니다.");
-  if (L.omittedImages) notes.push("출처가 Getty Images인 원문 이미지는 이용 조건 때문에 싣지 않고, 그 자리에 점선 안내를 남겼습니다.");
-  notes.push("원문에서 ChatGPT에 새 요청을 보내던 버튼(다음 강의, 복습, 실습 시작 등)은 이 사이트에서 빼고, 그 자리에 점선 안내를 남겼습니다.");
   return `${head({ title: `${L.n}강 · ${L.title} | ${COURSE}`, description: L.description, url, depth: 2 })}
 ${prev ? `<link rel="prev" href="../${pad(prev.n)}/">` : ""}${next ? `<link rel="next" href="../${pad(next.n)}/">` : ""}
 <script type="module">
@@ -228,9 +221,7 @@ ${L.html}
 </div>
 ${pager}
 <footer class="colophon"><div class="colophon-body">
-  <p>이 페이지는 <a href="${SHARE}" rel="noopener">ChatGPT 공유 대화</a>의 ${L.n}강 답변을 옮긴 것입니다. 문장과 실습의 정답·피드백·계산식은 원문을 따랐고, 화면 배치와 색은 이 사이트에 맞췄습니다. ${notes.join(" ")}</p>
-  <p>강의는 ChatGPT가 대화 속에서 쓴 답변입니다. OpenAI의 공식 강의가 아니며, 강의에 나온 인용과 수치는 이 사이트에서 따로 확인하지 않았습니다.</p>
-  <p>실습에 고르거나 적은 내용은 이 화면 안에서만 쓰이며 저장하거나 전송하지 않습니다. 새로 고치면 지워지니, 남기고 싶은 내용은 복사해 두세요.</p>
+${notes.length ? `  <p>원문과 달라진 점: ${notes.join(" ")}</p>\n` : ""}  <p>OpenAI의 공식 강의가 아니며, 강의에 나온 인용과 수치는 따로 확인하지 않았습니다. 실습에 고르거나 적은 내용은 저장하거나 전송하지 않으며, 새로 고치면 지워집니다.</p>
 </div></footer>
 <p id="live-status" class="sr-only" role="status" aria-live="polite"></p>
 </body>
@@ -246,7 +237,7 @@ export async function build({ home } = {}) {
   for (const L of LESSONS) write(path.join(DOCS, "lessons", pad(L.n), "index.html"), lessonPage(L));
   write(path.join(DOCS, "assets", "icons.svg"), iconSprite());
   const homeModule = await import(pathToFileURL(path.join(ROOT, "site", "home.mjs")).href);
-  write(path.join(DOCS, "index.html"), homeModule.homePage({ LESSONS, PARTS, head, esc, pad, SITE, SHARE, COURSE, BRAND }));
+  write(path.join(DOCS, "index.html"), homeModule.homePage({ LESSONS, PARTS, head, esc, pad, SITE, COURSE, BRAND }));
   return LESSONS;
 }
 

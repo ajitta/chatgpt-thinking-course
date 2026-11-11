@@ -90,6 +90,12 @@ Thinking을 쓸 때도 ‘속으로 100번 생각해’ 같은 말보다 문제�
 
 앞으로는 질문 문장을 잘 만드는 것을 넘어, AI에게 어느 부분까지 맡기고 어느 부분은 사람이 판단해야 하는지 구분하는 능력이 중요해집니다. 7강에서는 이 구분을 바탕으로 AI에게 일을 잘 위임하는 방법을 살펴봅니다.
 
+다음 글 · 7강 ChatGPT 같은 AI에게 일을 잘 위임하는 방법 (https://blog.naver.com/ajitta/224473531236)
+
+6강 웹 강의에서 실습하기 (https://ajitta.github.io/chatgpt-thinking-course/lessons/06/)
+
+이전 글 · 5강 ChatGPT를 제대로 활용하는 4가지 방법 (https://blog.naver.com/ajitta/224473523925)
+
 공개 대화의 6강을 블로그용으로 다시 편집했습니다. 원문 강의가 참고한 글은 아래 두 편입니다.
 
 OpenAI ChatGPT 프롬프트 모범 사례 (https://help.openai.com/ko-kr/articles/10032626-prompt-engineering-best-practices-for-chatgpt)

@@ -88,6 +88,12 @@ AI 업무 시스템은 무엇을 할 수 있는지 명확히 정해야 합니다
 
 이제 다음 단계는 설계한 시스템이 실제로 얼마나 잘 작동하는지 측정하는 것입니다. 11강은 AI 업무 시스템의 성과와 비용, 오류 관리를 다룹니다.
 
+다음 글 · 11강 ChatGPT 같은 AI 업무 시스템의 성과·비용·오류 관리 (https://blog.naver.com/ajitta/224473543348)
+
+10강 웹 강의에서 실습하기 (https://ajitta.github.io/chatgpt-thinking-course/lessons/10/)
+
+이전 글 · 9강 ChatGPT 같은 AI 여러 명이 팀을 이루면 무슨 일이 일어날까? (https://blog.naver.com/ajitta/224473537658)
+
 공개 대화의 10강을 블로그용으로 다시 편집했습니다.
 
 [이미지: thumb-lesson-10.png]

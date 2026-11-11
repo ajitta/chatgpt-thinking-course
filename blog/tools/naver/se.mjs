@@ -115,8 +115,8 @@ export function se(page) {
   }
 
   async function link(id, href) {
-    await caret(id, "end");
-    await page.keyboard.press("Shift+Home");
+    // Mouse selection covers every visual line; End + Shift+Home linked only the last line of a wrapped link.
+    await selectParagraph(id);
     await page.click("css=button.se-link-toolbar-button >> nth=0", { label: "open link input" });
     await page.waitForSelector("css=input.se-custom-layer-link-input", { state: "visible" });
     await page.fill("css=input.se-custom-layer-link-input", href);

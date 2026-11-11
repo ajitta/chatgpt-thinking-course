@@ -110,6 +110,12 @@ AI가 행사 계획서를 아주 훌륭하게 썼다면 프로젝트는 성공�
 
 다음 강의는 에이전트로 넘어갑니다. AI 에이전트는 어떻게 스스로 일을 수행할까요?
 
+다음 글 · 8강 ChatGPT 같은 AI 에이전트는 어떻게 스스로 일을 수행할까? (https://blog.naver.com/ajitta/224473534348)
+
+7강 웹 강의에서 실습하기 (https://ajitta.github.io/chatgpt-thinking-course/lessons/07/)
+
+이전 글 · 6강 ChatGPT로 원하는 답을 얻는 프롬프트 설계법 (https://blog.naver.com/ajitta/224473527926)
+
 공개 대화의 7강을 블로그용으로 다시 편집했습니다. 원문 강의가 참고한 글은 아래 세 편입니다.
 
 OpenAI 에이전트 활용 안내 (https://learn.chatgpt.com/docs/working-with-agents)

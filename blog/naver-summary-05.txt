@@ -96,6 +96,12 @@ ChatGPT의 모델 선택 메뉴에서는 빠른 응답과 더 깊은 추론 방�
 
 여기까지가 AI의 기본 원리와 활용법입니다. 6강의 주제는 원하는 답을 얻는 프롬프트 설계입니다.
 
+다음 글 · 6강 ChatGPT로 원하는 답을 얻는 프롬프트 설계법 (https://blog.naver.com/ajitta/224473527926)
+
+5강 웹 강의에서 실습하기 (https://ajitta.github.io/chatgpt-thinking-course/lessons/05/)
+
+이전 글 · 4강 ChatGPT는 왜 자신 있게 틀린 답을 할까? (https://blog.naver.com/ajitta/224473520673)
+
 공개 대화의 5강을 블로그용으로 다시 편집했습니다.
 
 [이미지: thumb-lesson-05.png]

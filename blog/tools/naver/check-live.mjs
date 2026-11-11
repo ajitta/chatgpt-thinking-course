@@ -56,7 +56,11 @@ export async function checkLive(page, { repo, manuscript, logNo, blogId = "ajitt
     }, { fmt });
     const diff = [];
     for (let i = 0; i < Math.max(want.length, r.lines.length); i++) if (want[i] !== r.lines[i]) diff.push({ i, want: want[i], got: r.lines[i] });
-    const missingLinks = wantLinks.filter(h => !r.links.some(l => l === h || decodeURIComponent(l).includes(h)));
+    // m.blog rewrites post links (m.blog.naver.com, PostView.naver?logNo=); compare Naver posts by log number.
+    const dec = (u) => { try { return decodeURIComponent(u); } catch { return u; } };
+    const key = (u) => { const s = dec(u); const m = s.match(/blog\.naver\.com\/(?:[\w-]+\/(\d{9,})|(?:PostView\.(?:naver|nhn)|[\w-]+)\?[^#]*\blogNo=(\d+))/); return m ? "naver:" + (m[1] || m[2]) : s.replace(/\/$/, ""); };
+    const got = new Set(r.links.map(key));
+    const missingLinks = wantLinks.filter(h => !got.has(key(h)) && !r.links.some(l => dec(l).includes(h)));
     let shot = null;
     if (shotDir) shot = await page.screenshot({ path: `${shotDir}/live-${logNo}-${w}.png` }).catch(e => "screenshot failed: " + e.message);
     const closingOk = !maxClosingRows || r.closingRows == null || r.closingRows <= maxClosingRows;
