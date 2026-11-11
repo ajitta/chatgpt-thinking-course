@@ -23,3 +23,7 @@
 썸네일은 `assets/thumb-lesson-01.png`이며 글 맨 끝에 작게 넣고 대표 사진으로 지정했습니다. 30강 공통 틀로 `tools/thumbnail.py`가 만듭니다. 마루부리 글꼴은 `tools/fonts/`에 두며 저장소에는 올리지 않습니다(`.gitignore`).
 
 이전 판(아티클판, 실습 보완판)은 git 기록에 남아 있습니다.
+
+## 2강 (2026-11-11 발행)
+
+[2강 글](https://blog.naver.com/ajitta/224473420017), 원고 `lesson-02-summary.html`, 텍스트판 `naver-summary-02.txt`, 썸네일 `assets/thumb-lesson-02.png`, 의미 지도 `assets/lesson-02-meaning-map.png`. 글 끝 링크는 GitHub의 2강 원문입니다.

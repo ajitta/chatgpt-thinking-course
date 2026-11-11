@@ -71,6 +71,9 @@ def main(n):
         if "<a " in p and text_of(re.sub(r"</?a[^>]*>", "", p)) != text_of(re.search(r"<a[^>]*>(.*?)</a>", p).group(1)):
             errors.append(f"link must wrap its whole paragraph: {text_of(p)[:40]}")
 
+    if "github.com" in body:
+        errors.append("GitHub links are on hold until the github.io lesson pages exist (lessons-plan.json decisions)")
+
     for label in REPORT_LABELS:
         if label in plain:
             warns.append(f"report-style label: {label}")

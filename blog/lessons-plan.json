@@ -5,26 +5,38 @@
    "status": "published",
    "logNo": "224472328521",
    "category": "AI 기본원리",
-   "manuscript": "blog/lesson-01-summary.html"
+   "manuscript": "blog/lesson-01-summary.html",
+   "categoryNo": 7,
+   "topic": "IT·컴퓨터_30"
   },
   {
    "lesson": 2,
-   "status": "todo",
-   "logNo": null,
+   "status": "published",
+   "logNo": "224473420017",
    "category": "AI 기본원리",
    "source": "lessons/01-ai-fundamentals/lesson-02.md",
    "original_title": "2강. ChatGPT는 어떻게 숫자로 '의미'를 표현할까?",
-   "blog_title": null,
-   "key_sentence": null,
+   "blog_title": "ChatGPT는 어떻게 숫자로 의미를 표현할까?",
+   "key_sentence": "ChatGPT는 개념을 사람처럼 머릿속에 그림이나 사전 항목으로 저장하는 것이 아니라, 수많은 숫자의 상호작용을 통해 정보를 표현하고 처리합니다.",
    "key_hint": null,
-   "thumbnail_lines": null,
+   "thumbnail_lines": [
+    "ChatGPT는 어떻게",
+    "숫자로 의미를",
+    "표현할까?"
+   ],
    "references": 0,
    "manuscript": "blog/lesson-02-summary.html",
    "diagrams": [
     "svg-02-lesson-02.svg (틀)",
     "svg-03-lesson-02.svg (틀)"
    ],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/01-ai-fundamentals/lesson-02.md"
+   "categoryNo": 7,
+   "topic": "IT·컴퓨터_30",
+   "key_source": "lesson-02.md \"오늘의 핵심 결론\" 첫 문장 (그대로)",
+   "diagrams_used": [
+    "blog/assets/lesson-02-meaning-map.png (svg-02 틀을 원문 데이터로 펼쳐 렌더링)"
+   ],
+   "followup": "발행본 끝에 GitHub 원문 링크가 남아 있음. 원고에서는 지웠고, 발행본 수정(재발행)은 사용자 결정 대기."
   },
   {
    "lesson": 3,
@@ -42,7 +54,7 @@
    "diagrams": [
     "svg-04-lesson-03.svg (완성)"
    ],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/01-ai-fundamentals/lesson-03.md"
+   "categoryNo": 7
   },
   {
    "lesson": 4,
@@ -58,7 +70,7 @@
    "references": 0,
    "manuscript": "blog/lesson-04-summary.html",
    "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/01-ai-fundamentals/lesson-04.md"
+   "categoryNo": 7
   },
   {
    "lesson": 5,
@@ -73,8 +85,7 @@
    "thumbnail_lines": null,
    "references": 0,
    "manuscript": "blog/lesson-05-summary.html",
-   "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/02-ai-workflows/lesson-05.md"
+   "diagrams": []
   },
   {
    "lesson": 6,
@@ -89,8 +100,7 @@
    "thumbnail_lines": null,
    "references": 0,
    "manuscript": "blog/lesson-06-summary.html",
-   "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/02-ai-workflows/lesson-06.md"
+   "diagrams": []
   },
   {
    "lesson": 7,
@@ -105,8 +115,7 @@
    "thumbnail_lines": null,
    "references": 0,
    "manuscript": "blog/lesson-07-summary.html",
-   "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/02-ai-workflows/lesson-07.md"
+   "diagrams": []
   },
   {
    "lesson": 8,
@@ -121,8 +130,7 @@
    "thumbnail_lines": null,
    "references": 0,
    "manuscript": "blog/lesson-08-summary.html",
-   "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/02-ai-workflows/lesson-08.md"
+   "diagrams": []
   },
   {
    "lesson": 9,
@@ -139,8 +147,7 @@
    "manuscript": "blog/lesson-09-summary.html",
    "diagrams": [
     "svg-05-lesson-09.svg (틀, 작음)"
-   ],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/02-ai-workflows/lesson-09.md"
+   ]
   },
   {
    "lesson": 10,
@@ -155,8 +162,7 @@
    "thumbnail_lines": null,
    "references": 0,
    "manuscript": "blog/lesson-10-summary.html",
-   "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/02-ai-workflows/lesson-10.md"
+   "diagrams": []
   },
   {
    "lesson": 11,
@@ -171,8 +177,7 @@
    "thumbnail_lines": null,
    "references": 0,
    "manuscript": "blog/lesson-11-summary.html",
-   "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/02-ai-workflows/lesson-11.md"
+   "diagrams": []
   },
   {
    "lesson": 12,
@@ -187,8 +192,7 @@
    "thumbnail_lines": null,
    "references": 0,
    "manuscript": "blog/lesson-12-summary.html",
-   "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/02-ai-workflows/lesson-12.md"
+   "diagrams": []
   },
   {
    "lesson": 13,
@@ -203,8 +207,7 @@
    "thumbnail_lines": null,
    "references": 0,
    "manuscript": "blog/lesson-13-summary.html",
-   "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/03-judgment-and-decisions/lesson-13.md"
+   "diagrams": []
   },
   {
    "lesson": 14,
@@ -219,8 +222,7 @@
    "thumbnail_lines": null,
    "references": 0,
    "manuscript": "blog/lesson-14-summary.html",
-   "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/03-judgment-and-decisions/lesson-14.md"
+   "diagrams": []
   },
   {
    "lesson": 15,
@@ -235,8 +237,7 @@
    "thumbnail_lines": null,
    "references": 0,
    "manuscript": "blog/lesson-15-summary.html",
-   "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/03-judgment-and-decisions/lesson-15.md"
+   "diagrams": []
   },
   {
    "lesson": 16,
@@ -251,8 +252,7 @@
    "thumbnail_lines": null,
    "references": 0,
    "manuscript": "blog/lesson-16-summary.html",
-   "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/03-judgment-and-decisions/lesson-16.md"
+   "diagrams": []
   },
   {
    "lesson": 17,
@@ -267,8 +267,7 @@
    "thumbnail_lines": null,
    "references": 0,
    "manuscript": "blog/lesson-17-summary.html",
-   "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/03-judgment-and-decisions/lesson-17.md"
+   "diagrams": []
   },
   {
    "lesson": 18,
@@ -283,8 +282,7 @@
    "thumbnail_lines": null,
    "references": 0,
    "manuscript": "blog/lesson-18-summary.html",
-   "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/03-judgment-and-decisions/lesson-18.md"
+   "diagrams": []
   },
   {
    "lesson": 19,
@@ -299,8 +297,7 @@
    "thumbnail_lines": null,
    "references": 0,
    "manuscript": "blog/lesson-19-summary.html",
-   "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/03-judgment-and-decisions/lesson-19.md"
+   "diagrams": []
   },
   {
    "lesson": 20,
@@ -315,12 +312,11 @@
    "thumbnail_lines": null,
    "references": 0,
    "manuscript": "blog/lesson-20-summary.html",
-   "diagrams": [],
-   "closing_link": "https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/03-judgment-and-decisions/lesson-20.md"
+   "diagrams": []
   }
  ],
  "decisions": {
-  "closing_link": "2강부터 글 끝 링크는 GitHub의 강의 원문 Markdown (웹 학습 페이지는 1강만 있음)",
+  "closing_link": "GitHub(github.com) 링크는 지금 달지 않는다. GitHub Pages(github.io) 강의 페이지를 모두 만든 뒤 각 글에 학습 페이지 링크를 한꺼번에 넣는다. (2026-11-11 결정) 1강의 github.io 실습 링크는 유지.",
   "categories": "ChatGPT Thinking 아래에 부별 카테고리: 1~4강 AI 기본원리(있음), 5~12강 AI 활용과 업무 시스템, 13~20강 사람의 사고와 불확실한 판단. 각 부의 첫 강의를 발행할 때 만든다.",
   "titles": "글 제목에 ChatGPT를 넣는다. 강의마다 제목 시안을 제안하고 사용자 승인을 받는다.",
   "conversation": "공유 대화 원본은 sources/conversation/ (GitHub Pages 공개 폴더 밖). 원문 도식만 쓰고 제3자 이미지는 쓰지 않는다.",

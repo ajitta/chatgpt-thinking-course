@@ -21,7 +21,7 @@
 - 보고서·숙제 말투 금지: "핵심 정리", "정리하면", "세 가지 확인" 같은 표지를 쓰지 않고 마무리도 문장으로 닫습니다. em dash, 화살표, 장식용 굵은 글씨를 쓰지 않습니다(antislop).
 - 소제목은 번호 없이, 마루부리 19px 기준 **320px 이하**(360px 휴대폰에서 한 줄). 본문 문장 중간에 줄바꿈을 넣지 않습니다.
 - 예문은 버티컬 라인 인용구(`data-quote="line"`)로 둡니다.
-- 마지막은 원문 강의 전체로 가는 링크, 참고 자료 링크(원문에 있는 것만, 추적 매개변수 제거), 썸네일. 2강부터는 웹 학습 페이지가 없으므로 GitHub의 강의 Markdown(`https://github.com/ajitta/chatgpt-thinking-course/blob/main/lessons/<부>/lesson-XX.md`)으로 연결합니다.
+- 마지막은 참고 자료 링크(원문에 있는 것만, 추적 매개변수 제거), 썸네일. GitHub 링크는 지금 달지 않습니다. 강의별 github.io 학습 페이지를 다 만든 뒤 한꺼번에 넣습니다(`lessons-plan.json`의 `decisions.closing_link`). 그전까지 2강부터는 글 끝에 외부 강의 링크 없이 출처 안내 한 줄과 썸네일만 둡니다.
 
 이미지
 - 원문 대화 전체는 `sources/conversation/chatgpt-thinking-공유대화-원본.md`(1~30강, 공유 링크 데이터에서 추출)에 있습니다. 답변 안의 `<box>`, `<text>` 등은 원래 화면의 레이아웃 표기입니다.
@@ -62,10 +62,10 @@ console.log(report); // ok: true 여야 함 (제목, 본문 diff [], 서식 styl
 
 ```js
 const { publish } = await import("file:///.../blog/tools/naver/publish.mjs");
-await publish(page, { category: "AI 기본원리" });   // 카테고리·공개 설정이 다르면 멈춤
+await publish(page, { category: "AI 기본원리", categoryNo: 7, topic: "IT·컴퓨터_30" });   // 새 글은 기본이 낙서장·주제 없음. 다르면 멈춤
 ```
 
-새 글은 발행 창에서 카테고리를 먼저 고릅니다(부별 카테고리는 `lessons-plan.json`).
+새 글 쓰기 주소는 `https://blog.naver.com/PostWriteForm.naver?blogId=ajitta`입니다. 카테고리 번호(`categoryNo`)와 주제는 `lessons-plan.json`에 있습니다. 5강, 13강처럼 새 카테고리가 필요하면 블로그 관리에서 먼저 만들고 번호를 기록합니다.
 
 ## 6. 발행 후 확인과 기록
 
