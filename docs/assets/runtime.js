@@ -193,7 +193,7 @@ export class Lesson {
     return String(this.handlers.length - 1);
   }
 
-  // A site note left where the original's "send to ChatGPT" buttons were.
+  // Where the original's "send to ChatGPT" buttons were: a usage note next to a copy button, otherwise nothing.
   sentNote(sent, items, ctx) {
     const labels = sent.map(b => squeeze(textOf(b))).filter(Boolean);
     const quoted = labels.map(l => `‘${l}’`).join(", ");
@@ -209,16 +209,13 @@ export class Lesson {
         const templates = [...src.matchAll(/`((?:[^`\\]|\\.)*)`/g)].map(m => m[1].split(/\$\{[^}]*\}/).pop().replace(/\\n/g, " "));
         return templates.concat(literals, consts);
       }).map(s => s.trim()).filter(s => /[가-힣]/.test(s) && s.length > 15);
+      // Usage only; the site no longer explains what the original buttons did (user decision 2026-11-12).
       text = asks.length
-        ? `원문의 ${quoted} 버튼은 이 내용 뒤에 다음 요청을 붙여 ChatGPT에 보냈습니다. “${asks[0]}” 이 사이트에서는 내용을 복사한 뒤 이 요청을 덧붙여 ChatGPT 등에 붙여 넣어 쓰세요.`
-        : `원문의 ${quoted} 버튼은 이 내용을 ChatGPT에 바로 보냈습니다. 이 사이트에서는 복사해서 ChatGPT 등에 붙여 넣어 쓰세요.`;
+        ? `복사한 뒤 다음 요청을 덧붙여 ChatGPT 등에 붙여 넣어 보세요. “${asks[0]}”`
+        : "복사해서 ChatGPT 등에 붙여 넣어 쓸 수 있습니다.";
     } else {
-      const n = this.data.lesson;
-      const count = labels.length > 1 ? `버튼 ${labels.length}개(${quoted})가` : `버튼(${quoted})이`;
-      text = `원문에는 이 자리에 ChatGPT에 새 요청을 보내는 ${count} 있었습니다. 이 사이트에서는 뺐습니다.`;
-      const nextLabel = labels.find(l => new RegExp(`^${n + 1}강\\s*·`).test(l));
-      if (nextLabel && n < 20) text += ` ${n + 1}강은 이 페이지 맨 아래의 다음 강의 링크로 이어집니다.`;
-      if (nextLabel && n >= 20) text += ` 원문 대화는 ${n + 1}강으로 이어지지만, 이 사이트에는 20강까지 옮겼습니다.`;
+      // A removed button that only sent a new request leaves nothing behind (the pager links the next lesson).
+      return "";
     }
     const tag = ctx.phrasing ? "span" : "p";
     return `<${tag} class="u-sitenote">${esc(text)}</${tag}>`;
