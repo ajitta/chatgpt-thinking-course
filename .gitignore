@@ -2,3 +2,4 @@ __pycache__/
 .serena/
 .DS_Store
 Thumbs.db
+blog/tools/fonts/

@@ -1,0 +1,10 @@
+<svg viewBox="0 0 340 232" width="100%" xmlns="http://www.w3.org/2000/svg">
+    <line x1="26" y1="194" x2="323" y2="194" stroke="currentColor" strokeOpacity=".35" strokeWidth="1.5"/>
+    <line x1="26" y1="194" x2="26" y2="14" stroke="currentColor" strokeOpacity=".35" strokeWidth="1.5"/>
+    <text x="37" y="16" fontSize="11" fill="currentColor" opacity=".65">음식 관련성 ↑</text>
+    <text x="214" y="215" fontSize="11" fill="currentColor" opacity=".65">이동수단 관련성 →</text>
+    {#each [{x:61,y:59,name:"사과",color:"#df6655"},{x:110,y:46,name:"배(과일)",color:"#df6655"},{x:80,y:100,name:"바나나",color:"#df6655"},{x:265,y:133,name:"자동차",color:"#468cdd"},{x:300,y:87,name:"배(선박)",color:"#468cdd"},{x:228,y:172,name:"자전거",color:"#468cdd"}] as p}
+      <circle cx={p.x} cy={p.y} r="5" fill={p.color}/>
+      <text x={p.x} y={p.y-12} fill="currentColor" fontSize="12" textAnchor="middle">{p.name}</text>
+    {/each}
+  </svg>

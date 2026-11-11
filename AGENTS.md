@@ -56,6 +56,10 @@ python -m http.server -d docs 8000
 
 After a change, record what you verified (and what you didn't) in `VALIDATION.md` in the same PASS / scope style.
 
+## Naver lesson posts (lessons 2-20)
+
+The process proven on lesson 1 is written down in `blog/PLAYBOOK.md`; per-lesson decisions and status live in `blog/lessons-plan.json`; the project skill `naver-lesson` runs it. Tools: `blog/tools/lint_manuscript.py` (manuscript check), `blog/tools/thumbnail.py` (series thumbnail), `blog/tools/naver/build-draft.mjs` and `publish.mjs` (SmartEditor automation via ego-browser). MaruBuri fonts go in `blog/tools/fonts/` (git-ignored). `sources/conversation/chatgpt-thinking-공유대화-원본.md` is the full shared conversation (lessons 1-30, visible messages only), with its SVG diagrams in `sources/conversation/assets/`.
+
 ## Publication state
 
 Only lesson 1 is published beyond GitHub: the web page above and the Naver post https://blog.naver.com/ajitta/224472328521 (category `ChatGPT Thinking → AI 기본원리`). Lessons 2–30 are not on the blog or the site. Publishing to Naver or changing the live post is outward-facing; confirm with the user first.

@@ -1,0 +1,6 @@
+<svg viewBox="0 0 280 40" width="85%" height="40px">
+      <path d="M140 0 V16 H46 V34 M140 16 V34 M140 16 H234 V34" stroke="#8296ab" strokeWidth="2" fill="none" strokeLinecap="round"/>
+      {#each [46,140,234] as x}
+        <circle cx={x} cy="34" r="3.5" fill="#388bd2"/>
+      {/each}
+    </svg>
